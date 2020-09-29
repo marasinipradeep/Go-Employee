@@ -1,0 +1,22 @@
+{
+  "name": "employee-connecting-system",
+  "version": "1.0.0",
+  "description": "This is an application which helps to link between job seeker and job provider",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marasinipradeep/employee-connecting-system.git"
+  },
+  "author": "pradeep marasini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marasinipradeep/employee-connecting-system/issues"
+  },
+  "homepage": "https://github.com/marasinipradeep/employee-connecting-system#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
