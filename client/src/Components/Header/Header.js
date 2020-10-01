@@ -9,7 +9,11 @@ import {useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+
     },
     menuButton: {
         marginRight: theme.spacing(1),
