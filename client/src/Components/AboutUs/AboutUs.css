@@ -1,0 +1,13 @@
+/* about us */
+.aboutus {
+    padding: 3rem 1rem;
+  }
+  
+  .aboutus {
+    background-color: lightblue;
+   
+  }
+  .aboutus p{
+    font-size: 28px;
+  }
+  /* end about us */

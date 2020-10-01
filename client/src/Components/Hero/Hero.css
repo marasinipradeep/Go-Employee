@@ -1,4 +1,4 @@
-/* Hero */
+/* two Hero component one for default and one for employee page */
 .defaultHero,
 .employeeHero {
   min-height: calc(100vh - 66px);
