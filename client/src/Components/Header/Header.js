@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, Typography, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid } from '@material-ui/core';
+import { AppBar, Toolbar,CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { KeyboardArrowUp, Home, Description } from '@material-ui/icons';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 
 
 
@@ -69,7 +69,7 @@ export default function Navbar(props) {
             <div className={classes.root}>
                 <AppBar >
                     <Toolbar >
-                        <Grid container justify="space-between" spacing={24}>
+                        <Grid container justify="space-between">
                             <Grid item xs={12} sm={4} md={5}>
                                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/")}>
                                     <Home />HOME
