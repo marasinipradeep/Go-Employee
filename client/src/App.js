@@ -69,7 +69,7 @@ function App() {
         />
     )
 }
-const AdminRoute = ({ component: Component, ...rest }) => {
+const EmployeeRoute = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
@@ -80,7 +80,6 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 
     return (
       <Router>
-       
         <UserContext.Provider value={{ userData, setUserData }}>
           {/* <Header /> */}
           <div>
@@ -88,7 +87,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
               <PublicRoute exact path="/" component={Home} />
               <PublicRoute exact path="/login" component={Login} />
               <PublicRoute exact path="/register" component={Register} />
-              <AdminRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
+              <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
             </Switch>
           </div>
         </UserContext.Provider>
