@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+       
 
     },
     menuButton: {
@@ -70,7 +71,7 @@ export default function Navbar(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <div className={classes.root}>
+        
                 <AppBar >
                     <Toolbar >
                         <Grid container justify="space-between">
@@ -94,7 +95,7 @@ export default function Navbar(props) {
                         </Grid>
                     </Toolbar>
                 </AppBar>
-            </div>
+          
             <Toolbar id="back-to-top-anchor" />
             <ScrollTop {...props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
