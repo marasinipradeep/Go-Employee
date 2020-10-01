@@ -33,7 +33,7 @@ export default function Register() {
             });
 
             localStorage.setItem("auth-token", loginRes.data.token);
-            history.push("/")
+            history.push("/login/employee/dashboard")
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
             err.response.data.msg && setError(err.response.data.msg)

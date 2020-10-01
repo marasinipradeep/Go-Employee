@@ -1,5 +1,5 @@
-import React, {useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import Axios from "axios";
 
 
@@ -36,41 +36,71 @@ function App() {
     console.log("inside use effect")
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");//When empty Null or undefined
-      if(token ===null){
-        localStorage.setItem("auth-token","");
-        token ="";
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
       }
-      const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null, 
-      { headers: { "x-auth-token": token }});
-     if(tokenRes.data){
-       const employeeRes=await Axios.get("http://localhost:8080/employee",
-       {headers:{"x-auth-token":token}
-     });
+      const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
+        { headers: { "x-auth-token": token } });
+      if (tokenRes.data) {
+        const employeeRes = await Axios.get("http://localhost:8080/employee",
+          {
+            headers: { "x-auth-token": token }
+          });
 
-     setUserData({
-       token,
-       employee:employeeRes.data,
-     });
+        setUserData({
+          token,
+          employee: employeeRes.data,
+        });
 
-     }
+      }
     };
     checkLoggedIn();
   }, []);
-  return (
-    <Router>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <Header />
-        <div>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login/employee/dashboard" component={EmployeeDashboard} />
-          </Switch>
-        </div>
-      </UserContext.Provider>
-    </Router>
-  );
+
+  const PublicRoute = ({ component: Component , ...rest})=>{
+    return (
+        <Route {...rest}  component={(props)=>(
+            <div>
+                <Header /> {/* HEADER ALWAYS VISIBLE */}
+                <Component {...props} />
+            </div>
+        )}
+        />
+    )
 }
+const AdminRoute = ({ component: Component, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            component={(props)=> (<Component {...props} />)}
+        />
+    );
+};
+
+    return (
+      <Router>
+       
+        <UserContext.Provider value={{ userData, setUserData }}>
+          {/* <Header /> */}
+          <div>
+            <Switch>
+              <PublicRoute exact path="/" component={Home} />
+              <PublicRoute exact path="/login" component={Login} />
+              <PublicRoute exact path="/register" component={Register} />
+              <AdminRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
+            </Switch>
+          </div>
+        </UserContext.Provider>
+      </Router>
+    );
+
+
+}
+
+
+//Store the token in application local storage
+//In app component figure out if there is token in local storage if there is a token get info and login the user
+//useEffect- Any effect that is happening outside of the your component eg:-making request to backend login and logout
 
 export default App;
