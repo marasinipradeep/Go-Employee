@@ -7,7 +7,7 @@ import './App.css';
 import "./style.css"
 
 //Importing Components
-import TopHeader from "./Components/layouts/TopHeader";
+
 import Header from "./Components/Header/Header";
 import Login from "./Components/auth/Login";
 import Register from "./Components/auth/Register";
@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{ userData, setUserData }}>
-      <TopHeader />
+     
         <Header />
         <div>
           <Switch>
