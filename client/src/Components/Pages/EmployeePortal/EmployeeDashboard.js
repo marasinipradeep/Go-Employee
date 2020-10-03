@@ -4,37 +4,34 @@ import Adminheader from "../../AdminHeader"
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem, Grid, Button, IconButton } from '@material-ui/core';
+import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-    },
-    textField: {
-        padding: "50px",
-        textAlign: "center",
-        width: "400"
+        marginLeft: "40px",
+        marginRight: "40px"
     },
 }));
 
 const workerType = [
     {
-        type: 'Farm-Worker',
+        value: 'Farm',
         label: 'Farm-Worker',
     },
     {
-        value: 'Restaurant-Worker',
+        value: 'Restaurant',
         label: 'Restaurant-Worker',
     },
     {
-        value: 'Cleaners',
+        value: 'Cleaning',
         label: 'Cleaners',
     }
 ];
 
-const experiences = [0, 1, 2, 3, 4, 5];
+const experiences = ["less then 1 year", "1 year", "2 year", "3 year", "4 year", "5+ year"];
 
 
 
@@ -44,112 +41,167 @@ const EmployeeDashboard = () => {
 
     const classes = useStyles();
 
-    const [worker, setWorker] = useState('');
-    const [experience, setExperience] = useState('');
-    const handleProfessionChange = (event) => {
-        setWorker(event.target.value);
-    };
-    const handleExperienceChange = (event) => {
+    const [name, setName] = useState();
+    const [worker, setWorker] = useState();
+    const [jobTitle, setjJobTitle] = useState();
+    const [experience, setExperience] = useState();
+    const [contactNumber, setContactNumber] = useState();
+    const [description, setDesctiption] = useState();
+    const [skills, setSkills] = useState([])
 
-        setExperience(event.target.value)
+    const [checked, setChecked] = React.useState(['online']);
+
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        console.log(currentIndex)
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
     };
+
+
+    const submit = async (e) => {
+        e.preventDefault();
+        const details = { name, worker, jobTitle, experience, contactNumber, description, skills }
+        console.log("inside submit details")
+        console.log(details)
+    }
     return (
         <div>
             <Adminheader />
-            <form Grid container>
+            <form className="form" onSubmit={submit} >
 
-                <div className={classes.root, classes.textField}>
-                    <Grid sm={12}  >
-                        <TextField
-                            label="Enter Your Name"
-                            id="fullName"
-                            defaultValue=""
-                            helperText="Enter your name"
-                            margin="normal"
-                        />
-                    </Grid>
-                    {/* profession type */}
-                    <Grid sm={12}>
-                        <TextField
-                            id="workerType"
-                            select
-                            label="Select Your Profession"
-                            value={worker}
-                            onChange={handleProfessionChange}
-                            helperText="Please select your profession"
-                        >
-                            {workerType.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Grid>
+                <Grid item container spacing={3}>
+                    <div className={classes.root}>
 
-                    {/* job titile*/}
 
-                    <Grid sm={12}  >
-                        <TextField
-                            label="Enter Your Job Title"
-                            id="jobTitle"
-                            defaultValue=""
-                            helperText="Enter Your Job Title"
-                            margin="normal"
-                        />
-                    </Grid>
+                        <Grid item xs={12}>
+                            <h2>Enter Your Details:</h2>
+                        </Grid>
 
-                    {/* Experience  */}
-                    <Grid sm={12}>
-                        <TextField
-                            id="experience"
-                            select
-                            label="Select Your Experience"
-                            value={experience}
-                            onChange={handleExperienceChange}
-                            helperText="Please Select Your Years of Experience"
-                        >
-                            {experiences.map((option) => (
-                                <MenuItem key={option} value={option}>
-                                    {option}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Grid>
+                        <Grid item xs={12}>
+                            <h3>Go online</h3>
+                            <Switch
+                                edge="end"
+                                onChange={handleToggle('online')}
+                                checked={checked.indexOf('online') !== -1}
+                            />
+                        </Grid>
 
-                    <Grid sm={12}  >
-                        <TextField
-                            label="Enter Your Contact Number"
-                            id="contactNumber"
-                            defaultValue=""
-                            helperText="Enter your Contact Number"
-                            margin="normal"
-                        />
-                    </Grid>
-                    <Grid sm={12}  >
-                        <TextField
-                            multiline
-                            label="Enter Your Description"
-                            id="description"
-                            defaultValue=""
-                            helperText="Enter your Description"
-                            margin="normal"
-                        />
-                    </Grid>
+                        <Grid item xs={12}  >
+                            <TextField
+                                fullWidth
+                                label="Enter Your Name"
+                                id="name"
+                                defaultValue=""
+                                helperText="Enter Your Name"
+                                margin="normal"
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Grid>
 
-                    <Grid sm={12}  >
-                        <TextField
-                            multiline
-                            label="Enter Your Skills"
-                            id="skills"
-                            defaultValue=""
-                            helperText="Enter your Skills"
-                            margin="normal"
-                        />
-                    </Grid>
+                        {/* profession type */}
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                id="workerType"
+                                select
+                                label="Select Your Profession"
+                                helperText="Please select your profession"
+                                onChange={(e) => setWorker(e.target.value)}
+                            >
+                                {workerType.map((option) => (
+                                    <MenuItem key={option.value} value={option.label}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
 
-                    <IconButton>Submit</IconButton>
+                        {/* job titile*/}
 
-                </div>
+                        <Grid item xs={12}  >
+                            <TextField
+                                fullWidth
+                                label="Enter Your Job Title"
+                                id="jobTitle"
+                                defaultValue=""
+                                helperText="Enter Your Job Title"
+                                margin="normal"
+                                onChange={(e) => setjJobTitle(e.target.value)}
+                            />
+                        </Grid>
+
+                        {/* Experience  */}
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                id="experience"
+                                select
+                                label="Select Your Experience"
+                                helperText="Please Select Your Years of Experience"
+                                onChange={(e) => setExperience(e.target.value)}
+                            >
+                                {experiences.map((option) => (
+                                    <MenuItem key={option} value={option}>
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+
+                        <Grid item xs={12}  >
+                            <TextField
+                                fullWidth
+                                label="Enter Your Contact Number"
+                                id="contactNumber"
+                                defaultValue=""
+                                helperText="Enter your Contact Number"
+                                margin="normal"
+                                onChange={(e) => setContactNumber(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}  >
+                            <TextField
+                                fullWidth
+                                multiline
+                                label="Enter Your Description"
+                                id="description"
+                                defaultValue=""
+                                helperText="Enter your Description"
+                                margin="normal"
+                                onChange={(e) => setDesctiption(e.target.value)}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}  >
+                            <TextField
+                                fullWidth
+                                multiline
+                                label="Enter Your Skills"
+                                id="skills"
+                                defaultValue=""
+                                helperText="Enter your Skills"
+                                margin="normal"
+                                onChange={(e) => setSkills(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={submit} variant="contained" color="primary" value="Submit">
+                                Submit
+                            </Button>
+
+                        </Grid>
+
+
+                    </div>
+                </Grid>
             </form>
         </div>
     )
