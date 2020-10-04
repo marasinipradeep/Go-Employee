@@ -2,7 +2,7 @@
 .defaultHero,
 .employeeHero {
   min-height: calc(100vh - 66px);
-  background: url("../images/employeeHero.jpg") center/cover no-repeat;
+  background: url("../../images/employeeHero.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

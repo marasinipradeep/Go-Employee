@@ -1,8 +1,10 @@
-import React, {useState, useContext } from 'react'
-import {useHistory } from "react-router-dom";
+import React, { useState, useContext } from 'react'
+import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext"
 import Axios from "axios";
 import ErrorNotice from '../misc/ErrorNotice';
+
+import API from "../Utils/API"
 
 export default function Register() {
     //Set state
@@ -20,13 +22,12 @@ export default function Register() {
         e.preventDefault();
         try {
             const newEmployee = { email, password, passwordCheck, displayName }
-            await Axios.post("http://localhost:8080/employee/register", newEmployee);
+            await API.registerEmployee(newEmployee);
 
             //we get response back with token
-            const loginRes = await Axios.post("http://localhost:8080/employee/login", {
-                email, password
-            });
+            const loginRes = await API.employeeLogin({email, password});
 
+            //Setting employee data after getting back from response
             setUserData({
                 token: loginRes.data.token,
                 employee: loginRes.data.employee
@@ -43,7 +44,7 @@ export default function Register() {
     return (
         <div>
             <h2 className="page">Register</h2>
-            {error && (<ErrorNotice message={error} clearError={()=>setError(undefined)}/>)}
+            {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
             <form className="form" onSubmit={submit} >
                 {/* Input Email */}
                 <label htmlFor="register-email">Email</label>
@@ -65,7 +66,6 @@ export default function Register() {
                 <input id="register-display-name" type="text"
                     onChange={(e) => setDisplayName(e.target.value)}
                 />
-
                 <input type="submit" value="Register" />
             </form>
         </div>

@@ -1,25 +1,23 @@
-import React, { Component } from 'react'
-import Title from '../Title/Title'
+import React, { useState } from 'react'
+import Title from '../Pure-Components/Title/Title'
 import './AboutUs.css'
 
-class AboutUs extends Component {
-    constructor(props) {
-        super(props)
+function AboutUs () {
+  
 
-        this.state = {
+        const [state,setState] = useState({
             aboutus: [
                 {
-                    info: 'ECS also stands for Employee Connect System.ECS is developed to solve the read world problem of \' short of staffs\' mainly in small business like restaurant, cleaning, agriculture, construction and so on.As small industries have lack of budget for human resource system they always find difficulties connecting with right employees.So our moto is to provide right employee to right business owner on real time basis.Whenever the business sends us request with employees we have 1000 of dedicated, skilled man power in differnt fields.' 
+                    info: 'Go Employee is a medium to establish to connection between ob provider and job seeker mainly  for small business like restaurant, cleaning and agricultures.As small industries have lack of budget for human resource system they always find difficulties connecting with right employees.So this application helps to find right employee for right businesses.Whenever the peson who is looking employee they can always look in this page and find the right fit person for their business.' 
                 },
             ]
-        }
-    }
-    render() {
+        })
+  
         return (
             <section className="aboutus ">
                 <Title title="About Us" />
                 <div className="aboutus-center">
-                    {this.state.aboutus.map((item,index) => {
+                    {state.aboutus.map((item,index) => {
                         return(
                              <article key={index} className="service">
                             <p>{item.info}</p>
@@ -33,7 +31,7 @@ class AboutUs extends Component {
 
 
         );
-    }
+    
 }
 
 export default AboutUs

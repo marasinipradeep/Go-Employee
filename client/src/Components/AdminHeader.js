@@ -86,6 +86,7 @@ export default function PersistentDrawerLeft() {
 
    //When we useContext we get setvalue in so destructure the data from the UserContext which is provideded from provider
    const { userData, setUserData } = useContext(UserContext)
+  
 
   const logout = () => {
     setUserData({
@@ -130,7 +131,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-           Welcome 
+           {/* {email}  */}
           </Typography>
         </Toolbar>
       </AppBar>

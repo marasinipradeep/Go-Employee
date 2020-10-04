@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import Adminheader from "../../AdminHeader"
 
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
+
+import Axios from "axios";
+import UserContext from "../../../context/UserContext"
+
+import API from "../../Utils/API"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,29 +53,39 @@ const EmployeeDashboard = () => {
     const [contactNumber, setContactNumber] = useState();
     const [description, setDesctiption] = useState();
     const [skills, setSkills] = useState([])
+    const [online, setonline] = useState(['online']);
 
-    const [checked, setChecked] = React.useState(['online']);
+
+
+    const { userData } = useContext(UserContext);
 
     const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
+        const currentIndex = online.indexOf(value);
         console.log(currentIndex)
-        const newChecked = [...checked];
+        const newonline = [...online];
 
         if (currentIndex === -1) {
-            newChecked.push(value);
+            newonline.push(value);
         } else {
-            newChecked.splice(currentIndex, 1);
+            newonline.splice(currentIndex, 1);
         }
-
-        setChecked(newChecked);
+        setonline(newonline);
     };
 
 
     const submit = async (e) => {
         e.preventDefault();
+        try{
         const details = { name, worker, jobTitle, experience, contactNumber, description, skills }
-        console.log("inside submit details")
         console.log(details)
+        const employeeDetails=await API.registerEmployee(details);
+
+        console.log(employeeDetails)
+    }
+      catch(err){
+       console.log(err)
+
+      }
     }
     return (
         <div>
@@ -90,7 +105,7 @@ const EmployeeDashboard = () => {
                             <Switch
                                 edge="end"
                                 onChange={handleToggle('online')}
-                                checked={checked.indexOf('online') !== -1}
+                                online={online.indexOf('online') !== -1}
                             />
                         </Grid>
 

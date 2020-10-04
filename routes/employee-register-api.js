@@ -71,7 +71,7 @@ module.exports = function (app) {
                 employee: {
                     id: employee._id,
                     displayName: employee.displayName,
-                //    email: employee.email
+                    //    email: employee.email
                 }
             })
 
@@ -120,24 +120,24 @@ module.exports = function (app) {
         }
     })
 
-    app.get("/employee",auth, async function (req, res) {
+    app.get("/employee", auth, async function (req, res) {
 
-        const employee=await Employee.findById(req.employee)
+        const employee = await Employee.findById(req.employee)
         res.json({
-            displayName:employee.displayName,
-            email:employee.email,
-            id:employee._id
+            displayName: employee.displayName,
+            email: employee.email,
+            id: employee._id
         })
 
     })
 
     app.get("/allemployees", async function (req, res) {
 
-        
+
         console.log("inside all employees")
         const employees = await Employee.find()
         console.log(employees)
-        
+
         res.json(employees)
 
         // const employee=await Employee.findById(req.employee)
@@ -149,5 +149,22 @@ module.exports = function (app) {
 
     })
 
+    //Update employee details
+    app.post("/employee/details", async function (req, res) {
 
+
+        console.log("inside  employees detail")
+        console.log(req.body)
+
+
+        // const employee=await Employee.findById(req.employee)
+        // res.json({
+        //     displayName:employee.displayName,
+        //     email:employee.email,
+        //     id:employee._id
+        // })
+
+    })
 }
+
+
