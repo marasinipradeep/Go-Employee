@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Axios from "axios";
 
 
@@ -17,10 +17,9 @@ import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboa
 //Importing pages
 import Home from "./Components/Pages/Home/Home"
 
-
-
 //Importing employee login UserContext and employees context EmployeeProvider
-import UserContext from "./context/UserContext";
+// import UserContext from "./context/UserContext";
+import {StoreProvider} from "./context/UserContext";
 
 
 function App() {
@@ -80,7 +79,7 @@ const EmployeeRoute = ({ component: Component, ...rest }) => {
 
     return (
       <Router>
-        <UserContext.Provider value={{ userData, setUserData }}>
+        <StoreProvider>
           {/* <Header /> */}
           <div>
             <Switch>
@@ -90,7 +89,7 @@ const EmployeeRoute = ({ component: Component, ...rest }) => {
               <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
             </Switch>
           </div>
-        </UserContext.Provider>
+        </StoreProvider>
       </Router>
     );
 

@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext"
-import Axios from "axios";
+import {useStoreContext} from "../../context/UserContext"
+
+import {LOGOUT,EMPLOYEE_LOGIN} from "../Utils/Actions"
+
 
 import API from "../Utils/API"
 
@@ -15,21 +17,26 @@ export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState();
-
-    const { setUserData } = useContext(UserContext);
+    // const { setUserData } = useStoreContext();
     const history = useHistory();
+
+    const [state, dispatch] = useStoreContext();
+
 
 
     //on submit clicked
     const submit = async (e) => {
         e.preventDefault();
+        console.log("inside submit clicked")
         try {
+            console.log("inside try block")
             const loginEmployee = { email, password, }
+            console.log(email)
 
             //we get response back with token
             const loginRes = await API.employeeLogin(loginEmployee);
 
-            setUserData({
+            dispatch({type:EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
                 employee: loginRes.data.employee
             });
@@ -39,7 +46,7 @@ export default function Login() {
 
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
-            err.response.data.msg && setError(err.response.data.msg)
+           err.response.data.msg && setError(err.response.data.msg)
         }
     };
     return (

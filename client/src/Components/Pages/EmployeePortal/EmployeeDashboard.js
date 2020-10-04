@@ -1,13 +1,8 @@
-import React, { useState,useContext } from 'react'
+import React, { useState } from 'react'
 import Adminheader from "../../AdminHeader"
-
-
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
-
-import Axios from "axios";
-import UserContext from "../../../context/UserContext"
 
 import API from "../../Utils/API"
 
@@ -57,8 +52,6 @@ const EmployeeDashboard = () => {
 
 
 
-    const { userData } = useContext(UserContext);
-
     const handleToggle = (value) => () => {
         const currentIndex = online.indexOf(value);
         console.log(currentIndex)
@@ -78,7 +71,7 @@ const EmployeeDashboard = () => {
         try{
         const details = { name, worker, jobTitle, experience, contactNumber, description, skills }
         console.log(details)
-        const employeeDetails=await API.registerEmployee(details);
+        const employeeDetails=await API.saveEmployeeDetails(details);
 
         console.log(employeeDetails)
     }

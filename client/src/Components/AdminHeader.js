@@ -2,21 +2,16 @@ import React,{useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import {Drawer,CssBaseline,AppBar,Toolbar,List,Typography,Divider,IconButton} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 
-import {IconButton} from "@material-ui/core";
+// import UserContext from "../context/UserContext"
+import {useStoreContext} from "../context/UserContext"
+import {LOGOUT} from "../Components/Utils/Actions"
 
-import UserContext from "../context/UserContext"
 
 
 
@@ -85,15 +80,12 @@ export default function PersistentDrawerLeft() {
   const history = useHistory();
 
    //When we useContext we get setvalue in so destructure the data from the UserContext which is provideded from provider
-   const { userData, setUserData } = useContext(UserContext)
+  //  const { userData, setUserData } = useContext(UserContext)
+  const [state, dispatch] = useStoreContext()
   
 
   const logout = () => {
-    setUserData({
-        token: undefined,
-        employee: undefined
-
-    });
+    dispatch({type:LOGOUT});
     localStorage.setItem("auth-token", "")
     history.push("/")
 

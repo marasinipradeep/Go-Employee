@@ -11,7 +11,7 @@ export default {
   },
   // Save and update employee details
 
-  registerEmployee: function(employeeDetails) {
+  saveEmployeeDetails: function(employeeDetails) {
     return axios.post("http://localhost:8080/employee/details", employeeDetails);
   },
  

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext"
-import Axios from "axios";
+// import UserContext from "../../context/UserContext"
+import {useStoreContext} from "../../context/UserContext"
 import ErrorNotice from '../misc/ErrorNotice';
 
 import API from "../Utils/API"
@@ -14,7 +14,8 @@ export default function Register() {
     const [displayName, setDisplayName] = useState();
     const [error, setError] = useState();
 
-    const { setUserData } = useContext(UserContext);
+    // const { setUserData } = useContext(UserContext);
+    const { setUserData } = useStoreContext();
     const history = useHistory();
 
     //onSubmit clicked
