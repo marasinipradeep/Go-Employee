@@ -9,16 +9,23 @@ const { Provider } = StoreContext;
 const reducer = (state, action) => {
   switch (action.type) {
   case LOGOUT:
+   
     return {
+       
       state
     };
 
     case EMPLOYEE_LOGIN:
-        return{
+        console.log("EMPLOYE LOGIN")
+        console.log(state)
+        const new_state={
             ...state,
             token:action.token,
-            employee:action.employee
+            id:action.id
         }
+        console.log("new_state")
+        console.log(new_state)
+        return new_state
 
   default:
     return state;
@@ -27,10 +34,13 @@ const reducer = (state, action) => {
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
+      
      token: undefined,
-     user: undefined,
-     error:"",
-     employee:""
+     id:"",
+    // user: undefined,
+    // error:"",
+   
+   
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

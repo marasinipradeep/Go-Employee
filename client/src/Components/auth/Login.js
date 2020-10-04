@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useRef } from 'react'
 import { useHistory } from "react-router-dom";
-import {useStoreContext} from "../../context/UserContext"
+import { useStoreContext } from "../../context/UserContext"
 
-import {LOGOUT,EMPLOYEE_LOGIN} from "../Utils/Actions"
+import { LOGOUT, EMPLOYEE_LOGIN } from "../Utils/Actions"
 
 
 import API from "../Utils/API"
@@ -14,11 +14,15 @@ import ErrorNotice from '../misc/ErrorNotice';
 export default function Login() {
 
     //Set state
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    // const [email, setEmail] = useState();
+    // const [password, setPassword] = useState();
     const [error, setError] = useState();
     // const { setUserData } = useStoreContext();
     const history = useHistory();
+
+    const emailRef = useRef();
+    const passwordRef = useRef();
+
 
     const [state, dispatch] = useStoreContext();
 
@@ -29,16 +33,21 @@ export default function Login() {
         e.preventDefault();
         console.log("inside submit clicked")
         try {
-            console.log("inside try block")
-            const loginEmployee = { email, password, }
-            console.log(email)
+           
+            const loginEmployee =
+            {
+                email: emailRef.current.value,
+                password: passwordRef.current.value,
+            }
 
             //we get response back with token
             const loginRes = await API.employeeLogin(loginEmployee);
+           
 
-            dispatch({type:EMPLOYEE_LOGIN,
+            dispatch({
+                type: EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
-                employee: loginRes.data.employee
+                id: loginRes.data.employee.id
             });
             localStorage.setItem("auth-token", loginRes.data.token);
             history.push("/login/employee/dashboard")
@@ -46,7 +55,7 @@ export default function Login() {
 
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
-           err.response.data.msg && setError(err.response.data.msg)
+            err.response.data.msg && setError(err.response.data.msg)
         }
     };
     return (
@@ -57,12 +66,14 @@ export default function Login() {
                 {/* Input Email */}
                 <label htmlFor="login-email">Email</label>
                 <input id="login-email" type="email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    // onChange={(e) => setEmail(e.target.value)}
+                    ref={emailRef}
                 />
                 {/* Input Password */}
                 <label htmlFor="login-password">Password</label>
                 <input id="login-password" type="password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    // onChange={(e) => setPassword(e.target.value)}
+                    ref={passwordRef}
                 />
                 {/* <input type="submit" value="Login" /> */}
                 <input type="submit" onClick={submit} />
