@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Adminheader from "../../AdminHeader"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
-
 import API from "../../Utils/API"
+import { SAVE_EMPLOYEE_DETAILS, GET_EMPLOYEE_DETAILS } from "../../Utils/Actions"
+import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,20 +38,18 @@ const experiences = ["less then 1 year", "1 year", "2 year", "3 year", "4 year",
 
 
 const EmployeeDashboard = () => {
-
-
     const classes = useStyles();
 
-    const [name, setName] = useState();
-    const [worker, setWorker] = useState();
-    const [jobTitle, setjJobTitle] = useState();
-    const [experience, setExperience] = useState();
-    const [contactNumber, setContactNumber] = useState();
-    const [description, setDesctiption] = useState();
-    const [skills, setSkills] = useState([])
+    const nameRef = useRef();
+    const typeRef = useRef();
+    const jobTitleRef = useRef();
+    const experienceRef = useRef();
+    const contactNumberRef = useRef();
+    const descriptionRef = useRef();
+    const skillsRef = useRef();
+
     const [online, setonline] = useState(['online']);
-
-
+    const [state, dispatch] = useEmployeeContext();
 
     const handleToggle = (value) => () => {
         const currentIndex = online.indexOf(value);
@@ -65,21 +64,59 @@ const EmployeeDashboard = () => {
         setonline(newonline);
     };
 
-
     const submit = async (e) => {
         e.preventDefault();
-        try{
-        const details = { name, worker, jobTitle, experience, contactNumber, description, skills }
-        console.log(details)
-        const employeeDetails=await API.saveEmployeeDetails(details);
+        const id = state.id
 
-        console.log(employeeDetails)
-    }
-      catch(err){
-       console.log(err)
+        try {
+            const details = {
+                id,
+                name: nameRef.current.value,
+                type: typeRef.current.value,
+                jobTitle: jobTitleRef.current.value,
+                experience: experienceRef.current.value,
+                contactNumber: contactNumberRef.current.value,
+                description: descriptionRef.current.value,
+            }
+            console.log(details)
+            const employeeDetails = await API.saveEmployeeDetails(details);
 
-      }
+            console.log(employeeDetails)
+            dispatch({
+                type: SAVE_EMPLOYEE_DETAILS,
+                name: employeeDetails.fields.name,
+                workType: employeeDetails.fields.workType,
+                jobTitle: employeeDetails.fields.jobTitle,
+                experience: employeeDetails.fields.experience,
+                contactNumber: employeeDetails.fields.contactNumber,
+                description: employeeDetails.fields.description
+            })
+        }
+        catch (err) {
+            console.log(err)
+
+        }
     }
+
+
+    useEffect(() => {
+        API.getEmployeeDetails(state.id).then((employeeDetails) => {
+            console.log("after useEffect EmployeeDashboard inside response")
+            console.log(employeeDetails)
+            console.log(employeeDetails.data)
+            dispatch({
+                type: GET_EMPLOYEE_DETAILS,
+                name: employeeDetails.data.fields.name,
+                workType: employeeDetails.data.fields.workType,
+                jobTitle: employeeDetails.data.fieldsjobTitle,
+                experience: employeeDetails.data.fields.experience,
+                contactNumber: employeeDetails.data.contactNumber,
+                description: employeeDetails.data.description
+
+            })
+        })
+    }, []);
+    
     return (
         <div>
             <Adminheader />
@@ -107,10 +144,11 @@ const EmployeeDashboard = () => {
                                 fullWidth
                                 label="Enter Your Name"
                                 id="name"
-                                defaultValue=""
+                                name="name"
+                                defaultValue={state.fields.name}
                                 helperText="Enter Your Name"
                                 margin="normal"
-                                onChange={(e) => setName(e.target.value)}
+                                inputRef={nameRef}
                             />
                         </Grid>
 
@@ -118,11 +156,12 @@ const EmployeeDashboard = () => {
                         <Grid item xs={12}>
                             <TextField
                                 fullWidth
-                                id="workerType"
+                                id="workType"
                                 select
                                 label="Select Your Profession"
                                 helperText="Please select your profession"
-                                onChange={(e) => setWorker(e.target.value)}
+                                defaultValue={state.fields.workType}
+                                inputRef={typeRef}
                             >
                                 {workerType.map((option) => (
                                     <MenuItem key={option.value} value={option.label}>
@@ -139,10 +178,10 @@ const EmployeeDashboard = () => {
                                 fullWidth
                                 label="Enter Your Job Title"
                                 id="jobTitle"
-                                defaultValue=""
                                 helperText="Enter Your Job Title"
                                 margin="normal"
-                                onChange={(e) => setjJobTitle(e.target.value)}
+                                defaultValue={state.fields.jobTitle}
+                                inputRef={jobTitleRef}
                             />
                         </Grid>
 
@@ -153,8 +192,9 @@ const EmployeeDashboard = () => {
                                 id="experience"
                                 select
                                 label="Select Your Experience"
+                                defaultValue={state.fields.experience}
                                 helperText="Please Select Your Years of Experience"
-                                onChange={(e) => setExperience(e.target.value)}
+                                inputRef={experienceRef}
                             >
                                 {experiences.map((option) => (
                                     <MenuItem key={option} value={option}>
@@ -169,10 +209,10 @@ const EmployeeDashboard = () => {
                                 fullWidth
                                 label="Enter Your Contact Number"
                                 id="contactNumber"
-                                defaultValue=""
                                 helperText="Enter your Contact Number"
                                 margin="normal"
-                                onChange={(e) => setContactNumber(e.target.value)}
+                                defaultValue={state.fields.contactNumber}
+                                inputRef={contactNumberRef}
                             />
                         </Grid>
                         <Grid item xs={12}  >
@@ -181,10 +221,10 @@ const EmployeeDashboard = () => {
                                 multiline
                                 label="Enter Your Description"
                                 id="description"
-                                defaultValue=""
                                 helperText="Enter your Description"
                                 margin="normal"
-                                onChange={(e) => setDesctiption(e.target.value)}
+                                defaultValue={state.fields.description}
+                                inputRef={descriptionRef}
                             />
                         </Grid>
 
@@ -194,10 +234,9 @@ const EmployeeDashboard = () => {
                                 multiline
                                 label="Enter Your Skills"
                                 id="skills"
-                                defaultValue=""
                                 helperText="Enter your Skills"
                                 margin="normal"
-                                onChange={(e) => setSkills(e.target.value)}
+                                inputRef={skillsRef}
                             />
                         </Grid>
                         <Grid item xs={12}>

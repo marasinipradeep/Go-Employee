@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from "react-router-dom";
 // import UserContext from "../../context/UserContext"
-import {useStoreContext} from "../../context/UserContext"
+import {useEmployeeContext} from "../Utils/EmployeeContext"
 import ErrorNotice from '../misc/ErrorNotice';
 
 import API from "../Utils/API"
@@ -15,7 +15,7 @@ export default function Register() {
     const [error, setError] = useState();
 
     // const { setUserData } = useContext(UserContext);
-    const { setUserData } = useStoreContext();
+    const { setUserData } = useEmployeeContext();
     const history = useHistory();
 
     //onSubmit clicked

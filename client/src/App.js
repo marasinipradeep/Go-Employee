@@ -19,43 +19,47 @@ import Home from "./Components/Pages/Home/Home"
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
-import {StoreProvider} from "./context/UserContext";
-
+import {EmployeeProvider,useEmployeeContext} from "./Components/Utils/EmployeeContext";
+import {SET_TOKEN} from "./Components/Utils/Actions"
 
 function App() {
-  const [userData, setUserData] = useState({
-    token: undefined,
-    user: undefined
-  });
+  //const [state, dispatch] = useEmployeeContext();
 
   //useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
   //If array is empty just going to run once.
   //So this basically function that runs when app starts.Downside cant have asynchrouns function.
-  useEffect(() => {
-    console.log("inside use effect")
-    const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");//When empty Null or undefined
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
-      const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
-        { headers: { "x-auth-token": token } });
-      if (tokenRes.data) {
-        const employeeRes = await Axios.get("http://localhost:8080/employee",
-          {
-            headers: { "x-auth-token": token }
-          });
+  
+  // useEffect(() => {
+  //   console.log("inside use effect")
 
-        setUserData({
-          token,
-          employee: employeeRes.data,
-        });
+  //   const checkLoggedIn = async () => {
+  //     let token = localStorage.getItem("auth-token");//When empty Null or undefined
+  //     if (state.token === null) {
+  //       localStorage.setItem("auth-token", "");
+  //       token = "";
+  //     }
+  //     const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
+  //       { headers: { "x-auth-token": token } });
+  //     if (tokenRes.data) {
+  //       const employeeRes = await Axios.get("http://localhost:8080/employee",
+  //         {
+  //           headers: { "x-auth-token": token }
+  //         });
 
-      }
-    };
-    checkLoggedIn();
-  }, []);
+  //         console.log(employeeRes.data)
+
+  //         dispatch({type:SET_TOKEN,token:token})
+
+  //       // setUserData({
+  //       //   token,
+  //       //   employee: employeeRes.data,
+  //       // });
+
+  //     }
+  //   };
+  //   checkLoggedIn();
+  //   console.log(state)
+  // }, []);
 
   const PublicRoute = ({ component: Component , ...rest})=>{
     return (
@@ -79,7 +83,7 @@ const EmployeeRoute = ({ component: Component, ...rest }) => {
 
     return (
       <Router>
-        <StoreProvider>
+        <EmployeeProvider>
           {/* <Header /> */}
           <div>
             <Switch>
@@ -89,7 +93,7 @@ const EmployeeRoute = ({ component: Component, ...rest }) => {
               <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
             </Switch>
           </div>
-        </StoreProvider>
+        </EmployeeProvider>
       </Router>
     );
 

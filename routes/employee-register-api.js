@@ -71,7 +71,7 @@ module.exports = function (app) {
                 employee: {
                     id: employee._id,
                     displayName: employee.displayName,
-                    //    email: employee.email
+                    email: employee.email
                 }
             })
 
@@ -121,8 +121,9 @@ module.exports = function (app) {
     })
 
     app.get("/employee", auth, async function (req, res) {
-
+        console.log("inside employee")
         const employee = await Employee.findById(req.employee)
+        console.log(employee)
         res.json({
             displayName: employee.displayName,
             email: employee.email,
@@ -150,19 +151,62 @@ module.exports = function (app) {
     })
 
     //Update employee details
-    app.post("/employee/details", async function (req, res) {
-
+    app.put("/employee/details", async function (req, res) {
 
         console.log("inside  employees detail")
         console.log(req.body)
+        const { name, worker, jobTitle, experience, contactNumber, description, skills } = req.body
+
+        console.log(name)
+
+        try {
+            console.log("inside try block")
+
+            const employee = await Employee.findByIdAndUpdate(
+
+                req.body.id,
+                {
+                    fields: {
+                        name: name,
+                        type: worker,
+                        jobTitle: jobTitle,
+                        experience: experience,
+                        contactNumber, contactNumber,
+                        description: description,
+                        skills: [skills]
+                    }
+                })
+
+            console.log(employee)
+        } catch (err) {
+            res.status(500).json({ error: err.message })
+
+        }
 
 
-        // const employee=await Employee.findById(req.employee)
-        // res.json({
-        //     displayName:employee.displayName,
-        //     email:employee.email,
-        //     id:employee._id
-        // })
+    })
+
+    //Find employee details and populate
+    app.get("/employee/currentdetails/:id", async function (req, res) {
+
+        console.log("inside get  employees detail")
+        console.log(req.params.id)
+
+
+        try {
+            console.log("inside try block")
+
+            const employeeDetails = await Employee.findById(
+                {_id:req.params.id},
+            )
+
+            console.log(employeeDetails)
+            res.json(employeeDetails)
+        } catch (err) {
+            res.status(500).json({ error: err.message })
+
+        }
+
 
     })
 }

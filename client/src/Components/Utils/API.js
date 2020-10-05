@@ -10,9 +10,13 @@ export default {
     return axios.post("/employee/register", newEmployee);
   },
   // Save and update employee details
-
   saveEmployeeDetails: function(employeeDetails) {
-    return axios.post("http://localhost:8080/employee/details", employeeDetails);
+    return axios.put("/employee/details", employeeDetails);
+  },
+
+  // Get  employee details
+  getEmployeeDetails: function(id) {
+    return axios.get("/employee/currentdetails/"+id);
   },
  
 };

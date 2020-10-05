@@ -1,2 +1,6 @@
 export const LOGOUT = "LOGOUT";
 export const EMPLOYEE_LOGIN = "EMPLOYEE_LOGIN";
+export const SAVE_EMPLOYEE_DETAILS = "SAVE_EMPLOYEE_DETAILS";
+export const LOADING = "LOADING";
+export const GET_EMPLOYEE_DETAILS = "GET_EMPLOYEE_DETAILS";
+export const SET_TOKEN = "SET_TOKEN";

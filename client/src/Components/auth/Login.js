@@ -1,33 +1,18 @@
 import React, { useState, useRef } from 'react'
 import { useHistory } from "react-router-dom";
-import { useStoreContext } from "../../context/UserContext"
-
-import { LOGOUT, EMPLOYEE_LOGIN } from "../Utils/Actions"
-
-
+import { useEmployeeContext } from "../Utils/EmployeeContext"
+import {EMPLOYEE_LOGIN } from "../Utils/Actions"
 import API from "../Utils/API"
-
-//import {Redirect,Route} from "react-router"
-
 import ErrorNotice from '../misc/ErrorNotice';
 
 export default function Login() {
 
-    //Set state
-    // const [email, setEmail] = useState();
-    // const [password, setPassword] = useState();
     const [error, setError] = useState();
-    // const { setUserData } = useStoreContext();
     const history = useHistory();
-
     const emailRef = useRef();
     const passwordRef = useRef();
-
-
-    const [state, dispatch] = useStoreContext();
-
-
-
+    const [state, dispatch] = useEmployeeContext();
+    
     //on submit clicked
     const submit = async (e) => {
         e.preventDefault();
@@ -42,17 +27,14 @@ export default function Login() {
 
             //we get response back with token
             const loginRes = await API.employeeLogin(loginEmployee);
-           
-
             dispatch({
                 type: EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
-                id: loginRes.data.employee.id
+                id: loginRes.data.employee.id,
+                email: loginRes.data.employee.email
             });
             localStorage.setItem("auth-token", loginRes.data.token);
             history.push("/login/employee/dashboard")
-            // history.push("/")
-
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
             err.response.data.msg && setError(err.response.data.msg)
@@ -62,25 +44,18 @@ export default function Login() {
         <div>
             <h2 className="page">Login</h2>
             {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
+            
             <form className="form" onSubmit={submit}>
                 {/* Input Email */}
                 <label htmlFor="login-email">Email</label>
-                <input id="login-email" type="email"
-                    // onChange={(e) => setEmail(e.target.value)}
-                    ref={emailRef}
-                />
+                <input id="login-email" type="email" ref={emailRef}/>
+
                 {/* Input Password */}
                 <label htmlFor="login-password">Password</label>
-                <input id="login-password" type="password"
-                    // onChange={(e) => setPassword(e.target.value)}
-                    ref={passwordRef}
-                />
-                {/* <input type="submit" value="Login" /> */}
+                <input id="login-password" type="password" ref={passwordRef}/>
+               
                 <input type="submit" onClick={submit} />
             </form>
-
-            {/* <button onClick={()=>history.push("/")}>fdfdf</button> */}
-
         </div>
     )
 }
