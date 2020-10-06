@@ -2,10 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import defaultImage from '../images/blankprofile.png'
 import PropTtypes from 'prop-types';
-
-
-
-
 import './FindEmployee.css'
 
 function FindEmployee({ employee }) { //This is coming from attribute inside EmployeeList
@@ -13,13 +9,8 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
     console.log(employee)
 
     const { name, _id, images, jobTitle } = employee;
-
-
-    console.log(`the slug is : ${_id}`)
     // <img src={images || defaultImage}
     return (
-
-
         <article className="employee">
             <div className="img-container">
                 <img src={defaultImage}

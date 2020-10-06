@@ -1,7 +1,13 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import { LOGOUT, EMPLOYEE_LOGIN, SAVE_EMPLOYEE_DETAILS, LOADING, GET_ALL_EMPLOYEE_DETAILS, SET_TOKEN,CONNECTED_EMPLOYEE } from "./Actions"
-//export default createContext(null);
+import {
+  LOGOUT,
+  EMPLOYEE_LOGIN,
+  SAVE_EMPLOYEE_DETAILS,
+  LOADING, GET_ALL_EMPLOYEE_DETAILS,
+  SET_TOKEN, CONNECTED_EMPLOYEE,
+  UPDATE_EMPLOYEE_ISONLINE
+} from "./Actions"
 
 const EmployeeContext = createContext();
 const { Provider } = EmployeeContext;
@@ -29,35 +35,37 @@ const reducer = (state, action) => {
       };
 
     case SAVE_EMPLOYEE_DETAILS:
-     
+
       return {
         ...state,
-       currentEmployee:action.employee
+        currentEmployee: action.employee
       }
 
-      case GET_ALL_EMPLOYEE_DETAILS:
-     
+      case UPDATE_EMPLOYEE_ISONLINE:
+        console.log("Update isOnline")
+        console.log(action.isOnline)
       return {
         ...state,
-       employees:action.allEmployee
+       currentEmployee:action.isOnline
+        
       }
 
-      case CONNECTED_EMPLOYEE:
+    case GET_ALL_EMPLOYEE_DETAILS:
 
-      console.log("inside connected employee")
-      console.log(action.id)
-        return {
-          ...state,
-          connectedEmployee:state.employees.filter((employee)=>{
+      return {
+        ...state,
+        employees: action.allEmployee
+      }
 
-            console.log("inside connected employee")
-            console.log(employee)
+    case CONNECTED_EMPLOYEE:
+      return {
+        ...state,
+        connectedEmployee: state.employees.filter((employee) => {
+          return employee._id === action.id
+        })
+      }
 
-            return employee._id === action.id
-          })
-        }
 
-   
     case LOADING:
       return {
         ...state,
@@ -73,7 +81,7 @@ const reducer = (state, action) => {
 const EmployeeProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     token: undefined,
-    employees:[],
+    employees: [],
     currentEmployee: {
       _id: "",
       email: "",
@@ -87,9 +95,9 @@ const EmployeeProvider = ({ value = [], ...props }) => {
       skills: "",
       images: ""
     },
-    connectedEmployee:[],
+    connectedEmployee: [],
     loading: false,
-    
+
 
   });
   return <Provider value={[state, dispatch]} {...props} />;

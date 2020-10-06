@@ -207,6 +207,30 @@ module.exports = function (app) {
 
 
     })
+
+
+    //Update employee isOnline
+    app.put("/employee/isOnline", async function (req, res) {
+        console.log("inside  employees isOnline")
+        console.log(req.body)
+        try {
+            console.log("inside try block")
+
+            const employee = await Employee.findOneAndUpdate(
+               {_id: req.body.id},
+                {
+                    isOnline: req.body.isOnline,
+                    
+                })
+
+           res.json(employee)
+        } catch (err) {
+            res.status(500).json({ error: err.message })
+
+        }
+
+
+    })
 }
 
 

@@ -23,5 +23,10 @@ export default {
   getEmployeeDetails: function(id) {
     return axios.get("/employee/currentdetails/"+id);
   },
+
+  // Save and update employee details
+  setEmployeeOnline: function(id) {
+    return axios.put("/employee/isOnline", id);
+  },
  
 };

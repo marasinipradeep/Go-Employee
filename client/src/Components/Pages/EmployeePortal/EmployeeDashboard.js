@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
 import API from "../../Utils/API"
-import { SAVE_EMPLOYEE_DETAILS } from "../../Utils/Actions"
+import { SAVE_EMPLOYEE_DETAILS,UPDATE_EMPLOYEE_ISONLINE } from "../../Utils/Actions"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
 import Cards from "../../Cards/cards"
@@ -50,20 +50,26 @@ const EmployeeDashboard = () => {
     const descriptionRef = useRef();
     const skillsRef = useRef();
 
-    const [online, setonline] = useState(['online']);
+    const [checked, setChecked] = useState(false);
     const [state, dispatch] = useEmployeeContext();
 
-    const handleToggle = (value) => () => {
-        const currentIndex = online.indexOf(value);
-        console.log(currentIndex)
-        const newonline = [...online];
-
-        if (currentIndex === -1) {
-            newonline.push(value);
-        } else {
-            newonline.splice(currentIndex, 1);
+    const handleToggle =() => {
+        console.log(checked)
+        setChecked((prev) => !prev);
+        console.log(checked)
+        const details ={
+            id:state.id,
+            isOnline:!checked
         }
-        setonline(newonline);
+        API.setEmployeeOnline(details).then((employee)=>{
+            console.log(employee)
+            dispatch({
+                type: UPDATE_EMPLOYEE_ISONLINE,
+                isOnline: employee.data.isOnline
+            })
+
+        })
+       
     };
 
     const submit = async (e) => {
@@ -118,9 +124,7 @@ const EmployeeDashboard = () => {
             <Grid item xs={12}>
                 <h3>Go online</h3>
                 <Switch
-                    edge="end"
-                    onChange={handleToggle('online')}
-                    online={online.indexOf('online') !== -1}
+                    onChange={handleToggle}
                 />
             </Grid>
 

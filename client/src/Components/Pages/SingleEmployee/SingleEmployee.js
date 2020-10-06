@@ -4,7 +4,6 @@ import Banner from '../../Banner/Banner';
 import { Link } from 'react-router-dom';
 import { useEmployeeContext } from '../../Utils/EmployeeContext';
 import StyledHero from '../../Pure-Components/StyledHero/StyledHero';
-
 import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
 import  "./SingleEmployee.css"
 

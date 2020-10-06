@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import FindEmployee from '../FindEmployee/FindEmployee';
-import './EmployeeList.css'
 import API from "../Utils/API"
-
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { GET_ALL_EMPLOYEE_DETAILS } from "../Utils/Actions"
+import './EmployeeList.css'
 
 
 function EmployeeList() {
