@@ -18,7 +18,7 @@ import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboa
 import Home from "./Components/Pages/Home/Home"
 
 import FindEmployee from './Components/Pages/Employee'
-import SingleEmployee from './Components/Pages/SingleEmployee';
+import SingleEmployee from './Components/Pages/SingleEmployee/SingleEmployee';
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
