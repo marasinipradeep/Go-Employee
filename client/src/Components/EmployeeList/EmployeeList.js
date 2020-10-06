@@ -1,44 +1,28 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import FindEmployee from '../FindEmployee/FindEmployee';
-
 import './EmployeeList.css'
-
 import Axios from 'axios';
 
-import {useEmployeeContext} from "../Utils/EmployeeContext"
-
-
+import { useEmployeeContext } from "../Utils/EmployeeContext"
+import { GET_EMPLOYEE_DETAILS } from "../Utils/Actions"
 
 
 //function EmployeeList({ employees }) {
-    function EmployeeList() {
+function EmployeeList() {
 
-    const [state,dispatch]=useEmployeeContext();
+    const [state, dispatch] = useEmployeeContext();
 
-    function formatData(items) {
-        console.log("format data")
 
-        let tempItems = items.data.map(item => {
-            console.log(item)
-            // let id = item.sys.id
-            let id = item._id
-           // let images = item.images.map(image => image.fields.file.url);
-    
-            let employee = { ...item,id };
-            return employee;
-        });
-        return tempItems;
-    }
 
     useEffect(() => {
         Axios.get("http://localhost:8080/allemployees/").then(items => {
             console.log("inside useeffect employee Provider")
             console.log(items.data)
-            dispatch({type:})
-
-
+            dispatch({
+                type: GET_EMPLOYEE_DETAILS,
+                allEmployee: items.data
+            })
         })
-       
 
     }, [])
 

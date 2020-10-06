@@ -12,16 +12,15 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
 
   
     const { name, slug, images, jobTitle } = employee;
-    console.log(images[0])
 
     
-
+// <img src={images || defaultImage}
     return (
         
 
         <article className="employee">
             <div className="img-container">
-                <img src={images[0] || defaultImage}
+                <img src={defaultImage}
                     alt="single employee" 
                />
                 <div className="price-top">

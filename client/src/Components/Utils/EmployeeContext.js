@@ -29,11 +29,18 @@ const reducer = (state, action) => {
       };
 
     case SAVE_EMPLOYEE_DETAILS:
-      console.log("Inside SAVE_EMPLOYEE_DETAILS")
-      console.log(action.employee)
+     
       return {
         ...state,
        currentEmployee:action.employee
+      }
+
+      case GET_EMPLOYEE_DETAILS:
+      console.log("Inside SAVE_EMPLOYEE_DETAILS")
+      console.log(action.allEmployee)
+      return {
+        ...state,
+       employees:action.allEmployee
       }
 
    
