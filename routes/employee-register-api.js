@@ -136,11 +136,9 @@ module.exports = function (app) {
 
 
         console.log("inside all employees")
-        const employees = await Employee.find()
+        const employees = await Employee.find({isOnline:true})
         console.log(employees)
-
         res.json(employees)
-
         // const employee=await Employee.findById(req.employee)
         // res.json({
         //     displayName:employee.displayName,
