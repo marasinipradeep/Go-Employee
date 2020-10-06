@@ -12,8 +12,7 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
 
   
     const { name, slug, images, jobTitle } = employee;
-
-    
+    console.log(`the slug is : ${name}`)
 // <img src={images || defaultImage}
     return (
         
@@ -40,8 +39,7 @@ FindEmployee.PropTtypes = {
     employee: PropTtypes.shape({
         name: PropTtypes.string.isRequired,
         slug: PropTtypes.string.isRequired,
-        images: PropTtypes.arrayOf(PropTtypes.string).isRequired,
-        price: PropTtypes.number.isRequired,
+        images: PropTtypes.string.isRequired
     })
 }
 

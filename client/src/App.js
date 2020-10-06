@@ -92,7 +92,7 @@ function App() {
           <Switch>
             <PublicRoute exact path="/" component={Home} />
             <PublicRoute exact path="/employee" component={FindEmployee} />
-            <Route exact path="/employees/:slug" component={SingleEmployee} />
+            <PublicRoute exact path="/employees/:slug" component={SingleEmployee} />
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />

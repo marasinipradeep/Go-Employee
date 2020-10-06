@@ -5,21 +5,14 @@ import { Link } from 'react-router-dom';
 import { useEmployeeContext } from '../Utils/EmployeeContext';
 import StyledHero from '../Pure-Components/StyledHero/StyledHero';
 
-//import Context from "../../context"
-
-
 function SingleEmployee (props) {
-   
-        const [state,setState] = useState({
-            slug: props.match.params.slug,
-            defaultBcg
-        });
-    
+       
+        const [employeeState,dispatch] =useEmployeeContext();
 
-   const context = useEmployeeContext() ;
+        const employee = props.match.params.slug;
+        console.log(props)
+        console.log(employeeState)
 
-        const { getEmployee } = context;
-        const employee = getEmployee(state.slug);
         if (!employee) {
             return <div className="error">
                 <h3>no such employee could be found...</h3>
@@ -38,11 +31,11 @@ function SingleEmployee (props) {
             skills,
             images } = employee;
 
-        const [mainImg, ...defaultImg] = images;
+      //  const [mainImg, ...defaultImg] = images;
         return (
             <>
-                <StyledHero img={mainImg ||
-                    this.state.defaultBcg}>
+                <StyledHero img={""||
+                    defaultBcg}>
                     <Banner title={`${name}room`}>
                         <Link to='/employee' className="btn-primary">
                             back to employees
@@ -51,10 +44,7 @@ function SingleEmployee (props) {
                 </StyledHero>
                 <section className="single-room">
                     <div className="single-room-images">
-                        {defaultImg.map((item, index) => {
-                            return <img key={index} src={item} alt=
-                                {name} />;
-                        })}
+                         <img src="" alt= ""/>
                     </div>
                     <div className="single-room-info">
                         <article className="desc">
@@ -73,11 +63,11 @@ function SingleEmployee (props) {
                 </section>
                 <section className="room-extras">
                     <h6>Skills</h6>
-                    <ul className = "extras">
+                    {/* <ul className = "extras">
                         {skills.map((item,index)=>{
                             return <li  key = {index}>{item}</li>
                         })}
-                    </ul>
+                    </ul> */}
                 </section>
             </>
         );
