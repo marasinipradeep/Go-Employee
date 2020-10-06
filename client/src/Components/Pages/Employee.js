@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-
 import Hero from '../Pure-Components/Hero/Hero';
 import Banner from '../Banner/Banner';
 import EmployeeContainer from '../EmployeeContainer/EmployeeContainer'

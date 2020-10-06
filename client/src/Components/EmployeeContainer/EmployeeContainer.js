@@ -17,7 +17,7 @@ function EmployeeContainer() {
     }
     return (
         <>
-            <EmployeeFilter employees={employees} />
+            <EmployeeFilter/>
             <EmployeeList employees={employees} />
         </>
     );

@@ -43,10 +43,15 @@ const reducer = (state, action) => {
       }
 
       case CONNECTED_EMPLOYEE:
+
+      console.log("inside connected employee")
+      
        
         return {
           ...state,
-          connectedEmployee:action.connectedEmployee
+          connectedEmployee:state.employees.filter((employee)=>{
+            return employee._id ===action._id
+          })
         }
 
    
@@ -79,8 +84,9 @@ const EmployeeProvider = ({ value = [], ...props }) => {
       skills: "",
       images: ""
     },
-    connectedEmployee:{},
+    connectedEmployee:[],
     loading: false,
+    
 
   });
   return <Provider value={[state, dispatch]} {...props} />;

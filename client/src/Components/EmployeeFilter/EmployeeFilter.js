@@ -4,29 +4,9 @@ import Title from "../Pure-Components/Title/Title";
 
 import './EmployeeFilter.css'
 
-//get all unique values
-const getUnique = (items, value) => {
-    return [...new Set(items.map(item => item[value]))];
-};
-
-function EmployeeFilter({ employees }) {
-    const [context,dispatch] = useEmployeeContext();
+function EmployeeFilter() {
+    const [state,dispatch] = useEmployeeContext();
     
-    const {handleChange,type} = context;
-
-    //get unique types
-    let types = getUnique(employees, 'type');
-    //add all
-    types = ['all', ...types];
-
-
-    //map to jsx
-    types = types.map((item, index) => {
-        return (
-            <option value={item} key={index}>{item}
-            </option>
-        );
-    });
 
     return (
         <section className="filter-container">
@@ -36,13 +16,15 @@ function EmployeeFilter({ employees }) {
                 <div className="form-group">
                     <label htmlFor="type">employee type</label>
                     <select
-                        name="type"
-                        id="type"
-                        value={type}
+                        name="workType"
+                        id="workType"
                         className="form-control"
-                        onChange={handleChange}
+                        onChange={dispatch({type:"handleChange"})}
                     >
-                        {types}
+                         <option>ALL</option>
+                        <option>FARM-WORKER</option>
+                        <option>RESTAURANT-WORKER</option>
+                        <option>CLEANING-WORKER</option>
                     </select>
                 </div>
                 {/*end select type*/}

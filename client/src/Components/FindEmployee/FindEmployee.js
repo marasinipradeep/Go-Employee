@@ -38,6 +38,7 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
 FindEmployee.PropTtypes = {
     employee: PropTtypes.shape({
         name: PropTtypes.string.isRequired,
+        id:PropTtypes.string.isRequired,
         slug: PropTtypes.string.isRequired,
         images: PropTtypes.string.isRequired
     })
