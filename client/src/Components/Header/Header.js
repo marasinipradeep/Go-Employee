@@ -81,7 +81,7 @@ export default function Navbar(props) {
           </IconButton>
                             </Grid>
                             <Grid item xs={12} sm={4} md={5}>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/employees")}>
+                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/employee")}>
                                     <Description />FIND EEMPLOYEES
           </IconButton>
                             </Grid>

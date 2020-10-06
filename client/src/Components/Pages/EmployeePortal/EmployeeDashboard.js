@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import Adminheader from "../../AdminHeader"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem, Grid, Button, Switch, Typography } from '@material-ui/core';
+import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
 import API from "../../Utils/API"
-import { SAVE_EMPLOYEE_DETAILS, GET_EMPLOYEE_DETAILS } from "../../Utils/Actions"
+import { SAVE_EMPLOYEE_DETAILS } from "../../Utils/Actions"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
 import Cards from "../../Cards/cards"
@@ -84,11 +84,7 @@ const EmployeeDashboard = () => {
             console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
 
-            // console.log(employeeDetails)
-            // dispatch({
-            //     type: SAVE_EMPLOYEE_DETAILS,
-            //     employee: employeeDetails.data
-            // })
+           
         }
         catch (err) {
             console.log(err)
@@ -96,14 +92,18 @@ const EmployeeDashboard = () => {
         }
     }
 
-
-    useEffect(() => {
+    function loadEmployee(){
         API.getEmployeeDetails(state.id).then((employeeDetails) => {
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data
             })
         })
+    }
+
+
+    useEffect(() => {
+        loadEmployee();
     }, []);
 
     return (
@@ -134,12 +134,10 @@ const EmployeeDashboard = () => {
                                 label="Enter Your Name"
                                 id="name"
                                 name="name"
-                                value={state.currentEmployee.name}
                                 helperText="Enter Your Name"
                                 margin="normal"
                                 inputRef={nameRef}
-                                onChange={() => nameRef.current.value}
-                                inputProps={{ readOnly: false }}
+                                required
                             />
                         </Grid>
 
@@ -151,8 +149,9 @@ const EmployeeDashboard = () => {
                                 select
                                 label="Select Your Profession"
                                 helperText="Please select your profession"
-                                value={state.currentEmployee.workType}
                                 inputRef={typeRef}
+                                required
+
                             >
                                 {workerType.map((option) => (
                                     <MenuItem key={option.value} value={option.label}>
@@ -171,8 +170,8 @@ const EmployeeDashboard = () => {
                                 id="jobTitle"
                                 helperText="Enter Your Job Title"
                                 margin="normal"
-                                value={state.currentEmployee.jobTitle}
                                 inputRef={jobTitleRef}
+                                required
                             />
                         </Grid>
 
@@ -183,9 +182,9 @@ const EmployeeDashboard = () => {
                                 id="experience"
                                 select
                                 label="Select Your Experience"
-                                value={state.currentEmployee.experience}
                                 helperText="Please Select Your Years of Experience"
                                 inputRef={experienceRef}
+                                required
                             >
                                 {experiences.map((option) => (
                                     <MenuItem key={option} value={option}>
@@ -202,8 +201,8 @@ const EmployeeDashboard = () => {
                                 id="contactNumber"
                                 helperText="Enter your Contact Number"
                                 margin="normal"
-                                value={state.currentEmployee.contactNumber}
                                 inputRef={contactNumberRef}
+                                required
                             />
                         </Grid>
                         <Grid item xs={12}  >
@@ -214,8 +213,8 @@ const EmployeeDashboard = () => {
                                 id="description"
                                 helperText="Enter your Description"
                                 margin="normal"
-                                value={state.currentEmployee.description}
                                 inputRef={descriptionRef}
+                                required
                             />
                         </Grid>
 
@@ -227,8 +226,8 @@ const EmployeeDashboard = () => {
                                 id="skills"
                                 helperText="Enter your Skills"
                                 margin="normal"
-                                value={state.currentEmployee.skills}
                                 inputRef={skillsRef}
+                                required
                             />
                         </Grid>
                         <Grid item xs={12}>

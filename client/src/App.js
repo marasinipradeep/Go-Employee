@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Axios from "axios";
 
 
@@ -17,10 +17,12 @@ import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboa
 //Importing pages
 import Home from "./Components/Pages/Home/Home"
 
+import FindEmployee from './Components/Pages/Employee'
+
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
-import {EmployeeProvider,useEmployeeContext} from "./Components/Utils/EmployeeContext";
-import {SET_TOKEN} from "./Components/Utils/Actions"
+import { EmployeeProvider, useEmployeeContext } from "./Components/Utils/EmployeeContext";
+import { SET_TOKEN } from "./Components/Utils/Actions"
 
 function App() {
   //const [state, dispatch] = useEmployeeContext();
@@ -28,7 +30,7 @@ function App() {
   //useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
   //If array is empty just going to run once.
   //So this basically function that runs when app starts.Downside cant have asynchrouns function.
-  
+
   // useEffect(() => {
   //   console.log("inside use effect")
 
@@ -61,41 +63,42 @@ function App() {
   //   console.log(state)
   // }, []);
 
-  const PublicRoute = ({ component: Component , ...rest})=>{
+  const PublicRoute = ({ component: Component, ...rest }) => {
     return (
-        <Route {...rest}  component={(props)=>(
-            <div>
-                <Header /> {/* HEADER ALWAYS VISIBLE */}
-                <Component {...props} />
-            </div>
-        )}
-        />
+      <Route {...rest} component={(props) => (
+        <div>
+          <Header /> {/* HEADER ALWAYS VISIBLE */}
+          <Component {...props} />
+        </div>
+      )}
+      />
     )
-}
-const EmployeeRoute = ({ component: Component, ...rest }) => {
+  }
+  const EmployeeRoute = ({ component: Component, ...rest }) => {
     return (
-        <Route
-            {...rest}
-            component={(props)=> (<Component {...props} />)}
-        />
+      <Route
+        {...rest}
+        component={(props) => (<Component {...props} />)}
+      />
     );
-};
+  };
 
-    return (
-      <Router>
-        <EmployeeProvider>
-          {/* <Header /> */}
-          <div>
-            <Switch>
-              <PublicRoute exact path="/" component={Home} />
-              <PublicRoute exact path="/login" component={Login} />
-              <PublicRoute exact path="/register" component={Register} />
-              <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard}/>
-            </Switch>
-          </div>
-        </EmployeeProvider>
-      </Router>
-    );
+  return (
+    <Router>
+      <EmployeeProvider>
+        {/* <Header /> */}
+        <div>
+          <Switch>
+            <PublicRoute exact path="/" component={Home} />
+            <PublicRoute exact path="/employee" component={FindEmployee} />
+            <PublicRoute exact path="/login" component={Login} />
+            <PublicRoute exact path="/register" component={Register} />
+            <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
+          </Switch>
+        </div>
+      </EmployeeProvider>
+    </Router>
+  );
 
 
 }
