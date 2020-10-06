@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import Adminheader from "../../AdminHeader"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
+import { MenuItem, Grid, Button, Switch, Typography } from '@material-ui/core';
 import API from "../../Utils/API"
 import { SAVE_EMPLOYEE_DETAILS, GET_EMPLOYEE_DETAILS } from "../../Utils/Actions"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
+
+import Cards from "../../Cards/cards"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -72,25 +74,21 @@ const EmployeeDashboard = () => {
             const details = {
                 id,
                 name: nameRef.current.value,
-                type: typeRef.current.value,
+                workType: typeRef.current.value,
                 jobTitle: jobTitleRef.current.value,
                 experience: experienceRef.current.value,
                 contactNumber: contactNumberRef.current.value,
                 description: descriptionRef.current.value,
+                skills: skillsRef.current.value
             }
             console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
 
-            console.log(employeeDetails)
-            dispatch({
-                type: SAVE_EMPLOYEE_DETAILS,
-                name: employeeDetails.fields.name,
-                workType: employeeDetails.fields.workType,
-                jobTitle: employeeDetails.fields.jobTitle,
-                experience: employeeDetails.fields.experience,
-                contactNumber: employeeDetails.fields.contactNumber,
-                description: employeeDetails.fields.description
-            })
+            // console.log(employeeDetails)
+            // dispatch({
+            //     type: SAVE_EMPLOYEE_DETAILS,
+            //     employee: employeeDetails.data
+            // })
         }
         catch (err) {
             console.log(err)
@@ -101,43 +99,34 @@ const EmployeeDashboard = () => {
 
     useEffect(() => {
         API.getEmployeeDetails(state.id).then((employeeDetails) => {
-            console.log("after useEffect EmployeeDashboard inside response")
-            console.log(employeeDetails)
-            console.log(employeeDetails.data)
             dispatch({
-                type: GET_EMPLOYEE_DETAILS,
-                name: employeeDetails.data.fields.name,
-                workType: employeeDetails.data.fields.workType,
-                jobTitle: employeeDetails.data.fieldsjobTitle,
-                experience: employeeDetails.data.fields.experience,
-                contactNumber: employeeDetails.data.contactNumber,
-                description: employeeDetails.data.description
-
+                type: SAVE_EMPLOYEE_DETAILS,
+                employee: employeeDetails.data
             })
         })
     }, []);
-    
+
     return (
-        <div>
+
+        <div className={classes.root}>
             <Adminheader />
-            <form className="form" onSubmit={submit} >
 
-                <Grid item container spacing={3}>
-                    <div className={classes.root}>
+            <Grid item xs={12}>
+                <h2>Enter Your Details:</h2>
+            </Grid>
 
+            <Grid item xs={12}>
+                <h3>Go online</h3>
+                <Switch
+                    edge="end"
+                    onChange={handleToggle('online')}
+                    online={online.indexOf('online') !== -1}
+                />
+            </Grid>
 
-                        <Grid item xs={12}>
-                            <h2>Enter Your Details:</h2>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <h3>Go online</h3>
-                            <Switch
-                                edge="end"
-                                onChange={handleToggle('online')}
-                                online={online.indexOf('online') !== -1}
-                            />
-                        </Grid>
+            <Grid item container>
+                <Grid item xs={12} md={7} spacing={3}>
+                    <form className="form" onSubmit={submit} >
 
                         <Grid item xs={12}  >
                             <TextField
@@ -145,10 +134,12 @@ const EmployeeDashboard = () => {
                                 label="Enter Your Name"
                                 id="name"
                                 name="name"
-                                defaultValue={state.fields.name}
+                                value={state.currentEmployee.name}
                                 helperText="Enter Your Name"
                                 margin="normal"
                                 inputRef={nameRef}
+                                onChange={() => nameRef.current.value}
+                                inputProps={{ readOnly: false }}
                             />
                         </Grid>
 
@@ -160,7 +151,7 @@ const EmployeeDashboard = () => {
                                 select
                                 label="Select Your Profession"
                                 helperText="Please select your profession"
-                                defaultValue={state.fields.workType}
+                                value={state.currentEmployee.workType}
                                 inputRef={typeRef}
                             >
                                 {workerType.map((option) => (
@@ -180,7 +171,7 @@ const EmployeeDashboard = () => {
                                 id="jobTitle"
                                 helperText="Enter Your Job Title"
                                 margin="normal"
-                                defaultValue={state.fields.jobTitle}
+                                value={state.currentEmployee.jobTitle}
                                 inputRef={jobTitleRef}
                             />
                         </Grid>
@@ -192,7 +183,7 @@ const EmployeeDashboard = () => {
                                 id="experience"
                                 select
                                 label="Select Your Experience"
-                                defaultValue={state.fields.experience}
+                                value={state.currentEmployee.experience}
                                 helperText="Please Select Your Years of Experience"
                                 inputRef={experienceRef}
                             >
@@ -211,7 +202,7 @@ const EmployeeDashboard = () => {
                                 id="contactNumber"
                                 helperText="Enter your Contact Number"
                                 margin="normal"
-                                defaultValue={state.fields.contactNumber}
+                                value={state.currentEmployee.contactNumber}
                                 inputRef={contactNumberRef}
                             />
                         </Grid>
@@ -223,7 +214,7 @@ const EmployeeDashboard = () => {
                                 id="description"
                                 helperText="Enter your Description"
                                 margin="normal"
-                                defaultValue={state.fields.description}
+                                value={state.currentEmployee.description}
                                 inputRef={descriptionRef}
                             />
                         </Grid>
@@ -236,6 +227,7 @@ const EmployeeDashboard = () => {
                                 id="skills"
                                 helperText="Enter your Skills"
                                 margin="normal"
+                                value={state.currentEmployee.skills}
                                 inputRef={skillsRef}
                             />
                         </Grid>
@@ -243,13 +235,21 @@ const EmployeeDashboard = () => {
                             <Button onClick={submit} variant="contained" color="primary" value="Submit">
                                 Submit
                             </Button>
+                           
 
                         </Grid>
+                        <br/><br/>
+                    </form>
 
-
-                    </div>
                 </Grid>
-            </form>
+                <Grid item xs={12} md={1}></Grid>
+                <Grid item xs={12} md={4}>
+                    <Grid item xs={12}>
+                        <Cards />
+                    </Grid>
+                </Grid>
+            </Grid>
+
         </div>
     )
 }

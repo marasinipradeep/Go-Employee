@@ -155,26 +155,24 @@ module.exports = function (app) {
 
         console.log("inside  employees detail")
         console.log(req.body)
-        const { name, worker, jobTitle, experience, contactNumber, description, skills } = req.body
+        const { name, workType, jobTitle, experience, contactNumber, description, skills } = req.body
 
         console.log(name)
 
         try {
             console.log("inside try block")
 
-            const employee = await Employee.findByIdAndUpdate(
-
-                req.body.id,
+            const employee = await Employee.findOneAndUpdate(
+               {_id: req.body.id},
                 {
-                    fields: {
-                        name: name,
-                        type: worker,
-                        jobTitle: jobTitle,
-                        experience: experience,
-                        contactNumber, contactNumber,
-                        description: description,
-                        skills: [skills]
-                    }
+                    name: name,
+                    workType: workType,
+                    jobTitle: jobTitle,
+                    experience: experience,
+                    contactNumber, contactNumber,
+                    description: description,
+                    skills: skills
+
                 })
 
             console.log(employee)
@@ -197,7 +195,7 @@ module.exports = function (app) {
             console.log("inside try block")
 
             const employeeDetails = await Employee.findById(
-                {_id:req.params.id},
+                { _id: req.params.id },
             )
 
             console.log(employeeDetails)

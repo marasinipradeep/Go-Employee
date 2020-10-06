@@ -29,33 +29,14 @@ const reducer = (state, action) => {
       };
 
     case SAVE_EMPLOYEE_DETAILS:
+      console.log("Inside SAVE_EMPLOYEE_DETAILS")
+      console.log(action.employee)
       return {
         ...state,
-        fields: {
-          name: action.name,
-          workType: action.type,
-          jobTitle: action.jobTitle,
-          experience: action.experience,
-          contactNumber: action.contactNumber,
-          description: action.description,
-        }
+       currentEmployee:action.employee
       }
 
-    case GET_EMPLOYEE_DETAILS:
-
-      return {
-        ...state,
-        fields: {
-          name: action.name,
-          workType: action.workType,
-          jobTitle: action.jobTitle,
-          experience: action.experience,
-          contactNumber: action.contactNumber,
-          description: action.description,
-
-        }
-      }
-
+   
     case LOADING:
       return {
         ...state,
@@ -72,10 +53,9 @@ const EmployeeProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
 
     token: undefined,
-
-    employee: {
+    employees:[],
+    currentEmployee: {
       _id: "",
-      loading: false,
       email: "",
       isOnline: false,
       name: "",
@@ -86,7 +66,8 @@ const EmployeeProvider = ({ value = [], ...props }) => {
       description: "",
       skills: "",
       images: ""
-    }
+    },
+    loading: false,
 
   });
   return <Provider value={[state, dispatch]} {...props} />;
