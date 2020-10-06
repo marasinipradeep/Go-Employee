@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import defaultBcg from '../../images/employee.jpg';
+import defaultBcg from '../../images/employee.jpeg';
 import Banner from '../../Banner/Banner';
 import { Link } from 'react-router-dom';
 import { useEmployeeContext } from '../../Utils/EmployeeContext';

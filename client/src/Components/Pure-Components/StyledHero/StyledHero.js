@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import deafaultImage from '../../images/employee.jpg';
+import deafaultImage from '../../images/employee.jpeg';
 
 
 const StyledHero = styled.header`
-min-height: 60vh;
+min-height: 50vh;
 background:url(${props => props.img ? props.img :
         deafaultImage}) center/
 cover no-repeat;
