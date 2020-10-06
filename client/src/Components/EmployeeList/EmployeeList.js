@@ -3,6 +3,8 @@ import FindEmployee from '../FindEmployee/FindEmployee';
 import './EmployeeList.css'
 import Axios from 'axios';
 
+import API from "../Utils/API"
+
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { GET_ALL_EMPLOYEE_DETAILS } from "../Utils/Actions"
 
@@ -15,9 +17,8 @@ function EmployeeList() {
 
 
     useEffect(() => {
-        Axios.get("http://localhost:8080/allemployees/").then(items => {
-            console.log("inside useeffect employee Provider")
-            console.log(items.data)
+        API.getAllEmployee().then(items => {
+            
             dispatch({
                 type: GET_ALL_EMPLOYEE_DETAILS,
                 allEmployee: items.data

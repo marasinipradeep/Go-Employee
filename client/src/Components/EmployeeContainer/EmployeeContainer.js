@@ -8,9 +8,8 @@ import Loading from '../Loading/Loading';
 
 function EmployeeContainer() {
      const [state,dispatch] =useEmployeeContext()
-     console.log("inside employeeContainer")
-   console.log(state)
-     const { loading,employees } = state;
+     
+     const { loading} = state;
 
    if (loading){
         return <Loading />;
@@ -18,7 +17,7 @@ function EmployeeContainer() {
     return (
         <>
             <EmployeeFilter/>
-            <EmployeeList employees={employees} />
+            <EmployeeList/>
         </>
     );
 }

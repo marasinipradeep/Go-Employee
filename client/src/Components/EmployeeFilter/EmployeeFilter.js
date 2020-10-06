@@ -6,7 +6,6 @@ import './EmployeeFilter.css'
 
 function EmployeeFilter() {
     const [state,dispatch] = useEmployeeContext();
-    
 
     return (
         <section className="filter-container">

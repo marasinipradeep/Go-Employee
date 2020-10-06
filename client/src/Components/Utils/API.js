@@ -15,6 +15,11 @@ export default {
   },
 
   // Get  employee details
+  getAllEmployee: function() {
+  return axios.get("/allemployees/");
+  },
+
+  // Get all employee 
   getEmployeeDetails: function(id) {
     return axios.get("/employee/currentdetails/"+id);
   },
