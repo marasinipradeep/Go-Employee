@@ -7,7 +7,9 @@ import StyledHero from '../Pure-Components/StyledHero/StyledHero';
 
 function SingleEmployee (props) {
        
-        const [employeeState,dispatch] =useEmployeeContext();
+        const [employeeState,dispatch] =useEmployeeContext({
+            
+        });
 
         const employee = props.match.params.slug;
         console.log(props)

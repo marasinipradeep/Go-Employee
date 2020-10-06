@@ -4,7 +4,7 @@ import './EmployeeList.css'
 import Axios from 'axios';
 
 import { useEmployeeContext } from "../Utils/EmployeeContext"
-import { GET_EMPLOYEE_DETAILS } from "../Utils/Actions"
+import { GET_ALL_EMPLOYEE_DETAILS } from "../Utils/Actions"
 
 
 //function EmployeeList({ employees }) {
@@ -19,7 +19,7 @@ function EmployeeList() {
             console.log("inside useeffect employee Provider")
             console.log(items.data)
             dispatch({
-                type: GET_EMPLOYEE_DETAILS,
+                type: GET_ALL_EMPLOYEE_DETAILS,
                 allEmployee: items.data
             })
         })

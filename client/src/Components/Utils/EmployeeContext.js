@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import { LOGOUT, EMPLOYEE_LOGIN, SAVE_EMPLOYEE_DETAILS, LOADING, GET_EMPLOYEE_DETAILS, SET_TOKEN } from "./Actions"
+import { LOGOUT, EMPLOYEE_LOGIN, SAVE_EMPLOYEE_DETAILS, LOADING, GET_ALL_EMPLOYEE_DETAILS, SET_TOKEN,CONNECTED_EMPLOYEE } from "./Actions"
 //export default createContext(null);
 
 const EmployeeContext = createContext();
@@ -35,13 +35,19 @@ const reducer = (state, action) => {
        currentEmployee:action.employee
       }
 
-      case GET_EMPLOYEE_DETAILS:
-      console.log("Inside SAVE_EMPLOYEE_DETAILS")
-      console.log(action.allEmployee)
+      case GET_ALL_EMPLOYEE_DETAILS:
+     
       return {
         ...state,
        employees:action.allEmployee
       }
+
+      case CONNECTED_EMPLOYEE:
+       
+        return {
+          ...state,
+          connectedEmployee:action.connectedEmployee
+        }
 
    
     case LOADING:
@@ -58,7 +64,6 @@ const reducer = (state, action) => {
 
 const EmployeeProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-
     token: undefined,
     employees:[],
     currentEmployee: {
@@ -74,6 +79,7 @@ const EmployeeProvider = ({ value = [], ...props }) => {
       skills: "",
       images: ""
     },
+    connectedEmployee:{},
     loading: false,
 
   });
