@@ -1,24 +1,17 @@
 import React, { useEffect } from 'react';
 import FindEmployee from '../FindEmployee/FindEmployee';
 import './EmployeeList.css'
-import Axios from 'axios';
-
 import API from "../Utils/API"
 
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { GET_ALL_EMPLOYEE_DETAILS } from "../Utils/Actions"
 
 
-//function EmployeeList({ employees }) {
 function EmployeeList() {
 
     const [state, dispatch] = useEmployeeContext();
-
-
-
     useEffect(() => {
         API.getAllEmployee().then(items => {
-            
             dispatch({
                 type: GET_ALL_EMPLOYEE_DETAILS,
                 allEmployee: items.data

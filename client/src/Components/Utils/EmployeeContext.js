@@ -45,12 +45,15 @@ const reducer = (state, action) => {
       case CONNECTED_EMPLOYEE:
 
       console.log("inside connected employee")
-      
-       
+      console.log(action.id)
         return {
           ...state,
           connectedEmployee:state.employees.filter((employee)=>{
-            return employee._id ===action._id
+
+            console.log("inside connected employee")
+            console.log(employee)
+
+            return employee._id === action.id
           })
         }
 
