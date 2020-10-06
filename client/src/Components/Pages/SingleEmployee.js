@@ -2,8 +2,8 @@ import React, { Component ,useContext,useState} from 'react';
 import defaultBcg from '../images/employee.jpg';
 import Banner from '../Banner/Banner';
 import { Link } from 'react-router-dom';
-import { useEmployeeContext } from '../../context';
-import StyledHero from '../StyledHero/StyledHero';
+import { useEmployeeContext } from '../Utils/EmployeeContext';
+import StyledHero from '../Pure-Components/StyledHero/StyledHero';
 
 //import Context from "../../context"
 

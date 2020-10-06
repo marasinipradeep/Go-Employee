@@ -18,6 +18,7 @@ import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboa
 import Home from "./Components/Pages/Home/Home"
 
 import FindEmployee from './Components/Pages/Employee'
+import SingleEmployee from './Components/Pages/SingleEmployee';
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
@@ -91,6 +92,7 @@ function App() {
           <Switch>
             <PublicRoute exact path="/" component={Home} />
             <PublicRoute exact path="/employee" component={FindEmployee} />
+            <Route exact path="/employees/:slug" component={SingleEmployee} />
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />

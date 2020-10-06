@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import deafaultImage from '../images/employee.jpg';
+import deafaultImage from '../../images/employee.jpg';
 
 
 const StyledHero = styled.header`
