@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import {EMPLOYEE_LOGIN } from "../Utils/Actions"
 import API from "../Utils/API"
 import ErrorNotice from '../misc/ErrorNotice';
-
 export default function Login() {
 
     const [error, setError] = useState();
@@ -34,12 +33,16 @@ export default function Login() {
                 email: loginRes.data.employee.email
             });
             localStorage.setItem("auth-token", loginRes.data.token);
+            localStorage.setItem("id",loginRes.data.employee.id,)
             history.push("/login/employee/dashboard")
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
             err.response.data.msg && setError(err.response.data.msg)
         }
     };
+
+    
+
     return (
         <div>
             <h2 className="page">Login</h2>

@@ -10,6 +10,8 @@ import { useEmployeeContext } from "../../Utils/EmployeeContext"
 import Cards from "../../Cards/cards"
 
 
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -89,7 +91,7 @@ const EmployeeDashboard = () => {
             }
             console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
-
+          
            
         }
         catch (err) {
@@ -108,10 +110,11 @@ const EmployeeDashboard = () => {
     }
 
 
-    useEffect(() => {
-        loadEmployee();
-    }, []);
+    useEffect(
+        loadEmployee, []
+        );
 
+       
     return (
 
         <div className={classes.root}>

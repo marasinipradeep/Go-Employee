@@ -6,6 +6,13 @@ const passport = require("./config/passport")
 require("dotenv").config();
 const cors =require("cors")
 
+//chat dependencies
+const socketio = require("socket.io");
+const http = require("http");
+// end chat dependencies
+
+const {addUser, removeUser, getUser, getUserInRoom} = require('./controllers/users')
+
 global.__basedir = __dirname;
 
 //Setting up the PORT and requiring models for syncing

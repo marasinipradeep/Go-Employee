@@ -61,8 +61,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         connectedEmployee: state.employees.filter((employee) => {
-          return employee._id === action.id
-        })
+          return employee._id === action.id//use find here
+                })
       }
 
 
