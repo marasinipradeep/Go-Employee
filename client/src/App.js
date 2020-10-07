@@ -99,8 +99,8 @@ function App() {
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
-            <Route exact path="/chat" exact component={Join}/>
-            <Route path="/chat/room" exact component={Chat}/>
+            <Route exact path="/chat"  component={Join}/>
+            <Route exact path="/room"  component={Chat}/>
          
           </Switch>
         </div>
