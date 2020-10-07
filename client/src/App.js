@@ -16,9 +16,12 @@ import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboa
 
 //Importing pages
 import Home from "./Components/Pages/Home/Home"
-
 import FindEmployee from './Components/Pages/Employee'
 import SingleEmployee from './Components/Pages/SingleEmployee/SingleEmployee';
+
+//Import chat component
+import Join from './component/Join/Join';
+import Chat from './component/Chat/Chat'
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
@@ -96,6 +99,9 @@ function App() {
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
+            <Route exact path="/chat" exact component={Join}/>
+            <Route path="/chat/room" exact component={Chat}/>
+         
           </Switch>
         </div>
       </EmployeeProvider>
