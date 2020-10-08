@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
 import API from "../../Utils/API"
-import { SAVE_EMPLOYEE_DETAILS,UPDATE_EMPLOYEE_ISONLINE } from "../../Utils/Actions"
+import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../../Utils/Actions"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
 import Cards from "../../Cards/cards"
@@ -55,15 +55,15 @@ const EmployeeDashboard = () => {
     const [checked, setChecked] = useState(false);
     const [state, dispatch] = useEmployeeContext();
 
-    const handleToggle =() => {
+    const handleToggle = () => {
         console.log(checked)
         setChecked((prev) => !prev);
         console.log(checked)
-        const details ={
-            id:state.id,
-            isOnline:!checked
+        const details = {
+            id: state.id,
+            isOnline: !checked
         }
-        API.setEmployeeOnline(details).then((employee)=>{
+        API.setEmployeeOnline(details).then((employee) => {
             console.log(employee)
             dispatch({
                 type: UPDATE_EMPLOYEE_ISONLINE,
@@ -71,7 +71,7 @@ const EmployeeDashboard = () => {
             })
 
         })
-       
+
     };
 
     const submit = async (e) => {
@@ -91,8 +91,8 @@ const EmployeeDashboard = () => {
             }
             console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
-          
-           
+
+
         }
         catch (err) {
             console.log(err)
@@ -100,7 +100,7 @@ const EmployeeDashboard = () => {
         }
     }
 
-    function loadEmployee(){
+    function loadEmployee() {
         API.getEmployeeDetails(state.id).then((employeeDetails) => {
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
@@ -112,27 +112,29 @@ const EmployeeDashboard = () => {
 
     useEffect(
         loadEmployee, []
-        );
+    );
 
-       
+
     return (
 
         <div className={classes.root}>
             <Adminheader />
+            <Grid container spacing={2}>
 
-            <Grid item xs={12}>
-                <h2>Enter Your Details:</h2>
-            </Grid>
+                <Grid item xs={12}>
+                    <h2>Enter Your Details:</h2>
+                </Grid>
 
-            <Grid item xs={12}>
-                <h3>Go online</h3>
-                <Switch
-                    onChange={handleToggle}
-                />
-            </Grid>
+                <Grid item xs={12}>
+                    <h3>Go online</h3>
 
-            <Grid item container>
-                <Grid item xs={12} md={7} spacing={3}>
+                    <Switch
+                        onChange={handleToggle}
+                    />
+                </Grid>
+
+
+                <Grid item xs={12} md={7}>
                     <form className="form" onSubmit={submit} >
 
                         <Grid item xs={12}  >
@@ -241,10 +243,10 @@ const EmployeeDashboard = () => {
                             <Button onClick={submit} variant="contained" color="primary" value="Submit">
                                 Submit
                             </Button>
-                           
+
 
                         </Grid>
-                        <br/><br/>
+                        <br /><br />
                     </form>
 
                 </Grid>

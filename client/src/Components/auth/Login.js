@@ -6,23 +6,18 @@ import API from "../Utils/API"
 import Grid from '@material-ui/core/Grid';
 import ErrorNotice from '../misc/ErrorNotice';
 
+import MButton from "../../Material-Components/Buttons"
+import Input from "../../Material-Components/Inputs"
+
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
-            alignItems:"center"
-            
-        },
+        display: 'flex',
+        flexWrap: 'wrap',
     },
-    formMargin:{
-        padding:"20px",
-        
-    }
 }));
 
 
@@ -40,7 +35,7 @@ export default function Login() {
     const submit = async (e) => {
         e.preventDefault();
         console.log("inside submit clicked")
-       
+
         try {
 
             const loginEmployee =
@@ -49,7 +44,7 @@ export default function Login() {
                 password: passwordRef.current.value,
             }
 
-            if(!loginEmployee.email || !loginEmployee.password){
+            if (!loginEmployee.email || !loginEmployee.password) {
                 console.log("No email and password")
                 return
             }
@@ -72,30 +67,28 @@ export default function Login() {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3} alignItems="center"  direction="column" justify="center" >
 
-                <form noValidate autoComplete="off" className={classes.formMargin}>
+            <Grid container alignItems="center" direction="column"  >
+
+                <form className={classes.formMargin}>
                     <Grid item xs={12}>
                         <h2 className="page">Login</h2>
                         {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
                     </Grid>
+
                     <Grid item xs={12} >
-                        <TextField required id="standard-required" label="Email" inputRef={emailRef}/>
+                        <Input inputRef={emailRef} />
                     </Grid>
+
                     <Grid item xs={12}>
-                        <TextField
-                        required
-                            id="standard-password-input"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                            inputRef={passwordRef}
-                        />
-                        </Grid>
-                        <Grid item xs ={12}>
+                        <Input inputRef={passwordRef} type="password" />
+                    </Grid>
+
+                    <Grid item xs={12}>
                         <Button type="submit" variant="contained" color="primary" onClick={submit}>
                             Submit
                         </Button>
+
                     </Grid>
                 </form>
             </Grid>
