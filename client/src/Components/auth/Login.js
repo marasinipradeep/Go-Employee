@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { EMPLOYEE_LOGIN } from "../Utils/Actions"
 import API from "../Utils/API"
-
 import ErrorNotice from '../misc/ErrorNotice';
 
 //Import from material components
@@ -60,6 +59,8 @@ export default function Login() {
                 email: loginRes.data.employee.email
             });
             localStorage.setItem("auth-token", loginRes.data.token);
+            localStorage.setItem("id", loginRes.data.employee.id);
+            localStorage.setItem("email", loginRes.data.employee.email);
             history.push("/login/employee/dashboard")
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
@@ -69,45 +70,15 @@ export default function Login() {
 
     return (
         <div className={classes.root}>
-
             <Grid container alignItems="center" direction="column">
                 <form>
                     <h2>Login</h2>
                     {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
-
                     <Input label="Email" inputRef={emailRef} />
-
-                    <Input label="Password" inputRef={passwordRef} type="password"
-                    />
-
-                    <Buttons className={classes.buttonMargin}
-                        color="secondary"
-                        onClick={submit}
-                    >
-                        Submit
-                        </Buttons>
+                    <Input label="Password" inputRef={passwordRef} type="password" />
+                    <Buttons className={classes.buttonMargin} color="secondary" onClick={submit}>Submit</Buttons>
                 </form>
             </Grid>
         </div>
     )
 }
-
-//  <div className="container">
-//     <h2 className="page">Login</h2>
-//     {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
-
-//     <form className="form" onSubmit={submit}>
-{/* Input Email */ }
-{/* <label htmlFor="login-email">Email</label>
-                    <input id="login-email" type="email" ref={emailRef} /> */}
-
-{/* Input Password */ }
-{/* <label htmlFor="login-password">Password</label>
-                    <input id="login-password" type="password" ref={passwordRef} />
-
-                    <input type="submit" onClick={submit} />
-                </form >
-            </div >  */}
-
-
-

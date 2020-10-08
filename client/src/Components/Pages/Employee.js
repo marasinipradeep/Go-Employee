@@ -12,9 +12,7 @@ const Employees = () => {
         <>
             <Hero hero="employeeHero">
                 <Banner title="our staff members">
-                    <Link to='/' className="btn-primary">
-                        return home
-        </Link>
+                    <Link to='/' className="btn-primary">return home</Link>
                 </Banner>
             </Hero>
             <EmployeeContainer />

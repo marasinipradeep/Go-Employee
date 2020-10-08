@@ -32,7 +32,7 @@ function EmployeeList() {
         <section className="employeeslist">
             <div className="employeeslist-center">
                 {state.employees.map(item => {
-                    return <FindEmployee key={item.id} employee={item} />;
+                    return <FindEmployee key={item._id} employee={item} />;
                 })}
             </div>
         </section>

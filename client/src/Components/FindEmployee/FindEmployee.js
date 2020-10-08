@@ -5,13 +5,10 @@ import PropTtypes from 'prop-types';
 import './FindEmployee.css'
 
 function FindEmployee({ employee }) { //This is coming from attribute inside EmployeeList
-
-    console.log(employee)
-
     const { name, _id, images, jobTitle } = employee;
     // <img src={images || defaultImage}
     return (
-        <article className="employee">
+        <article className="employee" >
             <div className="img-container">
                 <img src={defaultImage}
                     alt="single employee"

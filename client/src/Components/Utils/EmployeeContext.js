@@ -34,6 +34,12 @@ const reducer = (state, action) => {
         email: action.email
       };
 
+      // case KEEP_LOGGED_IN:
+      //   return{
+      //     ...state,
+      //     currentEmployee:
+      //   }
+
     case SAVE_EMPLOYEE_DETAILS:
 
       return {
@@ -42,8 +48,6 @@ const reducer = (state, action) => {
       }
 
       case UPDATE_EMPLOYEE_ISONLINE:
-        console.log("Update isOnline")
-        console.log(action.isOnline)
       return {
         ...state,
        currentEmployee:action.isOnline

@@ -2,15 +2,15 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Drawer,CssBaseline,AppBar,Toolbar,List,Typography,Divider,IconButton, Link} from '@material-ui/core';
+import { Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider, IconButton, Link } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 
 // import UserContext from "../context/UserContext"
-import {useEmployeeContext} from "./Utils/EmployeeContext"
-import {LOGOUT} from "../Components/Utils/Actions"
+import { useEmployeeContext } from "./Utils/EmployeeContext"
+import { LOGOUT } from "../Components/Utils/Actions"
 
 //Import from material components
 import Buttons from "../Material-Components/Buttons";
@@ -76,19 +76,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft() {
 
+
+  const email = localStorage.getItem("email")
   //useHistory gives result in an array
   const history = useHistory();
 
-   //When we useContext we get setvalue in so destructure the data from the UserContext which is provideded from provider
-  
+  //When we useContext we get setvalue in so destructure the data from the UserContext which is provideded from provider
+
   const [state, dispatch] = useEmployeeContext()
 
   const logout = () => {
-    dispatch({type:LOGOUT});
+    dispatch({ type: LOGOUT });
     localStorage.setItem("auth-token", "")
+    localStorage.setItem("id", "");
+    localStorage.setItem("email", "");
     history.push("/")
 
-}
+  }
 
   const classes = useStyles();
   const theme = useTheme();
@@ -122,8 +126,9 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-           {/* {email}  */}
-          Welcome {state.email}
+            {/* {email}  */}
+          {/* Welcome {state.email} */}
+          Welcome {email}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -144,13 +149,13 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
 
-        <ListItem> <Buttons color="secondary" onClick={(()=>history.push("/login/employee/dashboard"))}>DASHBOARD</Buttons></ListItem>
-          
-            <ListItem> <Buttons color="secondary" onClick={(()=>history.push("/employee/details"))}>ADD DETAILS</Buttons></ListItem>
-            <ListItem ><Buttons color="secondary" onClick={logout}>LOG OUT</Buttons></ListItem>
-         
+          <ListItem> <Buttons color="secondary" onClick={(() => history.push("/login/employee/dashboard"))}>DASHBOARD</Buttons></ListItem>
+
+          <ListItem> <Buttons color="secondary" onClick={(() => history.push("/employee/details"))}>ADD DETAILS</Buttons></ListItem>
+          <ListItem ><Buttons color="secondary" onClick={logout}>LOG OUT</Buttons></ListItem>
+
         </List>
-        
+
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -158,7 +163,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        
+
       </main>
     </div>
   );

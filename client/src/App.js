@@ -71,10 +71,11 @@ function App() {
   const PublicRoute = ({ component: Component, ...rest }) => {
     return (
       <Route {...rest} component={(props) => (
-        <div>
+        <>
           <Header /> {/* HEADER ALWAYS VISIBLE */}
           <Component {...props} />
-        </div>
+        </>
+
       )}
       />
     )
@@ -91,25 +92,23 @@ function App() {
   return (
     <Router>
       <EmployeeProvider>
-        {/* <Header /> */}
-        <div>
-          <Switch>
-            <PublicRoute exact path="/" component={Home} />
-            <PublicRoute exact path="/employee" component={FindEmployee} />
-            <PublicRoute exact path="/employees/:id" component={SingleEmployee} />
-            <PublicRoute exact path="/login" component={Login} />
-            <PublicRoute exact path="/register" component={Register} />
-            <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
-           
-            <EmployeeRoute exact path="/employee/details" component={AddEmployeeDetails} />
-          
-           
-            <Route exact path="/join"  component={Join}/>
-            <Route  path="/chat"  component={Chat}/>
-         
-          </Switch>
-        </div>
+        <Switch>
+          <PublicRoute exact path="/" component={Home} />
+          <PublicRoute exact path="/employee" component={FindEmployee} />
+          <PublicRoute exact path="/employees/:id" component={SingleEmployee} />
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/register" component={Register} />
+          <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
+
+          <EmployeeRoute exact path="/employee/details" component={AddEmployeeDetails} />
+
+
+          <Route exact path="/join" component={Join} />
+          <Route path="/chat" component={Chat} />
+
+        </Switch>
       </EmployeeProvider>
+
     </Router>
   );
 

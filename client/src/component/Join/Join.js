@@ -5,8 +5,8 @@ import './Join.css'
 
 export default function Join() {
 
-    const [name, setName] = useState('');
-    const [room, setRoom] = useState('');
+    const [name, setName] = useState('pradeep');
+    const [room, setRoom] = useState('chat');
 
 
     return (

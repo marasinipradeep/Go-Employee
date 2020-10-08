@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 
+import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../Utils/Actions"
+
 
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Button, Switch } from '@material-ui/core';
@@ -62,7 +64,8 @@ export default function AddEmployeeDetails() {
 
     const submit = async (e) => {
         e.preventDefault();
-        const id = state.id
+       // const id = state.id
+        const id = localStorage.getItem("id")
 
         try {
             const details = {
@@ -77,7 +80,10 @@ export default function AddEmployeeDetails() {
             }
             console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
-
+            dispatch({
+                type: SAVE_EMPLOYEE_DETAILS,
+                employee: employeeDetails.data
+            })
 
         }
         catch (err) {

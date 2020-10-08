@@ -23,6 +23,7 @@ export default function Chat({ location }) {
     //Have to use cleanup because we need to know when actually a users disconnect
 
     useEffect(() => {
+        console.log(location.search)
         const { name, room } = queryString.parse(location.search);
         socket = io(ENDPOINT);
         setName(name);
@@ -39,7 +40,7 @@ export default function Chat({ location }) {
             socket.off();
         }
 
-    }, [ENDPOINT, location.search])
+    }, [ENDPOINT],location.search)
 
 
     //Second one handling the messages can use useEffect as much as you want.

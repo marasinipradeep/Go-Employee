@@ -12,8 +12,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: "50px"
     },
-
-
 }));
 
 const EmployeeDashboard = () => {
@@ -42,8 +40,9 @@ const EmployeeDashboard = () => {
 
     };
 
+    const id = localStorage.getItem("id")
     function loadEmployee() {
-        API.getEmployeeDetails(state.id).then((employeeDetails) => {
+        API.getEmployeeDetails(id).then((employeeDetails) => {
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data
@@ -52,7 +51,7 @@ const EmployeeDashboard = () => {
     }
 
     useEffect(
-        loadEmployee, []
+        loadEmployee, [id]
     );
 
 
