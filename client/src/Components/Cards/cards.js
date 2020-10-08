@@ -6,11 +6,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
+import image from "../../Components/images/employee.jpeg"
+
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        width: "600px",
     },
     media: {
         height: 0,
@@ -33,7 +35,7 @@ export default function Cards() {
             />
             <CardMedia
                 className={classes.media}
-                image="../images/blankprofile.png"
+                image={image}
                 title="Paella dish"
             />
             <CardContent>

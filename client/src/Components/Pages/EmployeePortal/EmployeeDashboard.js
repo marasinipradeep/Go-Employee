@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: "40px"
     },
     buttonMargin: {
-        marginTop: "50px"
+        marginTop: "50px",
+        marginBottom:"50px"
     }
 }));
 
@@ -124,9 +125,11 @@ const EmployeeDashboard = () => {
     return (
         <>
             <Adminheader />
+           
             <div className={classes.root}>
 
                 <Grid container alignItems="center" direction="column">
+                <Cards />
                     <form>
                         <h2>Enter Your Details:</h2>
                         <h3>Go online</h3>
@@ -245,11 +248,11 @@ const EmployeeDashboard = () => {
                             inputRef={skillsRef}
                             required
                         /> */}
-                        <Button onClick={submit} variant="contained" color="primary" value="Submit">
+                        <Buttons
+                        className={classes.buttonMargin}
+                        onClick={submit} variant="contained" color="secondary" value="Submit">
                             Submit
-                            </Button>
-
-                        <Cards />
+                            </Buttons>
                     </form>
                 </Grid>
 
