@@ -1,31 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useHistory } from "react-router-dom";
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { EMPLOYEE_LOGIN } from "../Utils/Actions"
 import API from "../Utils/API"
-import Grid from '@material-ui/core/Grid';
+
 import ErrorNotice from '../misc/ErrorNotice';
 
-import Buttons from "../../Material-Components/Buttons"
-import Input from "../../Material-Components/Inputs"
-
-
+//Import from material components
+import Buttons from "../../Material-Components/Buttons";
+import Input from "../../Material-Components/Inputs";
 import { makeStyles } from '@material-ui/core/styles';
-//import { Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        marginTop:"100px",
-        marginLeft:"40px"
+        marginTop: "100px",
+        marginLeft: "40px"
     },
-    buttonMargin:{
-        marginTop:"50px"
+    buttonMargin: {
+        marginTop: "50px"
     }
 }));
-
-
 
 export default function Login() {
 
@@ -59,7 +56,7 @@ export default function Login() {
             dispatch({
                 type: EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
-                id: loginRes.data.employee.id,
+              //  id: loginRes.data.employee.id,
                 email: loginRes.data.employee.email
             });
             localStorage.setItem("auth-token", loginRes.data.token);
@@ -73,24 +70,24 @@ export default function Login() {
     return (
         <div className={classes.root}>
 
-<Grid container alignItems="center" direction="column">
+            <Grid container alignItems="center" direction="column">
                 <form>
-                        <h2 className="page">Login</h2>
-                        {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
-                   
-                        <Input label="Email" inputRef={emailRef} />
-                  
-                        <Input label="Password" inputRef={passwordRef} type="password" 
-                        />
+                    <h2>Login</h2>
+                    {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
 
-                        <Buttons className={classes.buttonMargin} 
-                         color="secondary"
+                    <Input label="Email" inputRef={emailRef} />
+
+                    <Input label="Password" inputRef={passwordRef} type="password"
+                    />
+
+                    <Buttons className={classes.buttonMargin}
+                        color="secondary"
                         onClick={submit}
-                        >
-                       Submit
+                    >
+                        Submit
                         </Buttons>
                 </form>
-                </Grid>
+            </Grid>
         </div>
     )
 }
