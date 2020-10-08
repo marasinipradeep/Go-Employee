@@ -46,11 +46,13 @@ export default function Register() {
             //we get response back with token
             const loginRes = await API.employeeLogin(newEmployee);
 
+
+            console.log(loginRes)
             //Setting employee data after getting back from response
             dispatch({
                 type: EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
-                //   employee: loginRes.data.employee
+                id: loginRes.data.employee.id,
                 email: loginRes.data.employee.email
             });
 

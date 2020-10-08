@@ -56,7 +56,7 @@ export default function Login() {
             dispatch({
                 type: EMPLOYEE_LOGIN,
                 token: loginRes.data.token,
-              //  id: loginRes.data.employee.id,
+                id: loginRes.data.employee.id,
                 email: loginRes.data.employee.email
             });
             localStorage.setItem("auth-token", loginRes.data.token);

@@ -24,9 +24,9 @@ module.exports = function (app) {
             if (existingEmployee) {
                 return res.status(400).json({ msg: "An account with this email already exists." })
             }
-            if (!displayName) {
-                displayName = email
-            }
+            // if (!displayName) {
+            //     displayName = email
+            // }
 
             const salt = await bcrypt.genSalt(10);
             const passworddHash = await bcrypt.hash(password, salt)
@@ -34,7 +34,7 @@ module.exports = function (app) {
             const newEmployee = new Employee({
                 email,
                 password: passworddHash,
-                displayName
+               // displayName
             });
 
             const saveEmployee = await newEmployee.save();
