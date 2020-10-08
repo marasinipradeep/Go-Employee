@@ -6,18 +6,23 @@ import API from "../Utils/API"
 import Grid from '@material-ui/core/Grid';
 import ErrorNotice from '../misc/ErrorNotice';
 
-import MButton from "../../Material-Components/Buttons"
+import Buttons from "../../Material-Components/Buttons"
 import Input from "../../Material-Components/Inputs"
 
-import TextField from '@material-ui/core/TextField';
+
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+//import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        marginTop:"100px",
+        marginLeft:"40px"
     },
+    buttonMargin:{
+        marginTop:"50px"
+    }
 }));
 
 
@@ -68,30 +73,24 @@ export default function Login() {
     return (
         <div className={classes.root}>
 
-            <Grid container alignItems="center" direction="column"  >
-
-                <form className={classes.formMargin}>
-                    <Grid item xs={12}>
+<Grid container alignItems="center" direction="column">
+                <form>
                         <h2 className="page">Login</h2>
                         {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
-                    </Grid>
+                   
+                        <Input label="Email" inputRef={emailRef} />
+                  
+                        <Input label="Password" inputRef={passwordRef} type="password" 
+                        />
 
-                    <Grid item xs={12} >
-                        <Input inputRef={emailRef} />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Input inputRef={passwordRef} type="password" />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Button type="submit" variant="contained" color="primary" onClick={submit}>
-                            Submit
-                        </Button>
-
-                    </Grid>
+                        <Buttons className={classes.buttonMargin} 
+                         color="secondary"
+                        onClick={submit}
+                        >
+                       Submit
+                        </Buttons>
                 </form>
-            </Grid>
+                </Grid>
         </div>
     )
 }

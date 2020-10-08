@@ -14,7 +14,7 @@ export default function Register() {
     const [displayName, setDisplayName] = useState();
     const [error, setError] = useState();
 
-    // const { setUserData } = useContext(UserContext);
+    
     const { setUserData } = useEmployeeContext();
     const history = useHistory();
 
