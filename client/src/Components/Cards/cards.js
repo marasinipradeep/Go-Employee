@@ -12,7 +12,7 @@ import { useEmployeeContext } from "../Utils/EmployeeContext"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "600px",
+        width: "500px",
     },
     media: {
         height: 0,

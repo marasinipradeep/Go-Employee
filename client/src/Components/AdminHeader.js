@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Drawer,CssBaseline,AppBar,Toolbar,List,Typography,Divider,IconButton} from '@material-ui/core';
+import {Drawer,CssBaseline,AppBar,Toolbar,List,Typography,Divider,IconButton, Link} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -11,6 +11,9 @@ import ListItem from '@material-ui/core/ListItem';
 // import UserContext from "../context/UserContext"
 import {useEmployeeContext} from "./Utils/EmployeeContext"
 import {LOGOUT} from "../Components/Utils/Actions"
+
+//Import from material components
+import Buttons from "../Material-Components/Buttons";
 
 const drawerWidth = 240;
 
@@ -140,9 +143,11 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
+
+        <ListItem> <Buttons color="secondary" onClick={(()=>history.push("/login/employee/dashboard"))}>DASHBOARD</Buttons></ListItem>
           
-            <ListItem button ><MenuIcon /> DETAILS</ListItem>
-            <ListItem button color="primary" onClick={logout}><MenuIcon /> LOG OUT</ListItem>
+            <ListItem> <Buttons color="secondary" onClick={(()=>history.push("/employee/details"))}>ADD DETAILS</Buttons></ListItem>
+            <ListItem ><Buttons color="secondary" onClick={logout}>LOG OUT</Buttons></ListItem>
          
         </List>
         

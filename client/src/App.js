@@ -13,6 +13,7 @@ import Header from "./Components/Header/Header";
 import Login from "./Components/auth/Login";
 import Register from "./Components/auth/Register";
 import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboard"
+import AddEmployeeDetails from "./Components/AddEmployeeDetails/AddEmployeeDetails"
 
 //Importing pages
 import Home from "./Components/Pages/Home/Home"
@@ -99,6 +100,10 @@ function App() {
             <PublicRoute exact path="/login" component={Login} />
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
+           
+            <EmployeeRoute exact path="/employee/details" component={AddEmployeeDetails} />
+          
+           
             <Route exact path="/join"  component={Join}/>
             <Route  path="/chat"  component={Chat}/>
          
