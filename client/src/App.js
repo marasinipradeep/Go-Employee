@@ -100,7 +100,7 @@ function App() {
             <PublicRoute exact path="/register" component={Register} />
             <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
             <Route exact path="/join"  component={Join}/>
-            <Route exact path="/chat"  component={Chat}/>
+            <Route  path="/chat"  component={Chat}/>
          
           </Switch>
         </div>
