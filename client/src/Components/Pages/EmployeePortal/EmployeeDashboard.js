@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Adminheader from "../../AdminHeader"
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem, Grid, Button, Switch } from '@material-ui/core';
+import { MenuItem, Button, Switch } from '@material-ui/core';
 import API from "../../Utils/API"
 import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../../Utils/Actions"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
+
+//Import from material components
+import Buttons from "../../../Material-Components/Buttons";
+import Input from "../../../Material-Components/Inputs";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 import Cards from "../../Cards/cards"
-
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "40px",
         marginRight: "40px"
     },
+    buttonMargin: {
+        marginTop: "50px"
+    }
 }));
 
 const workerType = [
@@ -116,29 +122,21 @@ const EmployeeDashboard = () => {
 
 
     return (
-
-        <div className={classes.root}>
+        <>
             <Adminheader />
-            <Grid container spacing={2}>
+            <div className={classes.root}>
 
-                <Grid item xs={12}>
-                    <h2>Enter Your Details:</h2>
-                </Grid>
+                <Grid container alignItems="center" direction="column">
+                    <form>
+                        <h2>Enter Your Details:</h2>
+                        <h3>Go online</h3>
+                        <Switch onChange={handleToggle} />
 
-                <Grid item xs={12}>
-                    <h3>Go online</h3>
+                        <Input
+                            label="Enter your full name"
+                            inputRef={nameRef} />
 
-                    <Switch
-                        onChange={handleToggle}
-                    />
-                </Grid>
-
-
-                <Grid item xs={12} md={7}>
-                    <form className="form" onSubmit={submit} >
-
-                        <Grid item xs={12}  >
-                            <TextField
+                        {/* <TextField
                                 fullWidth
                                 label="Enter Your Name"
                                 id="name"
@@ -147,33 +145,34 @@ const EmployeeDashboard = () => {
                                 margin="normal"
                                 inputRef={nameRef}
                                 required
-                            />
-                        </Grid>
+                            /> */}
 
                         {/* profession type */}
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                id="workType"
-                                select
-                                label="Select Your Profession"
-                                helperText="Please select your profession"
-                                inputRef={typeRef}
-                                required
 
-                            >
-                                {workerType.map((option) => (
-                                    <MenuItem key={option.value} value={option.label}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
+                        <TextField
+                            fullWidth
+                            id="workType"
+                            select
+                            label="Select Your Profession"
+                            helperText="Please select your profession"
+                            inputRef={typeRef}
+                            required
+
+                        >
+                            {workerType.map((option) => (
+                                <MenuItem key={option.value} value={option.label}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
 
                         {/* job titile*/}
 
-                        <Grid item xs={12}  >
-                            <TextField
+                        <Input
+                            label="Enter your job title"
+                            inputRef={jobTitleRef} />
+
+                        {/* <TextField
                                 fullWidth
                                 label="Enter Your Job Title"
                                 id="jobTitle"
@@ -181,84 +180,81 @@ const EmployeeDashboard = () => {
                                 margin="normal"
                                 inputRef={jobTitleRef}
                                 required
-                            />
-                        </Grid>
+                            /> */}
 
                         {/* Experience  */}
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                id="experience"
-                                select
-                                label="Select Your Experience"
-                                helperText="Please Select Your Years of Experience"
-                                inputRef={experienceRef}
-                                required
-                            >
-                                {experiences.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
 
-                        <Grid item xs={12}  >
-                            <TextField
-                                fullWidth
-                                label="Enter Your Contact Number"
-                                id="contactNumber"
-                                helperText="Enter your Contact Number"
-                                margin="normal"
-                                inputRef={contactNumberRef}
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={12}  >
-                            <TextField
-                                fullWidth
-                                multiline
-                                label="Enter Your Description"
-                                id="description"
-                                helperText="Enter your Description"
-                                margin="normal"
-                                inputRef={descriptionRef}
-                                required
-                            />
-                        </Grid>
+                        <TextField
+                            fullWidth
+                            id="experience"
+                            select
+                            label="Select Your Experience"
+                            helperText="Please Select Your Years of Experience"
+                            inputRef={experienceRef}
+                            required
+                        >
+                            {experiences.map((option) => (
+                                <MenuItem key={option} value={option}>
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
 
-                        <Grid item xs={12}  >
-                            <TextField
-                                fullWidth
-                                multiline
-                                label="Enter Your Skills"
-                                id="skills"
-                                helperText="Enter your Skills"
-                                margin="normal"
-                                inputRef={skillsRef}
-                                required
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button onClick={submit} variant="contained" color="primary" value="Submit">
-                                Submit
+                        <Input
+                            label="Enter your Contact Number"
+                            inputRef={contactNumberRef} />
+
+                        {/* <TextField
+                            fullWidth
+                            label="Enter Your Contact Number"
+                            id="contactNumber"
+                            helperText="Enter your Contact Number"
+                            margin="normal"
+                            inputRef={contactNumberRef}
+                            required
+                        /> */}
+
+
+                        <Input
+                            label="Write Brief Description"
+                            inputRef={descriptionRef}
+                            multiline={true} />
+
+                        {/* <TextField
+                            fullWidth
+                            multiline
+                            label="Enter Your Description"
+                            id="description"
+                            helperText="Enter your Description"
+                            margin="normal"
+                            inputRef={descriptionRef}
+                            required
+                        /> */}
+
+                        <Input
+                            label="Email"
+                            inputRef={skillsRef} />
+
+                        {/* <TextField
+                            fullWidth
+                            multiline
+                            label="Enter Your Skills"
+                            id="skills"
+                            helperText="Enter your Skills"
+                            margin="normal"
+                            inputRef={skillsRef}
+                            required
+                        /> */}
+                        <Button onClick={submit} variant="contained" color="primary" value="Submit">
+                            Submit
                             </Button>
 
-
-                        </Grid>
-                        <br /><br />
-                    </form>
-
-                </Grid>
-                <Grid item xs={12} md={1}></Grid>
-                <Grid item xs={12} md={4}>
-                    <Grid item xs={12}>
                         <Cards />
-                    </Grid>
+                    </form>
                 </Grid>
-            </Grid>
 
-        </div>
+            </div>
+        </>
     )
 }
 
