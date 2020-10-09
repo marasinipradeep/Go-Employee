@@ -59,7 +59,7 @@ export default function AddEmployeeDetails() {
     const descriptionRef = useRef();
     const skillsRef = useRef();
 
-    const [state, dispatch] = useEmployeeContext();
+    const {state, dispatch} = useEmployeeContext();
 
 
     const submit = async (e) => {

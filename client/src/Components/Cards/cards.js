@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import image from "../../Components/images/employee.jpeg"
 
 import { useEmployeeContext } from "../Utils/EmployeeContext"
+import { SAVE_EMPLOYEE_DETAILS } from "../Utils/Actions"
+import API from "../Utils/API"
+
+const id = localStorage.getItem("id")
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,6 +29,22 @@ export default function Cards() {
     const classes = useStyles();
 
     const [state, dispatch] = useEmployeeContext();
+
+    function loadEmployee() {
+        
+        API.getEmployeeDetails(id).then((employeeDetails) => {
+            dispatch({
+                type: SAVE_EMPLOYEE_DETAILS,
+                employee: employeeDetails.data
+            })
+           
+        })
+
+    }
+
+    useEffect(
+        loadEmployee, [id]
+    );
     
 
     return (

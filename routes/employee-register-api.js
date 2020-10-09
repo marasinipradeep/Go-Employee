@@ -9,7 +9,7 @@ module.exports = function (app) {
     app.post("/employee/register", async function (req, res) {
 
         try {
-            let { email, password, passwordCheck, displayName } = req.body;
+            let { email, password, passwordCheck} = req.body;
             if (!email || !password || !passwordCheck) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }
@@ -24,17 +24,13 @@ module.exports = function (app) {
             if (existingEmployee) {
                 return res.status(400).json({ msg: "An account with this email already exists." })
             }
-            // if (!displayName) {
-            //     displayName = email
-            // }
 
             const salt = await bcrypt.genSalt(10);
             const passworddHash = await bcrypt.hash(password, salt)
 
             const newEmployee = new Employee({
                 email,
-                password: passworddHash,
-               // displayName
+                password: passworddHash
             });
 
             const saveEmployee = await newEmployee.save();

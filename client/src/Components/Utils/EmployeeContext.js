@@ -34,11 +34,7 @@ const reducer = (state, action) => {
         email: action.email
       };
 
-      // case KEEP_LOGGED_IN:
-      //   return{
-      //     ...state,
-      //     currentEmployee:
-      //   }
+     
 
     case SAVE_EMPLOYEE_DETAILS:
 

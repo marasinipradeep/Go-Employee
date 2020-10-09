@@ -19,18 +19,16 @@ const useStyles = makeStyles((theme) => ({
 const EmployeeDashboard = () => {
 
     const classes = useStyles();
-
-    const [checked, setChecked] = useState(false);
     const [state, dispatch] = useEmployeeContext();
+    const [checked, setChecked] = useState(state.currentEmployee.isOnline);
 
-    const handleToggle = () => {
-        console.log(checked)
-        setChecked((prev) => !prev);
+    const handleToggle = (event) => {
+         setChecked((prev) => !prev);
         console.log(checked)
         const details = {
            // id: state.id,
            id: id,
-            isOnline: !checked
+           isOnline:!checked
         }
         API.setEmployeeOnline(details).then((employee) => {
             console.log(employee)
@@ -38,23 +36,30 @@ const EmployeeDashboard = () => {
                 type: UPDATE_EMPLOYEE_ISONLINE,
                 isOnline: employee.data.isOnline
             })
+            
 
         })
 
     };
 
+   
   
     function loadEmployee() {
+        
         API.getEmployeeDetails(id).then((employeeDetails) => {
+            console.log(employeeDetails.data.isOnline)
+            setChecked(employeeDetails.data.isOnline)
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data
             })
         })
+
     }
 
     useEffect(
-        loadEmployee, [id]
+        
+        loadEmployee, [id,checked]
     );
 
 
@@ -64,7 +69,7 @@ const EmployeeDashboard = () => {
                 <Grid container alignItems="center" direction="column" >
                     <Adminheader />
                     <h3>Go online</h3>
-                    <Switch onChange={handleToggle} />
+                    <Switch checked={checked} onChange={handleToggle} />
                     <Cards />
                 </Grid>
             </div>
