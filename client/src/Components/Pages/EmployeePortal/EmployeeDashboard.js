@@ -8,6 +8,8 @@ import Cards from "../../Cards/cards"
 
 import { makeStyles } from '@material-ui/core/styles';
 
+const id = localStorage.getItem("id")
+
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: "50px"
@@ -26,7 +28,8 @@ const EmployeeDashboard = () => {
         setChecked((prev) => !prev);
         console.log(checked)
         const details = {
-            id: state.id,
+           // id: state.id,
+           id: id,
             isOnline: !checked
         }
         API.setEmployeeOnline(details).then((employee) => {
@@ -40,7 +43,7 @@ const EmployeeDashboard = () => {
 
     };
 
-    const id = localStorage.getItem("id")
+  
     function loadEmployee() {
         API.getEmployeeDetails(id).then((employeeDetails) => {
             dispatch({

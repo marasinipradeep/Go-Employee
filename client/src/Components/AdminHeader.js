@@ -8,6 +8,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 
+import API from "../Components/Utils/API"
+
 // import UserContext from "../context/UserContext"
 import { useEmployeeContext } from "./Utils/EmployeeContext"
 import { LOGOUT } from "../Components/Utils/Actions"
@@ -16,6 +18,8 @@ import { LOGOUT } from "../Components/Utils/Actions"
 import Buttons from "../Material-Components/Buttons";
 
 const drawerWidth = 240;
+
+const id = localStorage.getItem("id")
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,11 +90,22 @@ export default function PersistentDrawerLeft() {
   const [state, dispatch] = useEmployeeContext()
 
   const logout = () => {
-    dispatch({ type: LOGOUT });
-    localStorage.setItem("auth-token", "")
-    localStorage.setItem("id", "");
-    localStorage.setItem("email", "");
-    history.push("/")
+
+    const details = {
+      // id: state.id,
+      id: id,
+       isOnline: false
+   }
+   API.setEmployeeOnline(details).then((employee) => {
+       console.log(employee)
+       dispatch({ type: LOGOUT });
+       localStorage.setItem("auth-token", "")
+       localStorage.setItem("id", "");
+       localStorage.setItem("email", "");
+       history.push("/")
+
+   })
+   
 
   }
 

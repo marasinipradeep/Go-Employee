@@ -139,13 +139,7 @@ module.exports = function (app) {
         const employees = await Employee.find({isOnline:true})
         console.log(employees)
         res.json(employees)
-        // const employee=await Employee.findById(req.employee)
-        // res.json({
-        //     displayName:employee.displayName,
-        //     email:employee.email,
-        //     id:employee._id
-        // })
-
+       
     })
 
     //Update employee details
