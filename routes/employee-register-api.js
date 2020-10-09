@@ -149,6 +149,9 @@ module.exports = function (app) {
 
         try {
             console.log("inside try block")
+            if (!name || !workType || !jobTitle ||!experience ||!contactNumber ||!description ||!skills) {
+                return res.status(400).json({ msg: "Not all field entered" })
+            }
 
             const employee = await Employee.findOneAndUpdate(
                {_id: req.body.id},

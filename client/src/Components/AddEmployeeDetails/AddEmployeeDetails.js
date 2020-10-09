@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 
 import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../Utils/Actions"
-
+import ErrorNotice from '../misc/ErrorNotice';
 
 import TextField from '@material-ui/core/TextField';
 import { MenuItem, Button, Switch } from '@material-ui/core';
@@ -45,7 +45,7 @@ const workerType = [
 ];
 
 const experiences = ["less then 1 year", "1 year", "2 year", "3 year", "4 year", "5+ year"];
-
+const id = localStorage.getItem("id")
 
 export default function AddEmployeeDetails() {
 
@@ -60,12 +60,14 @@ export default function AddEmployeeDetails() {
     const skillsRef = useRef();
 
     const {state, dispatch} = useEmployeeContext();
+    const [error, setError] = useState();
+
+   
 
 
     const submit = async (e) => {
         e.preventDefault();
        // const id = state.id
-        const id = localStorage.getItem("id")
 
         try {
             const details = {
@@ -78,7 +80,6 @@ export default function AddEmployeeDetails() {
                 description: descriptionRef.current.value,
                 skills: skillsRef.current.value
             }
-            console.log(details)
             const employeeDetails = await API.saveEmployeeDetails(details);
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
@@ -88,8 +89,17 @@ export default function AddEmployeeDetails() {
         }
         catch (err) {
             console.log(err)
+            //&& operator to set the error message.Executes when both sides true before and after and operator
+            err.response.data.msg && setError(err.response.data.msg)
 
         }
+
+        // nameRef.current.value("");
+        // typeRef.current.value("");
+        // jobTitleRef.current.value("");
+        // experienceRef.current.value("");
+        // descriptionRef.current.value("");
+        // skillsRef.current.value("");
     }
     return (
         <>
@@ -101,6 +111,7 @@ export default function AddEmployeeDetails() {
               
                     <form>
                         <h2>Enter Your Details:</h2>
+                        {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
                        
 
                         <Input
