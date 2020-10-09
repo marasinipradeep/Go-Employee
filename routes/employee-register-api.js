@@ -143,9 +143,9 @@ module.exports = function (app) {
 
         console.log("inside  employees detail")
         console.log(req.body)
-        const { name, workType, jobTitle, experience, contactNumber, description, skills } = req.body
+        const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
 
-        console.log(name)
+        console.log(image)
 
         try {
             console.log("inside try block")

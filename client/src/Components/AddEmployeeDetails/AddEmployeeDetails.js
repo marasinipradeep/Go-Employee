@@ -58,16 +58,19 @@ export default function AddEmployeeDetails() {
     const contactNumberRef = useRef();
     const descriptionRef = useRef();
     const skillsRef = useRef();
+    const imageRef = useRef();
 
     const {state, dispatch} = useEmployeeContext();
     const [error, setError] = useState();
 
-   
+  
 
+  
 
     const submit = async (e) => {
         e.preventDefault();
        // const id = state.id
+       console.log(imageRef.current)
 
         try {
             const details = {
@@ -78,7 +81,8 @@ export default function AddEmployeeDetails() {
                 experience: experienceRef.current.value,
                 contactNumber: contactNumberRef.current.value,
                 description: descriptionRef.current.value,
-                skills: skillsRef.current.value
+                skills: skillsRef.current.value,
+                image:imageRef.current.value
             }
             const employeeDetails = await API.saveEmployeeDetails(details);
             dispatch({
@@ -93,13 +97,6 @@ export default function AddEmployeeDetails() {
             err.response.data.msg && setError(err.response.data.msg)
 
         }
-
-        // nameRef.current.value("");
-        // typeRef.current.value("");
-        // jobTitleRef.current.value("");
-        // experienceRef.current.value("");
-        // descriptionRef.current.value("");
-        // skillsRef.current.value("");
     }
     return (
         <>
@@ -115,13 +112,14 @@ export default function AddEmployeeDetails() {
                        
 
                         <Input
+                       
                             label="Enter your full name"
                             inputRef={nameRef} />
 
                       
                         {/* profession type */}
 
-                        <TextField
+                        <Input
                             fullWidth
                             id="workType"
                             select
@@ -136,7 +134,7 @@ export default function AddEmployeeDetails() {
                                     {option.label}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </Input>
 
                         {/* job titile*/}
 
@@ -148,7 +146,7 @@ export default function AddEmployeeDetails() {
 
                         {/* Experience  */}
 
-                        <TextField
+                        <Input
                             fullWidth
                             id="experience"
                             select
@@ -162,7 +160,7 @@ export default function AddEmployeeDetails() {
                                     {option}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </Input>
 
                         <Input
                             label="Enter your Contact Number"
@@ -179,6 +177,8 @@ export default function AddEmployeeDetails() {
                         <Input
                             label="Add Skills"
                             inputRef={skillsRef} />
+
+<Input type="file" label="Add Image" inputRef={imageRef}></Input>
 
                        
                         <Buttons
