@@ -1,7 +1,11 @@
 const { Employee } = require("../models")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const auth = require("../config/middleware/auth")
+const auth = require("../config/middleware/auth");
+const path = require('path')
+const fs = require('fs')
+
+const uploads = require("./uploads")
 
 module.exports = function (app) {
 
@@ -41,6 +45,8 @@ module.exports = function (app) {
 
         }
     })
+
+
 
     app.post("/employee/login", async function (req, res) {
         try {
@@ -138,6 +144,36 @@ module.exports = function (app) {
        
     })
 
+     //Update employee details and image
+     app.get("/employee/details/image", async function (req, res) {
+
+        //finds the directory and stores it
+         const uploadsDirectory = path.join('uploads');
+
+         //reads the files in the directory
+         fs.readdir(uploadsDirectory,(err,files)=>{
+             if(err){
+                 return res.json({msg:err})
+             }
+             //If no files in the directory return a message
+             if(files.length ===0){
+                 return res.json({msg:"No images Uploaded!"});
+             }
+
+             return res.json({files})
+         })
+
+
+     })
+
+     //Update employee details and image
+     app.post("/employee/details/image", uploads.single('image'),async function (req, res) {
+         console.log(req.body.id)
+       const image = req.file.path;
+       console.log(`Image is : ${image}`)
+       res.json({msg:"image successfully created"})
+     })
+
     //Update employee details
     app.put("/employee/details", async function (req, res) {
 
@@ -222,6 +258,8 @@ module.exports = function (app) {
 
 
     })
+
+
 }
 
 

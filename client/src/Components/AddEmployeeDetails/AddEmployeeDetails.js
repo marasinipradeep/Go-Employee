@@ -62,33 +62,47 @@ export default function AddEmployeeDetails() {
 
     const {state, dispatch} = useEmployeeContext();
     const [error, setError] = useState();
-
-  
-
-  
+    const [image,setImage] =useState();
 
     const submit = async (e) => {
         e.preventDefault();
        // const id = state.id
+
+       //setImage(e.target.files[0]);
+            const fd= new FormData();
+            fd.append('image',image);
+            fd.append('id',id)
+            const config ={
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                }
+            }
+
        console.log(imageRef.current)
 
         try {
-            const details = {
-                id,
-                name: nameRef.current.value,
-                workType: typeRef.current.value,
-                jobTitle: jobTitleRef.current.value,
-                experience: experienceRef.current.value,
-                contactNumber: contactNumberRef.current.value,
-                description: descriptionRef.current.value,
-                skills: skillsRef.current.value,
-                image:imageRef.current.value
-            }
-            const employeeDetails = await API.saveEmployeeDetails(details);
-            dispatch({
-                type: SAVE_EMPLOYEE_DETAILS,
-                employee: employeeDetails.data
-            })
+
+            const employeeDetails = await API.saveEmployeeImage(fd,config);
+            console.log(employeeDetails.data)
+            
+            
+               
+            // const details = {
+            //     id,
+            //     name: nameRef.current.value,
+            //     workType: typeRef.current.value,
+            //     jobTitle: jobTitleRef.current.value,
+            //     experience: experienceRef.current.value,
+            //     contactNumber: contactNumberRef.current.value,
+            //     description: descriptionRef.current.value,
+            //     skills: skillsRef.current.value,
+            //     image:imageRef.current.value
+            // }
+            // const employeeDetails = await API.saveEmployeeDetails(details);
+            // dispatch({
+            //     type: SAVE_EMPLOYEE_DETAILS,
+            //     employee: employeeDetails.data
+            // })
 
         }
         catch (err) {
@@ -178,7 +192,7 @@ export default function AddEmployeeDetails() {
                             label="Add Skills"
                             inputRef={skillsRef} />
 
-<Input type="file" label="Add Image" inputRef={imageRef}></Input>
+<Input type="file" label="Add Image" inputRef={imageRef} onChange={(e)=>setImage(e.target.files[0])}></Input>
 
                        
                         <Buttons

@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core';
 
 
-import image from "../../Components/images/employee.jpeg"
-
 //Importing Utils
 import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { SAVE_EMPLOYEE_DETAILS } from "../Utils/Actions"
@@ -54,7 +52,7 @@ export default function Cards() {
             />
             <CardMedia
                 className={classes.media}
-                image={image}
+                image={process.env.PUBLIC_URL + '/Images/employee.jpeg'}
                 title="Paella dish"
             />
             <CardContent>

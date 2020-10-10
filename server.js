@@ -2,7 +2,6 @@ const express =require('express');
 const socketio = require("socket.io");
 const http = require("http");
 const cors = require("cors");
-
 const session = require("express-session");
 const path = require("path");
 var mongoose = require("mongoose")
@@ -95,6 +94,9 @@ app.use(express.json());
 app.use(
   session({ secret: "keyboard admin", resave: true, saveUninitialized: true })
 );
+
+//Add static to server images
+app.use(express.static('uploads'));
 
 
 

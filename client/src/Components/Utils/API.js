@@ -14,6 +14,11 @@ export default {
     return axios.put("/employee/details", employeeDetails);
   },
 
+  // Save and update employee details with image
+  saveEmployeeImage: function(fd,config) {
+    return axios.post("/employee/details/image", fd,config);
+  },
+
   // Get  employee details
   getAllEmployee: function() {
   return axios.get("/allemployees/");
