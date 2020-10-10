@@ -66,26 +66,29 @@ export default function AddEmployeeDetails() {
 
     const submit = async (e) => {
         e.preventDefault();
-       // const id = state.id
-
-       //setImage(e.target.files[0]);
+          
+       //While sending form data ordering is important send all data first and append image at last
             const fd= new FormData();
-            fd.append('image',image);
             fd.append('id',id)
+            fd.append('name',nameRef.current.value)
+            fd.append('workType',typeRef.current.value)
+            fd.append('jobTitle',jobTitleRef.current.value)
+            fd.append('experience',experienceRef.current.value)
+            fd.append('contactNumber',contactNumberRef.current.value)
+            fd.append('description',descriptionRef.current.value)
+            fd.append('skills',skillsRef.current.value)
+            fd.append('image',image);
+            
             const config ={
                 headers:{
                     'Content-Type':'multipart/form-data'
                 }
             }
 
-       console.log(imageRef.current)
-
         try {
 
-            const employeeDetails = await API.saveEmployeeImage(fd,config);
-            console.log(employeeDetails.data)
-            
-            
+           // const employeeDetails = await API.saveEmployeeImage(fd,config);
+           // console.log(employeeDetails.data)
                
             // const details = {
             //     id,
@@ -98,11 +101,13 @@ export default function AddEmployeeDetails() {
             //     skills: skillsRef.current.value,
             //     image:imageRef.current.value
             // }
-            // const employeeDetails = await API.saveEmployeeDetails(details);
-            // dispatch({
-            //     type: SAVE_EMPLOYEE_DETAILS,
-            //     employee: employeeDetails.data
-            // })
+            const employeeDetails = await API.saveEmployeeDetails(fd,config);
+            console.log("Employee Details")
+            console.log(employeeDetails)
+            dispatch({
+                type: SAVE_EMPLOYEE_DETAILS,
+                employee: employeeDetails.data
+            })
 
         }
         catch (err) {

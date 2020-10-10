@@ -29,6 +29,10 @@ export default function Cards() {
     function loadEmployee() {
 
         API.getEmployeeDetails(id).then((employeeDetails) => {
+
+            console.log("inside Cards")
+            console.log(employeeDetails)
+            console.log(process.env.PUBLIC_URL +'Images')
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data

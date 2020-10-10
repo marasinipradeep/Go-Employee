@@ -10,8 +10,8 @@ export default {
     return axios.post("/employee/register", newEmployee);
   },
   // Save and update employee details
-  saveEmployeeDetails: function(employeeDetails) {
-    return axios.put("/employee/details", employeeDetails);
+  saveEmployeeDetails: function(employeeDetails,config) {
+    return axios.put("/employee/details", employeeDetails,config);
   },
 
   // Save and update employee details with image

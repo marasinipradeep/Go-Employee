@@ -9,10 +9,10 @@ const multer = require('multer');
         cb(null,'uploads')
     },
     filename:function(req,file,cb){
-        console.log("req.body.id")
-        console.log(req)
+        
+        const id = req.body.id
         var fileExt = file.originalname.split('.').pop();
-        cb(null,"pradeep"+"."+fileExt)
+        cb(null,id+"."+fileExt)
     }
 });
 

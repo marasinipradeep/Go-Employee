@@ -13,7 +13,7 @@ module.exports = function (app) {
     app.post("/employee/register", async function (req, res) {
 
         try {
-            let { email, password, passwordCheck} = req.body;
+            let { email, password, passwordCheck } = req.body;
             if (!email || !password || !passwordCheck) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }
@@ -138,44 +138,44 @@ module.exports = function (app) {
 
 
         console.log("inside all employees")
-        const employees = await Employee.find({isOnline:true})
+        const employees = await Employee.find({ isOnline: true })
         console.log(employees)
         res.json(employees)
-       
+
     })
 
-     //Update employee details and image
-     app.get("/employee/details/image", async function (req, res) {
+    //Update employee details and image
+    //  app.get("/employee/details/image", async function (req, res) {
 
-        //finds the directory and stores it
-         const uploadsDirectory = path.join('uploads');
+    //     //finds the directory and stores it
+    //      const uploadsDirectory = path.join('uploads');
 
-         //reads the files in the directory
-         fs.readdir(uploadsDirectory,(err,files)=>{
-             if(err){
-                 return res.json({msg:err})
-             }
-             //If no files in the directory return a message
-             if(files.length ===0){
-                 return res.json({msg:"No images Uploaded!"});
-             }
+    //      //reads the files in the directory
+    //      fs.readdir(uploadsDirectory,(err,files)=>{
+    //          if(err){
+    //              return res.json({msg:err})
+    //          }
+    //          //If no files in the directory return a message
+    //          if(files.length ===0){
+    //              return res.json({msg:"No images Uploaded!"});
+    //          }
 
-             return res.json({files})
-         })
+    //          return res.json({files})
+    //      })
 
 
-     })
+    //  })
 
-     //Update employee details and image
-     app.post("/employee/details/image", uploads.single('image'),async function (req, res) {
-         console.log(req.body.id)
-       const image = req.file.path;
-       console.log(`Image is : ${image}`)
-       res.json({msg:"image successfully created"})
-     })
+    //Update employee details and image
+    //  app.post("/employee/details/image", uploads.any('image'),async function (req, res) {
+
+    //    const image = req.file.path;
+
+    //    res.json({msg:"image successfully created"})
+    //  })
 
     //Update employee details
-    app.put("/employee/details", async function (req, res) {
+    app.put("/employee/details", uploads.any('image'), async function (req, res) {
 
         console.log("inside  employees detail")
         console.log(req.body)
@@ -185,12 +185,12 @@ module.exports = function (app) {
 
         try {
             console.log("inside try block")
-            if (!name || !workType || !jobTitle ||!experience ||!contactNumber ||!description ||!skills) {
+            if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }
 
             const employee = await Employee.findOneAndUpdate(
-               {_id: req.body.id},
+                { _id: req.body.id },
                 {
                     name: name,
                     workType: workType,
@@ -216,21 +216,36 @@ module.exports = function (app) {
 
         console.log("inside get  employees detail")
         console.log(req.params.id)
+        //finds the directory and stores it
+        const uploadsDirectory = path.join('uploads');
+        console.log(uploadsDirectory)
+        //reads the files in the directory
+        fs.readdir(uploadsDirectory, (err, files) => {
+            console.log(files.find((id)=>id===req.params.id+".png"))
+            if (err) {
+                return res.json({ msg: err })
+            }
+            //If no files in the directory return a message
+            if (files.length === 0) {
+                return res.json({ msg: "No images Uploaded!" });
+            }
+            return res.json(files.find((id)=>id===req.params.id+".png"))
+        })
 
 
-        try {
-            console.log("inside try block")
+        // try {
+        //     console.log("inside try block")
 
-            const employeeDetails = await Employee.findById(
-                { _id: req.params.id },
-            )
+        //     const employeeDetails = await Employee.findById(
+        //         { _id: req.params.id },
+        //     )
 
-            console.log(employeeDetails)
-            res.json(employeeDetails)
-        } catch (err) {
-            res.status(500).json({ error: err.message })
+        //     console.log(employeeDetails)
+        //     res.json(employeeDetails)
+        // } catch (err) {
+        //     res.status(500).json({ error: err.message })
 
-        }
+        // }
 
 
     })
@@ -244,13 +259,13 @@ module.exports = function (app) {
             console.log("inside try block")
 
             const employee = await Employee.findOneAndUpdate(
-               {_id: req.body.id},
+                { _id: req.body.id },
                 {
                     isOnline: req.body.isOnline,
-                    
+
                 })
 
-           res.json(employee)
+            res.json(employee)
         } catch (err) {
             res.status(500).json({ error: err.message })
 
