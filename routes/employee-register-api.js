@@ -219,8 +219,9 @@ module.exports = function (app) {
             if (files.length === 0) {
                 return res.json({ msg: "No images Uploaded!" });
             }
-            console.log(path.join(__dirname,`../uploads/${fileName}`))
-            return res.send(path.join(__dirname,`../uploads/${fileName}`));
+          //  return res.send(path.join(__dirname,`../uploads/${fileName}`));
+          //Do not send full path app.use static path will serve other parts 
+          return res.send(`/${fileName}`);
         })
 
 

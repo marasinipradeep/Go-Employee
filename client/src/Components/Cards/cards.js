@@ -46,9 +46,11 @@ export default function Cards() {
         loadEmployee, [id]
     );
 
+    //Material UI DOCS for CARDS https://material-ui.com/components/cards/
+
 
     return (
-        
+        <div>
         <Card className={classes.root}>
             <CardHeader
                 title="Your Summary"
@@ -110,5 +112,6 @@ export default function Cards() {
 
 
         </Card>
+        </div>
     );
 }
