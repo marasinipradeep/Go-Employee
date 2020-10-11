@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import defaultImage from '../images/blankprofile.png'
 import PropTtypes from 'prop-types';
@@ -10,7 +10,7 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
     return (
         <article className="employee" >
             <div className="img-container">
-                <img src={defaultImage}
+                <img src={ `/${images}` || defaultImage}
                     alt="single employee"
                 />
                 <div className="price-top">

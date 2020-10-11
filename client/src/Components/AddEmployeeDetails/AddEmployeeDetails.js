@@ -1,4 +1,4 @@
-import React,{ useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Adminheader from "../AdminHeader"
 
 //Import from material components
@@ -7,11 +7,8 @@ import Input from "../../Material-Components/Inputs";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useEmployeeContext } from "../Utils/EmployeeContext"
-
 import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../Utils/Actions"
 import ErrorNotice from '../misc/ErrorNotice';
-
-import TextField from '@material-ui/core/TextField';
 import { MenuItem, Button, Switch } from '@material-ui/core';
 import API from "../Utils/API"
 
@@ -24,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonMargin: {
         marginTop: "50px",
-        marginBottom:"50px"
+        marginBottom: "50px"
     }
 }));
 
@@ -60,48 +57,33 @@ export default function AddEmployeeDetails() {
     const skillsRef = useRef();
     const imageRef = useRef();
 
-    const {state, dispatch} = useEmployeeContext();
+    const { state, dispatch } = useEmployeeContext();
     const [error, setError] = useState();
-    const [image,setImage] =useState();
+    const [image, setImage] = useState();
 
     const submit = async (e) => {
         e.preventDefault();
-          
-       //While sending form data ordering is important send all data first and append image at last
-            const fd= new FormData();
-            fd.append('id',id)
-            fd.append('name',nameRef.current.value)
-            fd.append('workType',typeRef.current.value)
-            fd.append('jobTitle',jobTitleRef.current.value)
-            fd.append('experience',experienceRef.current.value)
-            fd.append('contactNumber',contactNumberRef.current.value)
-            fd.append('description',descriptionRef.current.value)
-            fd.append('skills',skillsRef.current.value)
-            fd.append('image',image);
-            
-            const config ={
-                headers:{
-                    'Content-Type':'multipart/form-data'
-                }
+
+        //While sending form data ordering is important send all data first and append image at last
+        const fd = new FormData();
+        fd.append('id', id)
+        fd.append('name', nameRef.current.value)
+        fd.append('workType', typeRef.current.value)
+        fd.append('jobTitle', jobTitleRef.current.value)
+        fd.append('experience', experienceRef.current.value)
+        fd.append('contactNumber', contactNumberRef.current.value)
+        fd.append('description', descriptionRef.current.value)
+        fd.append('skills', skillsRef.current.value)
+        fd.append('image', image);
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
+        }
 
         try {
-
-           // const employeeDetails = await API.saveEmployeeImage(fd,config);
-           // console.log(employeeDetails.data)
-               
-            // const details = {
-            //     id,
-            //     name: nameRef.current.value,
-            //     workType: typeRef.current.value,
-            //     jobTitle: jobTitleRef.current.value,
-            //     experience: experienceRef.current.value,
-            //     contactNumber: contactNumberRef.current.value,
-            //     description: descriptionRef.current.value,
-            //     skills: skillsRef.current.value,
-            //     image:imageRef.current.value
-            // }
-            const employeeDetails = await API.saveEmployeeDetails(fd,config);
+            const employeeDetails = await API.saveEmployeeDetails(fd, config);
             console.log("Employee Details")
             console.log(employeeDetails)
             dispatch({
@@ -120,22 +102,20 @@ export default function AddEmployeeDetails() {
     return (
         <>
             <Adminheader />
-           
+
             <div className={classes.root}>
 
                 <Grid container alignItems="center" direction="column">
-              
+
                     <form>
                         <h2>Enter Your Details:</h2>
                         {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
-                       
 
                         <Input
-                       
+
                             label="Enter your full name"
                             inputRef={nameRef} />
 
-                      
                         {/* profession type */}
 
                         <Input
@@ -161,7 +141,7 @@ export default function AddEmployeeDetails() {
                             label="Enter your job title"
                             inputRef={jobTitleRef} />
 
-                       
+
 
                         {/* Experience  */}
 
@@ -185,29 +165,31 @@ export default function AddEmployeeDetails() {
                             label="Enter your Contact Number"
                             inputRef={contactNumberRef} />
 
-                       
 
                         <Input
                             label="Write Brief Description"
                             inputRef={descriptionRef}
                             multiline={true} />
 
-                       
+
                         <Input
                             label="Add Skills"
                             inputRef={skillsRef} />
 
-<Input type="file" label="Add Image" inputRef={imageRef} onChange={(e)=>setImage(e.target.files[0])}></Input>
+                        <Input
+                            type="file"
+                            label="Add Image"
+                            inputRef={imageRef}
+                            onChange={(e) => setImage(e.target.files[0])} />
 
-                       
+
                         <Buttons
-                        className={classes.buttonMargin}
-                        onClick={submit} variant="contained" color="secondary" value="Submit">
+                            className={classes.buttonMargin}
+                            onClick={submit} variant="contained" color="secondary" value="Submit">
                             Submit
                             </Buttons>
                     </form>
                 </Grid>
-
             </div>
         </>
     )

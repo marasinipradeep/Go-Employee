@@ -135,43 +135,12 @@ module.exports = function (app) {
     })
 
     app.get("/allemployees", async function (req, res) {
-
-
-        console.log("inside all employees")
         const employees = await Employee.find({ isOnline: true })
         console.log(employees)
         res.json(employees)
-
     })
 
-    //Update employee details and image
-    //  app.get("/employee/details/image", async function (req, res) {
-
-    //     //finds the directory and stores it
-    //      const uploadsDirectory = path.join('uploads');
-
-    //      //reads the files in the directory
-    //      fs.readdir(uploadsDirectory,(err,files)=>{
-    //          if(err){
-    //              return res.json({msg:err})
-    //          }
-    //          //If no files in the directory return a message
-    //          if(files.length ===0){
-    //              return res.json({msg:"No images Uploaded!"});
-    //          }
-
-    //          return res.json({files})
-    //      })
-
-
-    //  })
-
-    //Update employee details and image
-    //  app.post("/employee/details/image", uploads.any('image'),async function (req, res) {
-    //    const image = req.file.path;
-    //    res.json({msg:"image successfully created"})
-    //  })
-
+    
     //Update employee details
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
@@ -191,7 +160,7 @@ module.exports = function (app) {
                     contactNumber, contactNumber,
                     description: description,
                     skills: skills,
-                    images:req.body.id+".png"
+                    images: req.body.id + ".png"
                 })
         } catch (err) {
             res.status(500).json({ error: err.message })
@@ -203,24 +172,24 @@ module.exports = function (app) {
     //Find employee details and populate
     app.get("/employee/currentdetails/:id", async function (req, res) {
 
-        console.log("inside get  employees detail")
+        //     console.log("inside get  employees detail")
 
-       // finds the directory and stores it
-        const uploadsDirectory = path.join('uploads');
-        //reads the files in the directory
-        fs.readdir(uploadsDirectory, (err, files) => {
-         const fileName =(files.find((id)=>id===req.params.id+".png"))
-            if (err) {
-                return res.json({ msg: err })
-            }
-            //If no files in the directory return a message
-            if (files.length === 0) {
-                return res.json({ msg: "No images Uploaded!" });
-            }
-          //  return res.send(path.join(__dirname,`../uploads/${fileName}`));
-          //Do not send full path app.use static path will serve other parts 
-        //   res.send(`/${fileName}`);
-        })
+        //    // finds the directory and stores it
+        //     const uploadsDirectory = path.join('uploads');
+        //     //reads the files in the directory
+        //     fs.readdir(uploadsDirectory, (err, files) => {
+        //      const fileName =(files.find((id)=>id===req.params.id+".png"))
+        //         if (err) {
+        //             return res.json({ msg: err })
+        //         }
+        //         //If no files in the directory return a message
+        //         if (files.length === 0) {
+        //             return res.json({ msg: "No images Uploaded!" });
+        //         }
+        //       //  return res.send(path.join(__dirname,`../uploads/${fileName}`));
+        //       //Do not send full path app.use static path will serve other parts 
+        //     //   res.send(`/${fileName}`);
+        //     })
 
 
         try {
@@ -229,22 +198,16 @@ module.exports = function (app) {
             const employeeDetails = await Employee.findById(
                 { _id: req.params.id }
             )
-
-            console.log(employeeDetails)
             res.json(employeeDetails)
         } catch (err) {
             res.status(500).json({ error: err.message })
 
         }
-
-
     })
 
 
     //Update employee isOnline
     app.put("/employee/isOnline", async function (req, res) {
-        console.log("inside  employees isOnline")
-        console.log(req.body)
         try {
             console.log("inside try block")
 
@@ -260,11 +223,7 @@ module.exports = function (app) {
             res.status(500).json({ error: err.message })
 
         }
-
-
     })
-
-
 }
 
 

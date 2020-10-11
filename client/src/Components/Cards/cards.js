@@ -25,16 +25,8 @@ export default function Cards() {
     const classes = useStyles();
 
     const [state, dispatch] = useEmployeeContext();
-    const [images,setImages] = useState();
-
     function loadEmployee() {
-
         API.getEmployeeDetails(id).then((employeeDetails) => {
-
-            console.log(employeeDetails.data)
-
-            setImages(employeeDetails.data);
-           
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data
@@ -47,14 +39,12 @@ export default function Cards() {
     );
 
     //Material UI DOCS for CARDS https://material-ui.com/components/cards/
-
-
     return (
         <div>
         <Card className={classes.root}>
             <CardHeader
                 title="Your Summary"
-                subheader=""
+                subheader={state.currentEmployee.workType}
             />
            
             <CardMedia
@@ -78,7 +68,6 @@ export default function Cards() {
             <CardContent>
                 <Typography variant="h6" color="primary" component="p">
                 <Typography color="secondary" variant="h5">Job Title:</Typography>
-                    
                     {state.currentEmployee.jobTitle}
                 </Typography>
             </CardContent>
