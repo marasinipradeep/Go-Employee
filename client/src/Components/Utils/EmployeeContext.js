@@ -18,7 +18,8 @@ const reducer = (state, action) => {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.token
+        token: action.token,
+        user: action.data
       };
 
     case LOGOUT:
@@ -33,8 +34,6 @@ const reducer = (state, action) => {
         id: action.id,
         email: action.email
       };
-
-
 
     case SAVE_EMPLOYEE_DETAILS:
 
@@ -85,6 +84,7 @@ const reducer = (state, action) => {
 const EmployeeProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     token: undefined,
+    user:undefined,
     employees: [],//all employees
     currentEmployee: { //Single employees when logged in
       _id: "",

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect, useHistory } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Axios from "axios";
 
@@ -21,52 +22,56 @@ import FindEmployee from './Components/Pages/Employee'
 import SingleEmployee from './Components/Pages/SingleEmployee/SingleEmployee';
 
 //Import chat component
-import Join from './component/Join/Join';
-import Chat from './component/Chat/Chat'
+import Join from './Chat-Component/Join/Join';
+import Chat from './Chat-Component/Chat/Chat';
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
 import { EmployeeProvider, useEmployeeContext } from "./Components/Utils/EmployeeContext";
+
 import { SET_TOKEN } from "./Components/Utils/Actions"
 
+let token = localStorage.getItem("auth-token");
+
 function App() {
+  const history =useHistory();
   //const [state, dispatch] = useEmployeeContext();
+  const [userData, setUserData] = useState({
+    token: undefined,
+    user: undefined
+  })
 
-  //useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
-  //If array is empty just going to run once.
-  //So this basically function that runs when app starts.Downside cant have asynchrouns function.
+  // useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
+  // If array is empty just going to run once.
+  // So this basically function that runs when app starts.Downside cant have asynchrouns function.
 
-  // useEffect(() => {
-  //   console.log("inside use effect")
+  useEffect(() => {
+    console.log("inside use effect")
 
-  //   const checkLoggedIn = async () => {
-  //     let token = localStorage.getItem("auth-token");//When empty Null or undefined
-  //     if (state.token === null) {
-  //       localStorage.setItem("auth-token", "");
-  //       token = "";
-  //     }
-  //     const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
-  //       { headers: { "x-auth-token": token } });
-  //     if (tokenRes.data) {
-  //       const employeeRes = await Axios.get("http://localhost:8080/employee",
-  //         {
-  //           headers: { "x-auth-token": token }
-  //         });
+    const checkLoggedIn = async () => {
+     // let token = localStorage.getItem("auth-token");//When empty Null or undefined
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
+        { headers: { "x-auth-token": token } });
+      if (tokenRes.data) {
+        const employeeRes = await Axios.get("http://localhost:8080/employee",
+          {
+            headers: { "x-auth-token": token }
+          });
+        //  dispatch({type:SET_TOKEN,token:token,user:employeeRes.data})
+        console.log(employeeRes.data)
+         setUserData({
+           token,
+           employee: employeeRes.data,
+         });
 
-  //         console.log(employeeRes.data)
-
-  //         dispatch({type:SET_TOKEN,token:token})
-
-  //       // setUserData({
-  //       //   token,
-  //       //   employee: employeeRes.data,
-  //       // });
-
-  //     }
-  //   };
-  //   checkLoggedIn();
-  //   console.log(state)
-  // }, []);
+      }
+    };
+    checkLoggedIn();
+  }, []);
 
   const PublicRoute = ({ component: Component, ...rest }) => {
     return (
@@ -91,7 +96,7 @@ function App() {
 
   return (
     <Router>
-      <EmployeeProvider>
+      <EmployeeProvider value={{userData,setUserData}}>
         <Switch>
           <PublicRoute exact path="/" component={Home} />
           <PublicRoute exact path="/employee" component={FindEmployee} />

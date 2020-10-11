@@ -9,7 +9,7 @@ import "./SingleEmployee.css";
 
 import API from "../../Utils/API"
 
-import Chat from "../../../component/Chat/Chat"
+import Chat from "../../../Chat-Component/Chat/Chat"
 
 function SingleEmployee(props) {
 
@@ -18,24 +18,11 @@ function SingleEmployee(props) {
 
         
         API.getEmployeeDetails(props.match.params.id).then(connEmployee => {
-
-            console.log("employeeState")
-            console.log(connEmployee)
-
             dispatch({
                 type: CONNECTED_EMPLOYEE,
                 connectedEmployee: connEmployee.data
             })
-
-        console.log("after dispatch")
-        console.log(employeeState)
-
-
         })
-
-        
-
-
     }, [])
     return (
         <>
