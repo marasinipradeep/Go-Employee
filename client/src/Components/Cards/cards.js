@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core';
 
@@ -25,21 +25,21 @@ export default function Cards() {
     const classes = useStyles();
 
     const [state, dispatch] = useEmployeeContext();
+    const [images,setImages] = useState();
 
     function loadEmployee() {
 
         API.getEmployeeDetails(id).then((employeeDetails) => {
 
-            console.log("inside Cards")
-            console.log(employeeDetails)
-            console.log(process.env.PUBLIC_URL +'Images')
+            console.log(employeeDetails.data)
+
+            setImages(employeeDetails.data);
+           
             dispatch({
                 type: SAVE_EMPLOYEE_DETAILS,
                 employee: employeeDetails.data
             })
-
         })
-
     }
 
     useEffect(
@@ -54,9 +54,11 @@ export default function Cards() {
                 title="Your Summary"
                 subheader=""
             />
+           
             <CardMedia
                 className={classes.media}
-                image={process.env.PUBLIC_URL + '/Images/employee.jpeg'}
+                // image={process.env.PUBLIC_URL + '/Images/employee.jpeg'}
+                image={images}
                 title="Paella dish"
             />
             <CardContent>

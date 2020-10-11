@@ -176,13 +176,7 @@ module.exports = function (app) {
 
     //Update employee details
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
-
-        console.log("inside  employees detail")
-        console.log(req.body)
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
-
-        console.log(image)
-
         try {
             console.log("inside try block")
             if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {
@@ -199,15 +193,11 @@ module.exports = function (app) {
                     contactNumber, contactNumber,
                     description: description,
                     skills: skills
-
                 })
-
-            console.log(employee)
         } catch (err) {
             res.status(500).json({ error: err.message })
 
         }
-
 
     })
 
@@ -215,13 +205,13 @@ module.exports = function (app) {
     app.get("/employee/currentdetails/:id", async function (req, res) {
 
         console.log("inside get  employees detail")
-        console.log(req.params.id)
+
         //finds the directory and stores it
         const uploadsDirectory = path.join('uploads');
-        console.log(uploadsDirectory)
         //reads the files in the directory
         fs.readdir(uploadsDirectory, (err, files) => {
-            console.log(files.find((id)=>id===req.params.id+".png"))
+
+         const fileName =(files.find((id)=>id===req.params.id+".png"))
             if (err) {
                 return res.json({ msg: err })
             }
@@ -229,7 +219,8 @@ module.exports = function (app) {
             if (files.length === 0) {
                 return res.json({ msg: "No images Uploaded!" });
             }
-            return res.json(files.find((id)=>id===req.params.id+".png"))
+            console.log(path.join(__dirname,`../uploads/${fileName}`))
+            return res.send(path.join(__dirname,`../uploads/${fileName}`));
         })
 
 
