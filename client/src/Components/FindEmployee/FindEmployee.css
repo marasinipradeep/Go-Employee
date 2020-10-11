@@ -15,7 +15,7 @@
     display: block;
     transition: var(--mainTransition);
   }
-  .price-top {
+  .job-title {
     position: absolute;
     top: 0;
     left: 0;
@@ -27,7 +27,7 @@
     text-align: center;
     transition: var(--mainTransition);
   }
-  .price-top h6 {
+  .job-title h2 {
     margin-bottom: 0;
     font-size: 0.9rem;
     font-weight: 300;

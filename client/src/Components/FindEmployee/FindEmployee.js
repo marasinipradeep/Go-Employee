@@ -10,28 +10,21 @@ function FindEmployee({ employee }) { //This is coming from attribute inside Emp
     return (
         <article className="employee" >
             <div className="img-container">
-                <img src={ `/${images}` || defaultImage}
-                    alt="single employee"
-                />
-                <div className="price-top">
-                    <h6>{jobTitle}</h6>
-                </div>
-                <Link to={`/employees/${_id}`}
-                    className="btn-primary  employee-link">
-                    Connect
-                </Link>
+                <img src={`/${images}` || defaultImage} alt="single employee" />
+                <div className="job-title"> <h2>{jobTitle}</h2> </div>
+                <Link to={`/employees/${_id}`} className="btn-primary  employee-link">Connect</Link>
             </div>
             <p className="employee-info">{name}</p>
         </article>
     );
 }
 
-FindEmployee.PropTtypes = {
-    employee: PropTtypes.shape({
-        name: PropTtypes.string.isRequired,
-        id: PropTtypes.string.isRequired,
-        images: PropTtypes.string.isRequired
-    })
-}
+// FindEmployee.PropTtypes = {
+//     employee: PropTtypes.shape({
+//         name: PropTtypes.string.isRequired,
+//         id: PropTtypes.string.isRequired,
+//         images: PropTtypes.string.isRequired
+//     })
+// }
 
 export default FindEmployee;

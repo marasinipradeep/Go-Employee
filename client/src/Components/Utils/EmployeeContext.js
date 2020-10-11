@@ -34,7 +34,7 @@ const reducer = (state, action) => {
         email: action.email
       };
 
-     
+
 
     case SAVE_EMPLOYEE_DETAILS:
 
@@ -43,11 +43,11 @@ const reducer = (state, action) => {
         currentEmployee: action.employee
       }
 
-      case UPDATE_EMPLOYEE_ISONLINE:
+    case UPDATE_EMPLOYEE_ISONLINE:
       return {
         ...state,
-       currentEmployee:action.isOnline
-        
+        currentEmployee: action.isOnline
+
       }
 
     case GET_ALL_EMPLOYEE_DETAILS:
@@ -60,9 +60,13 @@ const reducer = (state, action) => {
     case CONNECTED_EMPLOYEE:
       return {
         ...state,
-        connectedEmployee: state.employees.filter((employee) => {
-          return employee._id === action.id//use find here
-                })
+        connectedEmployee:[action.connectedEmployee,...state.connectedEmployee]
+        //   state.employees.filter((employee) => {
+        //   console.log("CONNECTED_EMPLOYEE")
+        //   console.log(employee._id === action.id) 
+        //   return employee._id === action.id //use find here
+        // })
+      
       }
 
 
@@ -81,8 +85,8 @@ const reducer = (state, action) => {
 const EmployeeProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     token: undefined,
-    employees: [],
-    currentEmployee: {
+    employees: [],//all employees
+    currentEmployee: { //Single employees when logged in
       _id: "",
       email: "",
       isOnline: false,
@@ -95,7 +99,7 @@ const EmployeeProvider = ({ value = [], ...props }) => {
       skills: "",
       images: ""
     },
-    connectedEmployee: [],
+    connectedEmployee:[],
     loading: false,
 
 

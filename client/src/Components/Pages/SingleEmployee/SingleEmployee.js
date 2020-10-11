@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { useEmployeeContext } from '../../Utils/EmployeeContext';
 import StyledHero from '../../Pure-Components/StyledHero/StyledHero';
 import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
-import "./SingleEmployee.css"
+import "./SingleEmployee.css";
+
+import API from "../../Utils/API"
 
 import Chat from "../../../component/Chat/Chat"
 
@@ -13,10 +15,26 @@ function SingleEmployee(props) {
 
     const [employeeState, dispatch] = useEmployeeContext();
     useEffect(() => {
-        dispatch({
-            type: CONNECTED_EMPLOYEE,
-            id: props.match.params.id
+
+        
+        API.getEmployeeDetails(props.match.params.id).then(connEmployee => {
+
+            console.log("employeeState")
+            console.log(connEmployee)
+
+            dispatch({
+                type: CONNECTED_EMPLOYEE,
+                connectedEmployee: connEmployee.data
+            })
+
+        console.log("after dispatch")
+        console.log(employeeState)
+
+
         })
+
+        
+
 
     }, [])
     return (
@@ -26,7 +44,7 @@ function SingleEmployee(props) {
                     {employeeState.connectedEmployee.map(employee => (
 
                         <div key={employee._id}>
-                            <StyledHero img={"" ||
+                            <StyledHero img={`/${employee.images}` ||
                                 defaultBcg}>
                                 <Banner title={`${employee.name} room`}>
                                     <Link to='/employee' className="btn-primary">
@@ -35,9 +53,9 @@ function SingleEmployee(props) {
                                 </Banner>
                             </StyledHero>
                             <section className="single-employee">
-                                <div className="single-employee-images">
+                                {/* <div className="single-employee-images">
                                     <img src="" alt="" />
-                                </div>
+                                </div> */}
                                 <div className="single-employee-info">
                                     <article className="desc">
                                         <h3>details</h3>

@@ -136,7 +136,6 @@ module.exports = function (app) {
 
     app.get("/allemployees", async function (req, res) {
         const employees = await Employee.find({ isOnline: true })
-        console.log(employees)
         res.json(employees)
     })
 
