@@ -60,7 +60,7 @@ export default function Cards() {
             <CardMedia
                 className={classes.media}
                 // image={process.env.PUBLIC_URL + '/Images/employee.jpeg'}
-                image={images}
+                image={`/${state.currentEmployee.images}`}
                 title="Paella dish"
             />
             <CardContent>

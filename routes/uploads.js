@@ -11,8 +11,9 @@ const multer = require('multer');
     filename:function(req,file,cb){
         
         const id = req.body.id
-        var fileExt = file.originalname.split('.').pop();
-        cb(null,id+"."+fileExt)
+       var fileExt = file.originalname.split('.').pop();
+
+        cb(null,id+".png")
     }
 });
 

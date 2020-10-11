@@ -168,9 +168,7 @@ module.exports = function (app) {
 
     //Update employee details and image
     //  app.post("/employee/details/image", uploads.any('image'),async function (req, res) {
-
     //    const image = req.file.path;
-
     //    res.json({msg:"image successfully created"})
     //  })
 
@@ -192,7 +190,8 @@ module.exports = function (app) {
                     experience: experience,
                     contactNumber, contactNumber,
                     description: description,
-                    skills: skills
+                    skills: skills,
+                    images:req.body.id+".png"
                 })
         } catch (err) {
             res.status(500).json({ error: err.message })
@@ -206,11 +205,10 @@ module.exports = function (app) {
 
         console.log("inside get  employees detail")
 
-        //finds the directory and stores it
+       // finds the directory and stores it
         const uploadsDirectory = path.join('uploads');
         //reads the files in the directory
         fs.readdir(uploadsDirectory, (err, files) => {
-
          const fileName =(files.find((id)=>id===req.params.id+".png"))
             if (err) {
                 return res.json({ msg: err })
@@ -221,23 +219,23 @@ module.exports = function (app) {
             }
           //  return res.send(path.join(__dirname,`../uploads/${fileName}`));
           //Do not send full path app.use static path will serve other parts 
-          return res.send(`/${fileName}`);
+        //   res.send(`/${fileName}`);
         })
 
 
-        // try {
-        //     console.log("inside try block")
+        try {
+            console.log("inside try block")
 
-        //     const employeeDetails = await Employee.findById(
-        //         { _id: req.params.id },
-        //     )
+            const employeeDetails = await Employee.findById(
+                { _id: req.params.id }
+            )
 
-        //     console.log(employeeDetails)
-        //     res.json(employeeDetails)
-        // } catch (err) {
-        //     res.status(500).json({ error: err.message })
+            console.log(employeeDetails)
+            res.json(employeeDetails)
+        } catch (err) {
+            res.status(500).json({ error: err.message })
 
-        // }
+        }
 
 
     })
