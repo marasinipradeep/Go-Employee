@@ -140,7 +140,7 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap>
             {/* {email}  */}
             {/* Welcome {state.email} */}
-          Welcome {email}
+          Welcome {state.currentEmployee.email}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -38,7 +38,14 @@ module.exports = function (app) {
             });
 
             const saveEmployee = await newEmployee.save();
-            res.json(saveEmployee)
+            console.log(saveEmployee)
+            const responseData = {
+                email:saveEmployee.email,
+                id:saveEmployee._id,
+                msg:"Successfully registered your email address.Click on login to begin"
+            }
+            
+            res.json(responseData)
 
         } catch (err) {
             res.status(500).json({ error: err.message })

@@ -3,6 +3,7 @@ import React, { createContext, useContext, useReducer } from "react";
 import {
   LOGOUT,
   EMPLOYEE_LOGIN,
+  EMPLOYEE_REGISTER,
   SAVE_EMPLOYEE_DETAILS,
   LOADING, GET_ALL_EMPLOYEE_DETAILS,
   SET_TOKEN,
@@ -31,16 +32,24 @@ const reducer = (state, action) => {
       };
 
     case EMPLOYEE_LOGIN:
-      console.log("inside EMPLOYEE_LOGIN")
-      console.log(action.token)
-      console.log(action.id)
-      console.log(action.email)
-      console.log(state)
       return {
         ...state,
         token: action.token,
         // currentEmployee:{...state,_id:action.id,email:action.email}
       };
+
+      // case EMPLOYEE_REGISTER:
+      //   console.log("inside EMPLOYEE_LOGIN")
+      //   console.log(action.token)
+      //   console.log(action.id)
+      //   console.log(action.email)
+      //   console.log(state)
+      //   return {
+      //     ...state,
+      //     token: action.token,
+      //     currentEmployee:{...state,_id:action.id,email:action.email}
+      //   };
+
 
     case SAVE_EMPLOYEE_DETAILS:
       return {
@@ -65,7 +74,7 @@ const reducer = (state, action) => {
     case CONNECTED_EMPLOYEE:
       return {
         ...state,
-        connectedEmployee: [action.connectedEmployee, ...state.connectedEmployee]
+        connectedEmployee: [action.connectedEmployee, ...state.connectedEmployee]//array destructure and pushing new array like array.push
 
       }
 
@@ -103,6 +112,7 @@ const EmployeeProvider = ({ value = [], ...props }) => {
     loading: false,
 
   });
+  //Already returns provider to us.No need to pass provider later on.Just need to wrap EmployeeProvider where we want to place.
   return <Provider value={[state, dispatch]} {...props} />;
 };
 

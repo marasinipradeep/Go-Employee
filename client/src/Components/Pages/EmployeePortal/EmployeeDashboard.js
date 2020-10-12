@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import Adminheader from "../../AdminHeader"
 import { Grid, Switch } from '@material-ui/core';
 import API from "../../Utils/API"
@@ -25,7 +25,7 @@ const EmployeeDashboard = () => {
     const [state, dispatch] = useEmployeeContext();
     const [checked, setChecked] = useState(state.currentEmployee.isOnline);
 
-    const history=useHistory();
+    const history = useHistory();
 
     //Hanlde and set online and offline for employee
     const handleToggle = (event) => {
@@ -42,16 +42,16 @@ const EmployeeDashboard = () => {
         })
     };
     //Loads and sets employee details
-     function loadEmployee() {
-       
-        checkLocalStorage().then(employeeRes=>{
+    function loadEmployee() {
+
+        checkLocalStorage().then(employeeRes => {
             console.log("employeeDetails.data.isOnline")
             console.log(employeeRes)
-            if(employeeRes===undefined){
-              return  history.push("/login")
+            if (employeeRes === undefined) {
+                return history.push("/login")
             }
-             API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
-               
+            API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
+
                 setChecked(employeeDetails.data.isOnline)
                 dispatch({
                     type: SAVE_EMPLOYEE_DETAILS,
@@ -61,8 +61,8 @@ const EmployeeDashboard = () => {
 
         })
 
-           
-        
+
+
     }
 
 

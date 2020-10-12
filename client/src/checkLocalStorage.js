@@ -8,7 +8,6 @@ export default async function checkLocalStorage() {
         if (token === null) {
             localStorage.setItem("auth-token", "");
             token = "";
-            return;
         }
         //data null then config header which is object 
         const header = { headers: { "x-auth-token": token } }
