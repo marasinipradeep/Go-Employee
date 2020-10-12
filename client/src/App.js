@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Axios from "axios";
+//import Axios from "axios";
 
 
 //Importing Styles
@@ -27,51 +26,53 @@ import Chat from './Chat-Component/Chat/Chat';
 
 //Importing employee login UserContext and employees context EmployeeProvider
 // import UserContext from "./context/UserContext";
-import { EmployeeProvider, useEmployeeContext } from "./Components/Utils/EmployeeContext";
+import { EmployeeProvider } from "./Components/Utils/EmployeeContext";
 
-import { SET_TOKEN } from "./Components/Utils/Actions"
+//import { useEmployeeContext } from "../src/Components/Utils/EmployeeContext"
 
-let token = localStorage.getItem("auth-token");
+//import { SET_TOKEN } from "./Components/Utils/Actions"
 
 function App() {
-  const history =useHistory();
-  //const [state, dispatch] = useEmployeeContext();
-  const [userData, setUserData] = useState({
-    token: undefined,
-    user: undefined
-  })
-
   // useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
   // If array is empty just going to run once.
   // So this basically function that runs when app starts.Downside cant have asynchrouns function.
 
-  useEffect(() => {
-    console.log("inside use effect")
+  //const [ state, dispatch ] = useEmployeeContext();
 
-    const checkLoggedIn = async () => {
-     // let token = localStorage.getItem("auth-token");//When empty Null or undefined
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
-      const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
-        { headers: { "x-auth-token": token } });
-      if (tokenRes.data) {
-        const employeeRes = await Axios.get("http://localhost:8080/employee",
-          {
-            headers: { "x-auth-token": token }
-          });
-        //  dispatch({type:SET_TOKEN,token:token,user:employeeRes.data})
-        console.log(employeeRes.data)
-         setUserData({
-           token,
-           employee: employeeRes.data,
-         });
+  //console.log("initial state")
+  //console.log(state)
 
-      }
-    };
-    checkLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   console.log("inside use effect")
+  //   console.log(state)
+  //   const checkLoggedIn = async () => {
+  //     let token = localStorage.getItem("auth-token");
+  //     //When empty Null or undefined set token to empty string and set empty token
+  //     if (token === null) {
+  //       localStorage.setItem("auth-token", "");
+  //       token = "";
+  //     }
+  //     //data null then config header which is object 
+  //     const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
+  //       { headers: { "x-auth-token": token } });
+
+  //     //If true which is boolean value we get back from server
+  //     if (tokenRes.data) {
+  //       const employeeRes = await Axios.get("http://localhost:8080/employee",
+  //         {
+  //           headers: { "x-auth-token": token }
+  //         });
+
+  //       dispatch({
+  //         type: SET_TOKEN,
+  //         token: token,
+  //         user: employeeRes.data
+  //       });
+  //     }
+  //   };
+  //   //Calling function to make asynchronous
+  //   checkLoggedIn();
+  // }, []);
 
   const PublicRoute = ({ component: Component, ...rest }) => {
     return (
@@ -96,7 +97,8 @@ function App() {
 
   return (
     <Router>
-      <EmployeeProvider value={{userData,setUserData}}>
+
+      <EmployeeProvider>
         <Switch>
           <PublicRoute exact path="/" component={Home} />
           <PublicRoute exact path="/employee" component={FindEmployee} />
@@ -104,7 +106,6 @@ function App() {
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={Register} />
           <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
-
           <EmployeeRoute exact path="/employee/details" component={AddEmployeeDetails} />
 
 

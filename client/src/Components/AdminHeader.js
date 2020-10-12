@@ -19,8 +19,6 @@ import Buttons from "../Material-Components/Buttons";
 
 const drawerWidth = 240;
 
-const id = localStorage.getItem("id")
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -91,22 +89,21 @@ export default function PersistentDrawerLeft() {
 
   const logout = () => {
 
+    console.log("inside admin header logout")
+    console.log(state.currentEmployee._id)
+
     const details = {
       // id: state.id,
-      id: id,
-       isOnline: false
-   }
-   API.setEmployeeOnline(details).then((employee) => {
-       console.log(employee)
-       dispatch({ type: LOGOUT });
-       localStorage.setItem("auth-token", "")
-       localStorage.setItem("id", "");
-       localStorage.setItem("email", "");
-       history.push("/")
+      id: state.currentEmployee._id,
+      isOnline: false
+    }
+    API.setEmployeeOnline(details).then((employee) => {
+      console.log(employee)
+      dispatch({ type: LOGOUT });
+      localStorage.setItem("auth-token", "")
+      history.push("/")
 
-   })
-   
-
+    })
   }
 
   const classes = useStyles();
@@ -142,7 +139,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography variant="h6" noWrap>
             {/* {email}  */}
-          {/* Welcome {state.email} */}
+            {/* Welcome {state.email} */}
           Welcome {email}
           </Typography>
         </Toolbar>
@@ -165,7 +162,6 @@ export default function PersistentDrawerLeft() {
         <List>
 
           <ListItem> <Buttons color="secondary" onClick={(() => history.push("/login/employee/dashboard"))}>DASHBOARD</Buttons></ListItem>
-
           <ListItem> <Buttons color="secondary" onClick={(() => history.push("/employee/details"))}>ADD DETAILS</Buttons></ListItem>
           <ListItem ><Buttons color="secondary" onClick={logout}>LOG OUT</Buttons></ListItem>
 

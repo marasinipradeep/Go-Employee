@@ -39,13 +39,14 @@ export default function Register() {
         e.preventDefault();
         try {
             const newEmployee = {
-                email: emailRef.current.value, password: passwordRef.current.value, passwordCheck: confirmPasswordRef.current.value
+                email: emailRef.current.value, 
+                password: passwordRef.current.value, 
+                passwordCheck: confirmPasswordRef.current.value
             }
             await API.registerEmployee(newEmployee);
-
+            
             //we get response back with token
             const loginRes = await API.employeeLogin(newEmployee);
-
 
             console.log(loginRes)
             //Setting employee data after getting back from response
@@ -56,8 +57,10 @@ export default function Register() {
                 email: loginRes.data.employee.email
             });
 
-            localStorage.setItem("auth-token", loginRes.data.token);
-            history.push("/login/employee/dashboard")
+            localStorage.setItem("auth-token", "");
+           // localStorage.setItem("id", loginRes.data.employee.id);
+           // localStorage.setItem("email", loginRes.data.employee.email);
+            history.push("/employee/details")
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator
             err.response.data.msg && setError(err.response.data.msg)

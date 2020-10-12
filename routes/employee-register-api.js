@@ -72,7 +72,6 @@ module.exports = function (app) {
                 token,
                 employee: {
                     id: employee._id,
-                    displayName: employee.displayName,
                     email: employee.email
                 }
             })
@@ -103,8 +102,10 @@ module.exports = function (app) {
         console.log("inside token is valid")
         try {
             const token = req.header("x-auth-token");
-            if (!token)
+            if (!token){
                 return res.json(false)
+            } 
+
             const verified = jwt.verify(token, process.env.JWT_SECRET)
             if (!verified) {
                 return res.json(false)
@@ -122,16 +123,14 @@ module.exports = function (app) {
         }
     })
 
+    //Get currently looged in users
     app.get("/employee", auth, async function (req, res) {
         console.log("inside employee")
         const employee = await Employee.findById(req.employee)
-        console.log(employee)
         res.json({
-            displayName: employee.displayName,
             email: employee.email,
             id: employee._id
         })
-
     })
 
     app.get("/allemployees", async function (req, res) {
@@ -139,7 +138,7 @@ module.exports = function (app) {
         res.json(employees)
     })
 
-    
+
     //Update employee details
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body

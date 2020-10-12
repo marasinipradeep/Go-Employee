@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useHistory } from "react-router-dom"
 import Adminheader from "../AdminHeader"
 
 //Import from material components
@@ -10,7 +11,10 @@ import { useEmployeeContext } from "../Utils/EmployeeContext"
 import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../Utils/Actions"
 import ErrorNotice from '../misc/ErrorNotice';
 import { MenuItem, Button, Switch } from '@material-ui/core';
-import API from "../Utils/API"
+import API from "../Utils/API";
+
+import checkLocalStorage from "../../checkLocalStorage"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,11 +46,11 @@ const workerType = [
 ];
 
 const experiences = ["less then 1 year", "1 year", "2 year", "3 year", "4 year", "5+ year"];
-const id = localStorage.getItem("id")
 
 export default function AddEmployeeDetails() {
 
     const classes = useStyles();
+    const history = useHistory();
 
     const nameRef = useRef();
     const typeRef = useRef();
@@ -57,48 +61,60 @@ export default function AddEmployeeDetails() {
     const skillsRef = useRef();
     const imageRef = useRef();
 
-    const { state, dispatch } = useEmployeeContext();
+
+    const [state, dispatch] = useEmployeeContext();
     const [error, setError] = useState();
     const [image, setImage] = useState();
 
     const submit = async (e) => {
         e.preventDefault();
 
-        //While sending form data ordering is important send all data first and append image at last
-        const fd = new FormData();
-        fd.append('id', id)
-        fd.append('name', nameRef.current.value)
-        fd.append('workType', typeRef.current.value)
-        fd.append('jobTitle', jobTitleRef.current.value)
-        fd.append('experience', experienceRef.current.value)
-        fd.append('contactNumber', contactNumberRef.current.value)
-        fd.append('description', descriptionRef.current.value)
-        fd.append('skills', skillsRef.current.value)
-        fd.append('image', image);
+        checkLocalStorage().then(async employeeRes => {
+            //While sending form data ordering is important send all data first and append image at last
+            const fd = new FormData();
+            fd.append('id', employeeRes.data.id)
+            fd.append('name', nameRef.current.value)
+            fd.append('workType', typeRef.current.value)
+            fd.append('jobTitle', jobTitleRef.current.value)
+            fd.append('experience', experienceRef.current.value)
+            fd.append('contactNumber', contactNumberRef.current.value)
+            fd.append('description', descriptionRef.current.value)
+            fd.append('skills', skillsRef.current.value)
+            fd.append('image', image);
 
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }
-        }
 
-        try {
-            const employeeDetails = await API.saveEmployeeDetails(fd, config);
-            console.log("Employee Details")
-            console.log(employeeDetails)
-            dispatch({
-                type: SAVE_EMPLOYEE_DETAILS,
-                employee: employeeDetails.data
-            })
+            try {
+                const employeeDetails = await API.saveEmployeeDetails(fd, config);
+                console.log("Employee Details")
+                console.log(employeeDetails)
+                dispatch({
+                    type: SAVE_EMPLOYEE_DETAILS,
+                    employee: employeeDetails.data
+                })
 
-        }
-        catch (err) {
-            console.log(err)
-            //&& operator to set the error message.Executes when both sides true before and after and operator
-            err.response.data.msg && setError(err.response.data.msg)
-
-        }
+            }
+            catch (err) {
+                console.log(err)
+                //&& operator to set the error message.Executes when both sides true before and after and operator
+                err.response.data.msg && setError(err.response.data.msg)
+            }
+        })
     }
+
+    useEffect(() => {
+
+        checkLocalStorage().then(async employeeRes => {
+            if (employeeRes === undefined) {
+                history.push("/login")
+            }
+        })
+
+    })
     return (
         <>
             <Adminheader />

@@ -11,7 +11,8 @@ const auth =(req,res,next)=>{
     if(!verified){
         return res.status(401).json({msg:"Token verification failed,authorization denied"})
     }
-   // console.log(verified)
+   
+    console.log(verified)
  req.employee =verified.id
  next();
 }catch(err){

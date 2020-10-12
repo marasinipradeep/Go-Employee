@@ -1,6 +1,16 @@
 import axios from "axios";
 
 export default {
+//Check tokenIsvalid
+
+tokenIsvalid:function(data,header){
+  return axios.post("/employee/tokenIsValid",null,header);
+},
+
+employee:function(header){
+  return axios.get("/employee",header)
+},
+
   // Posts employee login
   employeeLogin: function(data) {
     return axios.post("/employee/login",data);
