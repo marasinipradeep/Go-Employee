@@ -1,10 +1,17 @@
+//Require Employee model from models
 const { Employee } = require("../models")
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const auth = require("../config/middleware/auth");
-const path = require('path')
-const fs = require('fs')
 
+//require passport hashing mechanism
+const bcrypt = require("bcryptjs");
+
+//require jsonwebtoken to handle request from front end
+const jwt = require("jsonwebtoken");
+
+//this is middleware which combined id and jwt token encodes them together
+const auth = require("../config/middleware/auth");
+
+
+//this is required to upload images from frontend so that backend can store and serve back again 
 const uploads = require("../config/middleware/multer")
 
 module.exports = function (app) {
@@ -38,7 +45,6 @@ module.exports = function (app) {
             });
 
             const saveEmployee = await newEmployee.save();
-            console.log(saveEmployee)
             const responseData = {
                 email:saveEmployee.email,
                 id:saveEmployee._id,
@@ -54,7 +60,7 @@ module.exports = function (app) {
     })
 
 
-
+//api for login employee in
     app.post("/employee/login", async function (req, res) {
         try {
             const { email, password } = req.body
@@ -74,7 +80,7 @@ module.exports = function (app) {
             }
 
             const token = jwt.sign({ id: employee._id }, process.env.JWT_SECRET)
-            console.log(token)
+           
             res.json({
                 token,
                 employee: {
@@ -90,23 +96,23 @@ module.exports = function (app) {
     })
 
 
-    app.delete("/employee/delete", auth, async function (req, res) {
+    // app.delete("/employee/delete", auth, async function (req, res) {
 
-        console.log(req.employee)
-        try {
-            const deleteEmployee = await Employee.findByIdAndDelete(req.employee)
-            res.json(deleteEmployee);
+    //     console.log(req.employee)
+    //     try {
+    //         const deleteEmployee = await Employee.findByIdAndDelete(req.employee)
+    //         res.json(deleteEmployee);
 
-        } catch {
-            res.status(500).json({ error: err.message })
+    //     } catch {
+    //         res.status(500).json({ error: err.message })
 
-        }
+    //     }
 
-    })
+    // })
 
+
+    //api for checking token whether it is valid or not
     app.post("/employee/tokenIsValid", async function (req, res) {
-
-        console.log("inside token is valid")
         try {
             const token = req.header("x-auth-token");
             if (!token){
@@ -132,7 +138,7 @@ module.exports = function (app) {
 
     //Get currently looged in users
     app.get("/employee", auth, async function (req, res) {
-        console.log("inside employee")
+       
         const employee = await Employee.findById(req.employee)
         res.json({
             email: employee.email,
@@ -174,13 +180,10 @@ module.exports = function (app) {
 
     })
 
-    //Find employee details and populate
+    //Find employee details and to populate on employee dashboard
     app.get("/employee/currentdetails/:id", async function (req, res) {
 
-       
-
         try {
-            console.log("inside try block")
 
             const employeeDetails = await Employee.findById(
                 { _id: req.params.id }
@@ -196,15 +199,11 @@ module.exports = function (app) {
     //Update employee isOnline
     app.put("/employee/isOnline", async function (req, res) {
         try {
-            console.log("inside try block")
-
             const employee = await Employee.findOneAndUpdate(
                 { _id: req.body.id },
                 {
                     isOnline: req.body.isOnline,
-
                 })
-
             res.json(employee)
         } catch (err) {
             res.status(500).json({ error: err.message })

@@ -10,13 +10,13 @@ require("dotenv").config();
 
 global.__basedir = __dirname;
 
-const {addUser, removeUser, getUser, getUserInRoom} = require('./users')
+const {addUser, removeUser, getUser, getUserInRoom} = require('./controllers/users')
 
 
 const PORT= process.env.PORT || 8080
 
-const router = require('./router');
-const users = require('./users');
+const router = require('./routes/chatBox');
+//const users = require('./users');
 
 //Set up socket.io (Refer https://socekt.io/docs/#Using-with-Node-http-server)
 //Socket used for real time application because http are slow and used to serve websites
