@@ -1,79 +1,37 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-//import Axios from "axios";
-
 
 //Importing Styles
 import './App.css';
 import "./style.css"
 
-//Importing Components
+//Importing from HomeComponents
+import Header from "./HomeComponents/Header/Header";
 
-import Header from "./Components/Header/Header";
-import Login from "./Components/auth/Login";
-import Register from "./Components/auth/Register";
-import EmployeeDashboard from "./Components/Pages/EmployeePortal/EmployeeDashboard"
-import AddEmployeeDetails from "./Components/AddEmployeeDetails/AddEmployeeDetails"
+//importing from employeeAuthentication
+import Login from "./EmployeeAuthentication/Login/Login";
+import Register from "./EmployeeAuthentication/Register/Register";
+
+//import from employeeComponents
+import AddEmployeeDetails from "./EmployeeComponents/AddEmployeeDetails/AddEmployeeDetails"
+
 
 //Importing pages
-import Home from "./Components/Pages/Home/Home"
-import FindEmployee from './Components/Pages/Employee'
-import SingleEmployee from './Components/Pages/SingleEmployee/SingleEmployee';
+import Home from "./Pages/HomePage/Home"
+import FindEmployee from './Pages/FindEmployeePage/Employee'
+import SingleEmployee from './Pages/ConnectedEmployeePage/SingleEmployee';
+import EmployeeDashboard from "./Pages/EmployeeDashboardPage/EmployeeDashboard"
 
 //Import chat component
-import Join from './Chat-Component/Join/Join';
-import Chat from './Chat-Component/Chat/Chat';
+import Join from './ChatComponents/Join/Join';
+import Chat from './ChatComponents/Chat/Chat';
 
-//Importing employee login UserContext and employees context EmployeeProvider
-// import UserContext from "./context/UserContext";
-import { EmployeeProvider } from "./Components/Utils/EmployeeContext";
 
-//import { useEmployeeContext } from "../src/Components/Utils/EmployeeContext"
-
-//import { SET_TOKEN } from "./Components/Utils/Actions"
+//import from Utils
+import { EmployeeProvider } from "./Utils/EmployeeContext";
 
 function App() {
-  // useEffect requires function as parameters,has dependency list[] which is an array,when state changes rerender the Effect
-  // If array is empty just going to run once.
-  // So this basically function that runs when app starts.Downside cant have asynchrouns function.
-
-  //const [ state, dispatch ] = useEmployeeContext();
-
-  //console.log("initial state")
-  //console.log(state)
-
-  // useEffect(() => {
-  //   console.log("inside use effect")
-  //   console.log(state)
-  //   const checkLoggedIn = async () => {
-  //     let token = localStorage.getItem("auth-token");
-  //     //When empty Null or undefined set token to empty string and set empty token
-  //     if (token === null) {
-  //       localStorage.setItem("auth-token", "");
-  //       token = "";
-  //     }
-  //     //data null then config header which is object 
-  //     const tokenRes = await Axios.post("http://localhost:8080/employee/tokenIsValid", null,
-  //       { headers: { "x-auth-token": token } });
-
-  //     //If true which is boolean value we get back from server
-  //     if (tokenRes.data) {
-  //       const employeeRes = await Axios.get("http://localhost:8080/employee",
-  //         {
-  //           headers: { "x-auth-token": token }
-  //         });
-
-  //       dispatch({
-  //         type: SET_TOKEN,
-  //         token: token,
-  //         user: employeeRes.data
-  //       });
-  //     }
-  //   };
-  //   //Calling function to make asynchronous
-  //   checkLoggedIn();
-  // }, []);
-
+  
   const PublicRoute = ({ component: Component, ...rest }) => {
     return (
       <Route {...rest} component={(props) => (

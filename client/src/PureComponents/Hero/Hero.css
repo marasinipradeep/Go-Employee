@@ -1,0 +1,14 @@
+/* two Hero component one for default and one for employee page */
+.defaultHero,
+.employeeHero {
+  min-height: calc(100vh - 66px);
+  background: url("../../Images/employeeHero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.employeeHero {
+  /* background-image: url("../Images/employee.jpg"); */
+  min-height: 60vh;
+}
+/* End of Hero */
