@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 //Import from material UI core
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { MenuItem} from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 //Import from MaterialUiComponents
 import Buttons from "../../MaterialUiComponents/Buttons";
@@ -13,7 +13,7 @@ import Input from "../../MaterialUiComponents/Inputs";
 
 //Import from Utils
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
-import { SAVE_EMPLOYEE_DETAILS} from "../../Utils/Actions"
+import { SAVE_EMPLOYEE_DETAILS } from "../../Utils/Actions"
 import API from "../../Utils/API";
 
 //Import from PureComponents
@@ -59,7 +59,6 @@ export default function AddEmployeeDetails() {
 
     const classes = useStyles();
     const history = useHistory();
-
     const nameRef = useRef();
     const typeRef = useRef();
     const jobTitleRef = useRef();
@@ -68,6 +67,17 @@ export default function AddEmployeeDetails() {
     const descriptionRef = useRef();
     const skillsRef = useRef();
     const imageRef = useRef();
+
+    const clearInputs = () => {
+        nameRef.current.value = "";
+        typeRef.current.value = "";
+        jobTitleRef.current.value = "";
+        experienceRef.current.value = "";
+        contactNumberRef.current.value = "";
+        descriptionRef.current.value = "";
+        skillsRef.current.value = "";
+        imageRef.current.value = "";
+    }
 
 
     const [state, dispatch] = useEmployeeContext();
@@ -111,18 +121,30 @@ export default function AddEmployeeDetails() {
                 //&& operator to set the error message.Executes when both sides true before and after and operator
                 err.response.data.msg && setError(err.response.data.msg)
             }
+
+          
         })
+        
     }
 
     useEffect(() => {
-
         checkLocalStorage().then(async employeeRes => {
+          
             if (employeeRes === undefined) {
                 history.push("/login")
             }
-        })
+            else{
+                API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
+                    dispatch({
+                        type: SAVE_EMPLOYEE_DETAILS,
+                        employee: employeeDetails.data
+                    })
+                })
 
-    })
+            }
+        })
+    },[])
+
     return (
         <>
             <Adminheader />
@@ -136,13 +158,14 @@ export default function AddEmployeeDetails() {
                         {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
 
                         <Input
-
+                           
                             label="Enter your full name"
                             inputRef={nameRef} />
 
                         {/* profession type */}
 
                         <Input
+
                             fullWidth
                             id="workType"
                             select
@@ -187,6 +210,7 @@ export default function AddEmployeeDetails() {
 
                         <Input
                             label="Enter your Contact Number"
+                            type="number"
                             inputRef={contactNumberRef} />
 
 

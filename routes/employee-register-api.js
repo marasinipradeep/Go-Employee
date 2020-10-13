@@ -5,7 +5,7 @@ const auth = require("../config/middleware/auth");
 const path = require('path')
 const fs = require('fs')
 
-const uploads = require("./uploads")
+const uploads = require("../config/middleware/multer")
 
 module.exports = function (app) {
 
@@ -177,25 +177,7 @@ module.exports = function (app) {
     //Find employee details and populate
     app.get("/employee/currentdetails/:id", async function (req, res) {
 
-        //     console.log("inside get  employees detail")
-
-        //    // finds the directory and stores it
-        //     const uploadsDirectory = path.join('uploads');
-        //     //reads the files in the directory
-        //     fs.readdir(uploadsDirectory, (err, files) => {
-        //      const fileName =(files.find((id)=>id===req.params.id+".png"))
-        //         if (err) {
-        //             return res.json({ msg: err })
-        //         }
-        //         //If no files in the directory return a message
-        //         if (files.length === 0) {
-        //             return res.json({ msg: "No images Uploaded!" });
-        //         }
-        //       //  return res.send(path.join(__dirname,`../uploads/${fileName}`));
-        //       //Do not send full path app.use static path will serve other parts 
-        //     //   res.send(`/${fileName}`);
-        //     })
-
+       
 
         try {
             console.log("inside try block")

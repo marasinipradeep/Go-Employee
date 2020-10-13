@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 export default function Login() {
 
     const classes = useStyles();
@@ -41,13 +43,15 @@ export default function Login() {
     const passwordRef = useRef();
     const [state, dispatch] = useEmployeeContext();
 
+    const clearInputs=()=> {
+        emailRef.current.value ="";
+        passwordRef.current.value="";
+    }
+
     //on submit clicked
     const submit = async (e) => {
         e.preventDefault();
-        console.log("inside submit clicked")
-
         try {
-
             const loginEmployee =
             {
                 email: emailRef.current.value,
@@ -59,7 +63,7 @@ export default function Login() {
                 return
             }
 
-            //we get response back with token
+           // we get response back with token
             const loginRes = await API.employeeLogin(loginEmployee);
             dispatch({
                 type: EMPLOYEE_LOGIN,
@@ -67,6 +71,9 @@ export default function Login() {
                 id: loginRes.data.employee.id,
                 email: loginRes.data.employee.email
             });
+
+            //clearing form inputs
+            clearInputs();
             localStorage.setItem("auth-token", loginRes.data.token);
             history.push("/login/employee/dashboard")
         } catch (err) {

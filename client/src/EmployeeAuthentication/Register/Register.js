@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import { useHistory } from "react-router-dom";
 
 //import from material ui
 import {InputAdornment} from "@material-ui/core"
@@ -9,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 
 
 //import from utils
-import { useEmployeeContext } from "../../Utils/EmployeeContext"
 import API from "../../Utils/API"
 
 //import from PureComponents
@@ -40,10 +38,15 @@ export default function Register() {
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
 
-
+    const clearInputs=()=> {
+        emailRef.current.value ="";
+        passwordRef.current.value="";
+        confirmPasswordRef.current.value="";
+    }
     //onSubmit clicked
     const submit = async (e) => {
         e.preventDefault();
+       
         try {
             const newEmployee = {
                 email: emailRef.current.value,
@@ -51,7 +54,9 @@ export default function Register() {
                 passwordCheck: confirmPasswordRef.current.value
             }
             const newRegisteredEmployee = await API.registerEmployee(newEmployee);
+            clearInputs()
             setError(newRegisteredEmployee.data.msg)
+            
 
         } catch (err) {
             //&& operator to set the error message.Executes when both sides true before and after and operator

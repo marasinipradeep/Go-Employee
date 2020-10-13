@@ -80,8 +80,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft() {
 
-
-  const email = localStorage.getItem("email")
   //useHistory gives result in an array
   const history = useHistory();
 
@@ -133,7 +131,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-          Welcome {state.currentEmployee.email}
+            Welcome {state.currentEmployee.email}
           </Typography>
         </Toolbar>
       </AppBar>
