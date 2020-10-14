@@ -35,6 +35,8 @@ Server
 ## Description
 GoEmployee is a platform to establish a connection between job provider and job seeker mainly for small business like restaurant, cleaning and agricultures.As small industries have lack of budget for human resource system they always find difficulties connecting with right employees.So this application helps to find right employee for right businesses.Whenever the person who is looking employee they can always look in this web and find the right fit person for their business.
 
+![Picures](readmeImages/BlockDiagram.png)
+
 It consist of:-
 * USER PORTAL
 * EMPLOYEE PORTAL

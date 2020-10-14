@@ -5,8 +5,8 @@ import FindEmployee from '../FindEmployee/FindEmployee';
 
 //import from Utils
 import API from "../../Utils/API"
-import { useEmployeeContext } from "../../Utils/EmployeeContext"
-import { GET_ALL_EMPLOYEE_DETAILS, FILTER_BY_CATEGORIES} from "../../Utils/Actions"
+import {useEmployeeContext } from "../../Utils/EmployeeContext"
+import {GET_ALL_EMPLOYEE_DETAILS, FILTER_BY_CATEGORIES} from "../../Utils/Actions"
 
 //import employlist css
 import './EmployeeList.css'

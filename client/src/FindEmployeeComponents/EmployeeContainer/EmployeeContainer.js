@@ -8,6 +8,9 @@ import EmployeeList from '../EmployeeList/EmployeeList';
 //import from Utils
 import { useEmployeeContext } from '../../Utils/EmployeeContext';
 
+//import from ChartComponents
+import Charts from "../../ChartComponents/Chart/chart"
+
 //import from PureComponents
 import Loading from '../../PureComponents/Loading/Loading';
 
@@ -21,6 +24,7 @@ function EmployeeContainer() {
     }
     return (
         <>
+            {/* <Charts/> */}
             <EmployeeFilter />
             <EmployeeList />
         </>
