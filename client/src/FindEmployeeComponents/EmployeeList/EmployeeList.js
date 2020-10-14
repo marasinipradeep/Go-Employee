@@ -6,7 +6,7 @@ import FindEmployee from '../FindEmployee/FindEmployee';
 //import from Utils
 import API from "../../Utils/API"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
-import { GET_ALL_EMPLOYEE_DETAILS } from "../../Utils/Actions"
+import { GET_ALL_EMPLOYEE_DETAILS, } from "../../Utils/Actions"
 
 //import employlist css
 import './EmployeeList.css'
@@ -26,18 +26,17 @@ function EmployeeList() {
     }, [])
 
 
-    if (state.employees.length === 0) {
+    if (state.employees.length === 0 || state.workerByCategories.length === 0) {
         return (
             <div className="empty-search">
                 <h3>Unfortunately No employees matched your search parameters</h3>
-
             </div>
         );
     }
     return (
         <section className="employeeslist">
             <div className="employeeslist-center">
-                {state.employees.map(item => {
+                {state.workerByCategories.map(item => {
                     return <FindEmployee key={item._id} employee={item} />;
                 })}
             </div>

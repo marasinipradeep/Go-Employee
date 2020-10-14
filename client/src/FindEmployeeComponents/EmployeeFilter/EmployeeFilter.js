@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //import from Utils
+import API from "../../Utils/API"
 import { useEmployeeContext } from "../../Utils/EmployeeContext";
+import { FILTER_BY_CATEGORIES, GET_ALL_EMPLOYEE_DETAILS } from "../../Utils/Actions"
 
 //import from pureComponents
 import Title from "../../PureComponents/Title/Title";
@@ -9,8 +11,27 @@ import Title from "../../PureComponents/Title/Title";
 import './EmployeeFilter.css'
 
 function EmployeeFilter() {
-    const [state,dispatch] = useEmployeeContext();
+    const [state, dispatch] = useEmployeeContext();
 
+    function filterBycategories(e) {
+            dispatch(
+                {
+                    type: FILTER_BY_CATEGORIES,
+                    workType: e.target.value
+                })
+    }
+
+    useEffect(() => {
+        API.getAllEmployee().then(items => {
+            dispatch({
+                type: GET_ALL_EMPLOYEE_DETAILS,
+                allEmployee: items.data
+            })
+        })
+
+    }, [state])
+
+   
     return (
         <section className="filter-container">
             <Title title="search Employee" />
@@ -22,12 +43,12 @@ function EmployeeFilter() {
                         name="workType"
                         id="workType"
                         className="form-control"
-                        onChange={dispatch({type:"handleChange"})}
+                        onChange={filterBycategories}
                     >
-                         <option>ALL</option>
-                        <option>FARM-WORKER</option>
-                        <option>RESTAURANT-WORKER</option>
-                        <option>CLEANING-WORKER</option>
+                        <option value="ALL">ALL</option>
+                        <option value="Farm-Worker">FARM-WORKER</option>
+                        <option value="Restaurant-Worker">RESTAURANT-WORKER</option>
+                        <option value="Cleaners">CLEANEARS</option>
                     </select>
                 </div>
                 {/*end select type*/}

@@ -8,7 +8,8 @@ import {
   LOADING, GET_ALL_EMPLOYEE_DETAILS,
   SET_TOKEN,
   CONNECTED_EMPLOYEE,
-  UPDATE_EMPLOYEE_ISONLINE
+  UPDATE_EMPLOYEE_ISONLINE,
+  FILTER_BY_CATEGORIES
 } from "./Actions"
 
 //Declaring an array inside the creatContext small brackets solve some error
@@ -65,7 +66,6 @@ const reducer = (state, action) => {
       }
 
     case GET_ALL_EMPLOYEE_DETAILS:
-
       return {
         ...state,
         employees: action.allEmployee
@@ -77,6 +77,29 @@ const reducer = (state, action) => {
         connectedEmployee: [action.connectedEmployee, ...state.connectedEmployee]//array destructure and pushing new array like array.push
 
       }
+
+    case FILTER_BY_CATEGORIES:
+      console.log(action.workType)
+      if (action.workType === "ALL") {
+        return {
+          ...state,
+          workerByCategories: state.employees
+        }
+      }
+      else {
+        const workerByCategory = state.employees.filter((emp) => {
+          return emp.workType === action.workType
+        })
+        return {
+          ...state,
+          workerByCategories: workerByCategory
+        }
+     }
+     
+
+
+
+
 
 
     case LOADING:
@@ -110,6 +133,8 @@ const EmployeeProvider = ({ value = [], ...props }) => {
     },
     connectedEmployee: [],
     loading: false,
+    workerByCategories: []
+
 
   });
   //Already returns provider to us.No need to pass provider later on.Just need to wrap EmployeeProvider where we want to place.
