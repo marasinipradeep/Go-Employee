@@ -6,7 +6,7 @@ import FindEmployee from '../FindEmployee/FindEmployee';
 //import from Utils
 import API from "../../Utils/API"
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
-import { GET_ALL_EMPLOYEE_DETAILS, } from "../../Utils/Actions"
+import { GET_ALL_EMPLOYEE_DETAILS, FILTER_BY_CATEGORIES} from "../../Utils/Actions"
 
 //import employlist css
 import './EmployeeList.css'
@@ -15,6 +15,7 @@ import './EmployeeList.css'
 function EmployeeList() {
 
     const [state, dispatch] = useEmployeeContext();
+    
     useEffect(() => {
         API.getAllEmployee().then(items => {
             dispatch({
@@ -22,8 +23,17 @@ function EmployeeList() {
                 allEmployee: items.data
             })
         })
-
     }, [])
+
+    useEffect(() => {
+         API.getAllEmployee().then(items => {
+            dispatch({
+               type: FILTER_BY_CATEGORIES,
+               workType:"ALL"
+            })
+        })
+    }, [])
+
 
 
     if (state.employees.length === 0 || state.workerByCategories.length === 0) {

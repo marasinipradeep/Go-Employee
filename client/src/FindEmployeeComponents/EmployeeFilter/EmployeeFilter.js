@@ -20,18 +20,7 @@ function EmployeeFilter() {
                     workType: e.target.value
                 })
     }
-
-    useEffect(() => {
-        API.getAllEmployee().then(items => {
-            dispatch({
-                type: GET_ALL_EMPLOYEE_DETAILS,
-                allEmployee: items.data
-            })
-        })
-
-    }, [state])
-
-   
+    
     return (
         <section className="filter-container">
             <Title title="search Employee" />
@@ -45,7 +34,7 @@ function EmployeeFilter() {
                         className="form-control"
                         onChange={filterBycategories}
                     >
-                        <option value="ALL">ALL</option>
+                        <option value="ALL" selected={true}>ALL</option>
                         <option value="Farm-Worker">FARM-WORKER</option>
                         <option value="Restaurant-Worker">RESTAURANT-WORKER</option>
                         <option value="Cleaners">CLEANEARS</option>

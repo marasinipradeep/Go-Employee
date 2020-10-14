@@ -74,12 +74,15 @@ const reducer = (state, action) => {
     case CONNECTED_EMPLOYEE:
       return {
         ...state,
-        connectedEmployee: [action.connectedEmployee, ...state.connectedEmployee]//array destructure and pushing new array like array.push
+        connectedEmployee: [action.connectedEmployee]
+        //connectedEmployee: [action.connectedEmployee,...state.connectedEmployee]
+        //array destructure and pushing new array like array.push
 
       }
 
     case FILTER_BY_CATEGORIES:
       console.log(action.workType)
+
       if (action.workType === "ALL") {
         return {
           ...state,
@@ -94,12 +97,7 @@ const reducer = (state, action) => {
           ...state,
           workerByCategories: workerByCategory
         }
-     }
-     
-
-
-
-
+      }
 
 
     case LOADING:
