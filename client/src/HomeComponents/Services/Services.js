@@ -22,19 +22,19 @@ function Services() {
             {
                 icon: <FaLaptopCode />,
                 title: "website development",
-                info: 'Do you own a business and looking for website development contact us.'
+                info: 'Coming Soon...................'
 
             },
             {
                 icon: <FaShuttleVan />,
                 title: "IT consultant",
-                info: 'We are the expert in IT and Engineering we are here to help you out in your journey.'
+                info: 'Coming Soon...................'
 
             },
             {
                 icon: <FaAngular />,
                 title: "web development course",
-                info: 'Get enrolled in latest web development course.'
+                info: 'Coming Soon...................'
 
             },
         ]

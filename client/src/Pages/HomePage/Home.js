@@ -8,6 +8,7 @@ import Banner from '../../PureComponents/Banner/Banner';
 //import from HomeComponents
 import AboutUs from '../../HomeComponents/AboutUs/AboutUs';
 import Services from '../../HomeComponents/Services/Services';
+import Footer from '../../HomeComponents/Footer/Footer'
 
 
 
@@ -23,6 +24,7 @@ export default function Home() {
             </Hero>
             <AboutUs />
             <Services />
+            <Footer/>
 
         </>
     )
