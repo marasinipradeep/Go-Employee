@@ -14,7 +14,7 @@ import API from "../../Utils/API"
 //Import from PureComponents
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
 
-//const id = localStorage.getItem("id")
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "600px",

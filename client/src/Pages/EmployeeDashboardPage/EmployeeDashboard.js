@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
 //import from material ui
 import { Grid, Switch } from '@material-ui/core';
@@ -14,6 +14,8 @@ import { useEmployeeContext } from "../../Utils/EmployeeContext"
 import Cards from "../../EmployeeComponents/EmployeeSummaryCard/EmployeeSummaryCard"
 import Adminheader from "../../EmployeeComponents/EmployeeDashboardHeader/EmployeeDashboardHeader"
 
+//import from chatComponents
+import Models from "../../ChatComponents/Model/modelPopUpButton"
 
 //import from PureComponents
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
@@ -80,6 +82,10 @@ const EmployeeDashboard = () => {
                 <Adminheader />
                 <h3>Go online</h3>
                 <Switch checked={checked} onChange={handleToggle} />
+                <Link to={`/chat?name=${state.currentEmployee.name}&room=${state.currentEmployee._id}`}>
+                <button className="button mt-20" type="submit">Click here to chat</button>
+            </Link>
+            <Models/>
                 <Cards />
             </Grid>
         </div>

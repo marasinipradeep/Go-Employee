@@ -14,6 +14,9 @@ import { useEmployeeContext } from '../../Utils/EmployeeContext';
 import API from "../../Utils/API"
 import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
 
+//import from chatComponents
+import Join from "../../ChatComponents/Join/Join"
+
 //import from SingleEmployee css
 import "./SingleEmployee.css";
 
@@ -23,7 +26,7 @@ function SingleEmployee(props) {
     const [employeeState, dispatch] = useEmployeeContext();
     useEffect(() => {
 
-        
+
         API.getEmployeeDetails(props.match.params.id).then(connEmployee => {
             dispatch({
                 type: CONNECTED_EMPLOYEE,
@@ -46,6 +49,9 @@ function SingleEmployee(props) {
                          </Link>
                                 </Banner>
                             </StyledHero>
+                            <Link to={`/chat?name=Guest Member&room=${employeeState.connectedEmployee[0]._id}`}>
+                                <button className="button mt-20" type="submit">Click here to chat</button>
+                            </Link>
                             <section className="single-employee">
                                 {/* <div className="single-employee-images">
                                     <img src="" alt="" />

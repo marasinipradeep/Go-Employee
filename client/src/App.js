@@ -26,6 +26,8 @@ import EmployeeDashboard from "./Pages/EmployeeDashboardPage/EmployeeDashboard"
 import Join from './ChatComponents/Join/Join';
 import Chat from './ChatComponents/Chat/Chat';
 
+import Model from './ChatComponents/Model/model';
+
 
 //import from Utils
 import { EmployeeProvider } from "./Utils/EmployeeContext";
@@ -68,7 +70,7 @@ function App() {
 
 
           <Route exact path="/join" component={Join} />
-          <Route path="/chat" component={Chat} />
+          <Route path="/chat" component={Model} />
 
         </Switch>
       </EmployeeProvider>

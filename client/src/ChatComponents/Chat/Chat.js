@@ -14,10 +14,14 @@ import "./Chat.css";
 let socket;
 
 
-export default function Chat({ location }) {
-
-    const [name, setName] = useState('');
-    const [room, setRoom] = useState('');
+export default function Chat(props) {
+    const {name,room,setName,setRoom} =props
+    console.log(name)
+    console.log(room)
+    console.log(setName)
+    console.log(setRoom)
+  //  const [name, setName] = useState('');
+   // const [room, setRoom] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const ENDPOINT = 'localhost:8080';
@@ -28,11 +32,13 @@ export default function Chat({ location }) {
     //Have to use cleanup because we need to know when actually a users disconnect
 
     useEffect(() => {
-        console.log(location.search)
-        const { name, room } = queryString.parse(location.search);
+       // console.log(location.search)
+       //  const {name, room } //= queryString.parse(location.search);
+        
+        console.log(name,room)
         socket = io(ENDPOINT);
-        setName(name);
-        setRoom(room);
+       // setName(name);
+       // setRoom(room);
 
         //emit event from client side(can be anything (join) should be same exact string on backend as well,receive data on backend)
         socket.emit('join', { name, room }, () => {
@@ -45,7 +51,7 @@ export default function Chat({ location }) {
             socket.off();
         }
 
-    }, [ENDPOINT],location.search)
+    }, [ENDPOINT])//,location.search
 
 
     //Second one handling the messages can use useEffect as much as you want.
@@ -69,9 +75,9 @@ export default function Chat({ location }) {
     console.log(message,messages);
 
     return (
-        <div className="outerContainer">
+         <div className="outerContainer">
             <div className="container">
-                <InfoBar room={room}/>
+                <InfoBar room={name}/>
                 <Messages messages={messages}></Messages>
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
                
