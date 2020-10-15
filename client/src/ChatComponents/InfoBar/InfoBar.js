@@ -1,8 +1,8 @@
 import React from 'react'
 import './InfoBar.css'
 import onlineIcon from '../../Images/icons/onlineIcon.png'
-import closeIcon from '../../Images/icons/closeIcon.png'
 import Button from '@material-ui/core/Button';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 
 export default function InfoBar({ room,setOpen }) {
     return (
@@ -13,7 +13,7 @@ export default function InfoBar({ room,setOpen }) {
             </div>
             <div className="rightInnerContainer">
                 {/* <a href="/"><img src={closeIcon} alt="close image"></img></a> */}
-                <Button onClick={() => setOpen(false)}>X</Button>
+                <Button onClick={() => setOpen(false)}><CloseRoundedIcon/></Button>
             </div>
         </div>
     )

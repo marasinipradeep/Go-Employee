@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     if (error) return callback(error);
 
     //Focusing on system generated messages
-    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to the connection room ` })
+    socket.emit('message', { user: 'admin', text: `Hello ${user.name},good luck for new connection`})
 
     //Broadcast Sends message to everyone besides that user
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name},has joined! ` })

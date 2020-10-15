@@ -15,10 +15,11 @@ import API from "../../Utils/API"
 import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
 
 //import from chatComponents
-import PopUpButton from "../../FindEmployeeComponents/PopUpUser/UserPopUpButton"
+import UserPopUpButton from "../../FindEmployeeComponents/PopUpUser/UserPopUpButton"
 
 //import from SingleEmployee css
 import "./SingleEmployee.css";
+import { Grid } from '@material-ui/core';
 
 
 function SingleEmployee(props) {
@@ -48,8 +49,9 @@ function SingleEmployee(props) {
                          </Link>
                                 </Banner>
                             </StyledHero>
-                            
-                           <PopUpButton/>
+                            <Grid container alignItems="center" direction="column" className="chatRoomButton" >
+                           <UserPopUpButton/>
+                           </Grid>
                             <section className="single-employee">
                                 {/* <div className="single-employee-images">
                                     <img src="" alt="" />

@@ -76,12 +76,18 @@ const EmployeeDashboard = () => {
 
     return (
         <div className={classes.root}>
+            <Adminheader />
             <Grid container alignItems="center" direction="column" >
-                <Adminheader />
-                <h3>Go online</h3>
-                <Switch checked={checked} onChange={handleToggle} />
-               
-           <EmployeePopUpButton/>
+                <Grid container sm={6} direction="row">
+                    <Grid sm={6}>
+                        <h3>Go online</h3>
+                        <Switch checked={checked} onChange={handleToggle} />
+                    </Grid>
+                    <Grid sm={6}>
+                        <EmployeePopUpButton />
+                    </Grid>
+                </Grid>
+
                 <Cards />
             </Grid>
         </div>
