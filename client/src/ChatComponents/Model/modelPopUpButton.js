@@ -19,12 +19,11 @@ export default function DraggableDialog() {
     <div>
     
       <Button variant="outlined" color="primary" onClick={()=>setOpen(true)}>
-        Open form dialog
+        Open Chat room
       </Button>
 
       <Models open={open} setOpen={setOpen}>
         <Chat name={name} room={room} setName={name} setRoom={room}/>
-      
       </Models>
 
       

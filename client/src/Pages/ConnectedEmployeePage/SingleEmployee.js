@@ -16,6 +16,7 @@ import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
 
 //import from chatComponents
 import Join from "../../ChatComponents/Join/Join"
+import ModelsButton from "../../ChatComponents/Model/modelPopUpButton"
 
 //import from SingleEmployee css
 import "./SingleEmployee.css";
@@ -52,6 +53,7 @@ function SingleEmployee(props) {
                             <Link to={`/chat?name=Guest Member&room=${employeeState.connectedEmployee[0]._id}`}>
                                 <button className="button mt-20" type="submit">Click here to chat</button>
                             </Link>
+                            <ModelsButton/>
                             <section className="single-employee">
                                 {/* <div className="single-employee-images">
                                     <img src="" alt="" />
