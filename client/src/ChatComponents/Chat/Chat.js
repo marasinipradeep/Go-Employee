@@ -75,14 +75,16 @@ export default function Chat(props) {
     console.log(message,messages);
 
     return (
-         <div className="outerContainer">
-            <div className="container">
-                <InfoBar room={name}/>
+        <div>
+           {/* <div className="outerContainer">
+            <div className="container">  */}
+            
+                {/* <InfoBar room={name}/> */}
                 <Messages messages={messages}></Messages>
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
                
-            </div>
-        </div>
-
+             
+         </div> 
+     
     )
 }

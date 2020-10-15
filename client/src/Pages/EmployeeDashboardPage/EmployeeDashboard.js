@@ -15,7 +15,7 @@ import Cards from "../../EmployeeComponents/EmployeeSummaryCard/EmployeeSummaryC
 import Adminheader from "../../EmployeeComponents/EmployeeDashboardHeader/EmployeeDashboardHeader"
 
 //import from chatComponents
-import Models from "../../ChatComponents/Model/modelPopUpButton"
+import EmployeePopUpButton from "../../ChatComponents/PopUpEmployee/EmployeePopUpButton"
 
 //import from PureComponents
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EmployeeDashboard = () => {
-
-
 
     const classes = useStyles();
     const [state, dispatch] = useEmployeeContext();
@@ -82,10 +80,8 @@ const EmployeeDashboard = () => {
                 <Adminheader />
                 <h3>Go online</h3>
                 <Switch checked={checked} onChange={handleToggle} />
-                <Link to={`/chat?name=${state.currentEmployee.name}&room=${state.currentEmployee._id}`}>
-                <button className="button mt-20" type="submit">Click here to chat</button>
-            </Link>
-            <Models/>
+               
+           <EmployeePopUpButton/>
                 <Cards />
             </Grid>
         </div>
