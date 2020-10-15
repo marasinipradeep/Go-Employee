@@ -45,7 +45,7 @@ function SingleEmployee(props) {
                                 defaultBcg}>
                                 <Banner title={`${employee.name} room`}>
                                     <Link to='/employee' className="btn-primary">
-                                        back to employees
+                                       GO BACK
                          </Link>
                                 </Banner>
                             </StyledHero>

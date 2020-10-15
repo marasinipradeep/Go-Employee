@@ -9,11 +9,10 @@
   }
   .aboutus p{
     font-size: 28px;
-  }
-  p{
     display: flex;
     margin: auto 50px;
     justify-content: center;
     text-align: justify;
   }
+ 
   /* end about us */
