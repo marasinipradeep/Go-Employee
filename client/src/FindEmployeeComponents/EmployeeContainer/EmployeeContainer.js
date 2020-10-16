@@ -35,7 +35,6 @@ function EmployeeContainer() {
                
             </Grid>
             <EmployeeList />
-
         </div>
 
     );

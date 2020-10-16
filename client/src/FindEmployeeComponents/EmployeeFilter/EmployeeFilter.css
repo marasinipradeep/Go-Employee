@@ -3,7 +3,7 @@
     padding: 2rem 0;
   }
   .filter-form {
-    /* width: 60vw; */
+    width: 60vw;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(202px, 1fr));
