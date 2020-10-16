@@ -1,5 +1,6 @@
 //Using Higher Order Components
 import React from 'react';
+import { Grid } from "@material-ui/core"
 
 //import from FindEmployee components
 import EmployeeFilter from '../EmployeeFilter/EmployeeFilter';
@@ -23,11 +24,20 @@ function EmployeeContainer() {
         return <Loading />;
     }
     return (
-        <>
-           {/* <Charts/>  */}
-            <EmployeeFilter />
+        <div>
+            <Grid container>
+            <Grid sm={12} md={7}>
+                    <EmployeeFilter />
+                </Grid>
+                <Grid sm={12} md={5}>
+                    <Charts data={state} />
+                </Grid>
+               
+            </Grid>
             <EmployeeList />
-        </>
+
+        </div>
+
     );
 }
 

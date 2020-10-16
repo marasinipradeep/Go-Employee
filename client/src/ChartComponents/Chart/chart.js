@@ -1,32 +1,83 @@
-import React, {useEffect} from 'react'
-import {Bar, Line, Pie} from "react-chartjs-2"
+import React, { useEffect } from 'react'
+import { Bar, Line, Pie, Doughnut } from "react-chartjs-2"
 
-//import from Utils
-import API from "../../Utils/API"
-import {useEmployeeContext } from "../../Utils/EmployeeContext"
-import { GET_ALL_EMPLOYEE_DETAILS} from "../../Utils/Actions"
+import "./chart.css"
 
+const data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+        {
+            label: "First dataset",
+            data: [33, 53, 85, 41, 44, 65],
+            fill: true,
+            backgroundColor: "rgba(75,192,192,0.2)",
+            borderColor: "rgba(75,192,192,1)"
+        },
+        {
+            label: "Second dataset",
+            data: [33, 25, 35, 51, 54, 76],
+            fill: false,
+            borderColor: "#742774"
+        }
+    ]
+};
+function chart(props) {
+    console.log("inside chart")
+    console.log(props)
+    const { data } = props
+    const newData = data.employees
+    const Total = data.employees.length;
+    let farmWorker = 0;
+    let restaurantWorker = 0;
+    let cleaners=0
 
-function chart() {
+    let obj = newData.find((o, i) => {
+        if (o.workType === 'Farm-Worker') {
+            farmWorker++;
+        }
+        else if (o.workType === 'Restaurant-Worker') {
+            restaurantWorker++;
+        }
+        else if (o.workType === 'Cleaners') {
+            cleaners++;
+        }
+    })
 
-   // const [state, dispatch] = useEmployeeContext();
+    console.log(farmWorker,restaurantWorker,cleaners)
+
     
-    // useEffect(() => {
-    //     API.getAllEmployee().then(items => {
-    //         dispatch({
-    //             type: GET_ALL_EMPLOYEE_DETAILS,
-    //             allEmployee: items.data
-    //         })
-    //     })
-    // }, [])
+    const chartData = {
+        labels: [`Total Available Workers = ${Total}`],
+        datasets: [
+            {
+                label: `Total Farm Worker : ${farmWorker}`,
+                data: [farmWorker],
+                fill: true,
+                backgroundColor: "red",
+                borderColor: "#742774"
+            },
+            {
+                label: `Total Restaurant Workers : ${restaurantWorker}`,
+                data: [restaurantWorker],
+                fill: true,
+                backgroundColor: "blue",
+                borderColor: "#742774"
+            },
 
+            {
+                label: `Total Cleaners : ${cleaners}`,
+                data: [restaurantWorker],
+                fill: true,
+                backgroundColor: "black",
+                borderColor: "#742774"
+            },
+        ]
+    }
 
     return (
-        <div className="chart">
-            <Bar>
+        <div className="chart-container chart" >
+            <Bar data={chartData}></Bar>
 
-            </Bar>
-            
         </div>
     )
 }
