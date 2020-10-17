@@ -1,22 +1,26 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { LinkedIn, GitHub, Copyright } from '@material-ui/icons';
 
-//Using custom CSS
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "static",
-    bottom: 0,
-    width: "100%",
-    backgroundColor: "#0000FE"
-  },
-  font: {
-    color: "white",
-    fontWeight: "bold"
-  }
-}))
+
+//import styles from HeaserStyle
+import useStyles from "./FooterStyle"
+
+// //Using custom CSS
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     position: "static",
+//     bottom: 0,
+//     width: "100%",
+//     backgroundColor: "#0000FE"
+//   },
+//   font: {
+//     color: "white",
+//     fontWeight: "bold"
+//   }
+// }))
 
 function Footer() {
   //Import Hook to use styles

@@ -4,25 +4,28 @@ import PropTypes from 'prop-types';
 
 //import from material ui
 import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import { KeyboardArrowUp, Home, Description } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        position: 'fixed',
-        bottom: theme.spacing(2),
-        right: theme.spacing(2),
-    },
-    menuButton: {
-        marginRight: theme.spacing(1),
+//import styles from HeaserStyle
+import useStyles from "./HeaderStyle"
 
-    },
-    appBar: {
-        backgroundColor: "rgb(219, 70, 70)"
-    }
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         flexGrow: 1,
+//         position: 'fixed',
+//         bottom: theme.spacing(2),
+//         right: theme.spacing(2),
+//     },
+//     menuButton: {
+//         marginRight: theme.spacing(1),
 
-}));
+//     },
+//     appBar: {
+//         backgroundColor: "rgb(219, 70, 70)"
+//     }
+
+// }));
 
 function ScrollTop(props) {
     const { children, window } = props;
