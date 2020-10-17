@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+//import from material
+import { Grid } from '@material-ui/core';
+
 //import from Images
 import defaultBcg from '../../Images/employee.jpg';
 
 //import from PureComponets
 import Banner from '../../PureComponents/Banner/Banner';
 import StyledHero from '../../PureComponents/StyledHero/StyledHero';
-
 
 //import from Utils
 import { useEmployeeContext } from '../../Utils/EmployeeContext';
@@ -19,7 +21,7 @@ import UserPopUpButton from "../../FindEmployeeComponents/PopUpUser/UserPopUpBut
 
 //import from SingleEmployee css
 import "./SingleEmployee.css";
-import { Grid } from '@material-ui/core';
+
 
 
 function SingleEmployee(props) {

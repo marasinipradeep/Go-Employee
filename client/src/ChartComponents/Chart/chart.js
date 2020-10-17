@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Bar } from "react-chartjs-2"
 
+//import styles from chart
 import "./chart.css"
 
 
@@ -56,7 +57,6 @@ function chart(props) {
     return (
         <div className="chart-container chart" >
             <Bar data={chartData}></Bar>
-
         </div>
     )
 }

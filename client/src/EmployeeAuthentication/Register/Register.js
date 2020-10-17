@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 //import from material ui
 import {InputAdornment} from "@material-ui/core"
 import {AccountCircle,LockRounded} from "@material-ui/icons"
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 
@@ -17,18 +17,20 @@ import ErrorNotice from '../../PureComponents/ErrorNotice/ErrorNotice';
 import Buttons from "../../MaterialUiComponents/Buttons";
 import Input from "../../MaterialUiComponents/Inputs";
 
+//import login styles from login
+import useStyles from "./RegisterStyle"
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginTop: "100px",
-        marginLeft: "40px"
-    },
-    buttonMargin: {
-        marginTop: "50px"
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//         marginTop: "100px",
+//         marginLeft: "40px"
+//     },
+//     buttonMargin: {
+//         marginTop: "50px"
+//     }
+// }));
 
 export default function Register() {
 
@@ -66,15 +68,12 @@ export default function Register() {
     };
     return (
         <div className={classes.root}>
-
             <Grid container alignItems="center" direction="column">
-
                 <form>
                     <h2>Register</h2>
                     {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
 
                     {/* Input Email */}
-
                     <Input
                         label="Email"
                         inputRef={emailRef} 
@@ -85,8 +84,6 @@ export default function Register() {
                               </InputAdornment>
                             ),
                           }}/>
-
-
                     {/* Input Password */}
                     <Input
                         label="Password"

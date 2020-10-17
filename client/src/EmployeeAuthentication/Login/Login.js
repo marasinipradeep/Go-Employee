@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 //import from material ui
 import {InputAdornment} from "@material-ui/core"
 import {AccountCircle,LockRounded} from "@material-ui/icons"
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 //imports from utils
@@ -19,18 +19,19 @@ import ErrorNotice from '../../PureComponents/ErrorNotice/ErrorNotice';
 import Buttons from "../../MaterialUiComponents/Buttons";
 import Input from "../../MaterialUiComponents/Inputs";
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginTop: "100px",
-        marginLeft: "40px"
-    },
-    buttonMargin: {
-        marginTop: "50px"
-    }
-}));
+//import login styles from login
+import useStyles from "./LoginStyle"
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//         marginTop: "100px",
+//         marginLeft: "40px"
+//     },
+//     buttonMargin: {
+//         marginTop: "50px"
+//     }
+// }));
 
 
 

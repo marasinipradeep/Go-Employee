@@ -21,9 +21,7 @@ import EmployeePopUpButton from "../../ChatComponents/PopUpEmployee/EmployeePopU
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: "50px"
-    },
+    root: {marginTop: "50px"},
 }));
 
 const EmployeeDashboard = () => {

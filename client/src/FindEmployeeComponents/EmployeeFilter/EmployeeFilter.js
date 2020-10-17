@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 //import from Utils
-import API from "../../Utils/API"
+//import API from "../../Utils/API"
 import { useEmployeeContext } from "../../Utils/EmployeeContext";
 import { FILTER_BY_CATEGORIES, GET_ALL_EMPLOYEE_DETAILS } from "../../Utils/Actions"
 

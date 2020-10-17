@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 //import from material ui
-import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core';
-
 
 //Importing Utils
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
@@ -14,18 +12,8 @@ import API from "../../Utils/API"
 //Import from PureComponents
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: "600px",
-        marginBottom: "100px"
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-
-}));
+//import login styles from login
+import useStyles from "./EmployeeSummaryCardStyle"
 
 export default function Cards() {
     const classes = useStyles();
@@ -44,7 +32,6 @@ export default function Cards() {
                     employee: employeeDetails.data
                 })
             })
-
         })
     }
 
@@ -111,8 +98,6 @@ export default function Cards() {
                         {state.currentEmployee.skills}
                     </Typography>
                 </CardContent>
-
-
             </Card>
         </div>
     );

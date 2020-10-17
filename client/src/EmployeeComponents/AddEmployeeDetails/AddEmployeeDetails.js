@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom"
 
 
 //Import from material UI core
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { MenuItem } from '@material-ui/core';
 
@@ -23,19 +22,8 @@ import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocal
 //Import from EmployeeComponents
 import Adminheader from "../EmployeeDashboardHeader/EmployeeDashboardHeader"
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginLeft: "40px",
-        marginRight: "40px"
-    },
-    buttonMargin: {
-        marginTop: "50px",
-        marginBottom: "50px"
-    }
-}));
+//import login styles from login
+import useStyles from "./AddEmployeeDetailsStyle"
 
 
 const workerType = [
@@ -86,7 +74,6 @@ export default function AddEmployeeDetails() {
 
     const submit = async (e) => {
         e.preventDefault();
-
         checkLocalStorage().then(async employeeRes => {
             //While sending form data ordering is important send all data first and append image at last
             const fd = new FormData();
@@ -121,10 +108,7 @@ export default function AddEmployeeDetails() {
                 //&& operator to set the error message.Executes when both sides true before and after and operator
                 err.response.data.msg && setError(err.response.data.msg)
             }
-
-          
         })
-        
     }
 
     useEffect(() => {

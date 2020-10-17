@@ -13,7 +13,6 @@ import  "../../FindEmployeeComponents/PopUpUser/UserPopUp.css"
 
 export default function DraggableDialog() {
   const [open, setOpen] = React.useState(false);
-
   const [name, setName] = useState('pradeep');
   const [room, setRoom] = useState('findEmployee');
 

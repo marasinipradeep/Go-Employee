@@ -1,16 +1,4 @@
 /* about us */
-.aboutus {padding: 3rem 1rem;}
-  
-  .aboutus {
-    background-color: lightblue;
-   
-  }
-  .aboutus p{
-    font-size: 28px;
-    display: flex;
-    margin: auto 50px;
-    justify-content: center;
-    text-align: justify;
-  }
- 
-  /* end about us */
+.aboutus {padding: 3rem 1rem; background-color: lightblue;}
+.aboutus p{ font-size: 28px;display: flex;margin: auto 50px;justify-content: center;text-align: justify;}
+/* end about us */

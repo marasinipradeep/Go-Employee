@@ -38,20 +38,7 @@ const reducer = (state, action) => {
         token: action.token,
         // currentEmployee:{...state,_id:action.id,email:action.email}
       };
-
-    // case EMPLOYEE_REGISTER:
-    //   console.log("inside EMPLOYEE_LOGIN")
-    //   console.log(action.token)
-    //   console.log(action.id)
-    //   console.log(action.email)
-    //   console.log(state)
-    //   return {
-    //     ...state,
-    //     token: action.token,
-    //     currentEmployee:{...state,_id:action.id,email:action.email}
-    //   };
-
-
+      
     case SAVE_EMPLOYEE_DETAILS:
       return {
         ...state,

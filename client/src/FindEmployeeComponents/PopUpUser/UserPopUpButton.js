@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 //import from PureComponent
 import PopUpDialogue from "../../PureComponents/PopUpDialogue/PopUpDialogue"
 
-import  "./UserPopUp.css"
+import "./UserPopUp.css"
 
 //import from chatComponent
 import Chat from "../../ChatComponents/Chat/Chat"
@@ -17,16 +17,14 @@ export default function DraggableDialog() {
 
   return (
     <div>
-    
-      <Button variant="outlined" color="primary" onClick={()=>setOpen(true)}>
-       <span className="blinking">Open Chat room</span> 
+      <Button variant="outlined" color="primary" onClick={() => setOpen(true)}>
+        <span className="blinking">Open Chat room</span>
       </Button>
 
       <PopUpDialogue open={open} setOpen={setOpen} name={name}>
-        <Chat name="Guest" room={room} setName={name} setRoom={room}/>
+        <Chat name="Guest" room={room} setName={name} setRoom={room} />
       </PopUpDialogue>
 
-      
     </div>
   );
 }

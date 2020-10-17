@@ -1,11 +1,11 @@
 import React from 'react';
 
+//import styles from input 
 import './Input.css';
 
 export default function Input({message, setMessage, sendMessage}) {
     return (
        <form className="form">
-
            <input className="input" 
            placeholder="Type a messages.."
            value={message} 

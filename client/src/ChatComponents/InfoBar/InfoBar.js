@@ -12,7 +12,6 @@ export default function InfoBar({ room,setOpen }) {
                 <h3>{room}</h3>
             </div>
             <div className="rightInnerContainer">
-                {/* <a href="/"><img src={closeIcon} alt="close image"></img></a> */}
                 <Button onClick={() => setOpen(false)}><CloseRoundedIcon/></Button>
             </div>
         </div>
