@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 //import from material ui
-import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid,Avatar } from '@material-ui/core';
+import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid} from '@material-ui/core';
 import { KeyboardArrowUp, Home, Description } from '@material-ui/icons';
 
 //import styles from HeaserStyle
@@ -61,9 +61,7 @@ export default function Navbar(props) {
                     <Grid container justify="space-between">
                         <Grid item xs={12} sm={4} md={5}>
                       <Link to="/">  <img  alt="Logo" src={process.env.PUBLIC_URL + '/logoOne.png'} className={classes.logo}/></Link>
-                            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/")}>
-                                <Home />HOME
-          </IconButton> */}
+                           
                         </Grid>
                         <Grid item xs={12} sm={4} md={5}>
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/employee")}>

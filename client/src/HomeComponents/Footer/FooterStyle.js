@@ -8,10 +8,10 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       backgroundColor: "#0000FE"
     },
-    font: {
-      color: "white",
-      fontWeight: "bold"
-    }
+   socialLink: {
+    color: "white"
+  }
+
   }))
 
   export default useStyles;
