@@ -14,6 +14,13 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         backgroundColor: "rgb(219, 70, 70)"
+    },
+    logo:{
+        margin:"30px",
+        marginLeft:"60px",
+        width:"100px",
+        maxHeight:"50px",
+        transform:"scale(2)"
     }
 
 }));

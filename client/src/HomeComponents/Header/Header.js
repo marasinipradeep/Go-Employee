@@ -1,31 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 //import from material ui
-import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid } from '@material-ui/core';
-//import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Fab, Zoom, IconButton, Button, Grid,Avatar } from '@material-ui/core';
 import { KeyboardArrowUp, Home, Description } from '@material-ui/icons';
 
 //import styles from HeaserStyle
 import useStyles from "./HeaderStyle"
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         flexGrow: 1,
-//         position: 'fixed',
-//         bottom: theme.spacing(2),
-//         right: theme.spacing(2),
-//     },
-//     menuButton: {
-//         marginRight: theme.spacing(1),
-
-//     },
-//     appBar: {
-//         backgroundColor: "rgb(219, 70, 70)"
-//     }
-
-// }));
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -77,9 +60,10 @@ export default function Navbar(props) {
                 <Toolbar >
                     <Grid container justify="space-between">
                         <Grid item xs={12} sm={4} md={5}>
-                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/")}>
+                      <Link to="/">  <img  alt="Logo" src={process.env.PUBLIC_URL + '/logoOne.png'} className={classes.logo}/></Link>
+                            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/")}>
                                 <Home />HOME
-          </IconButton>
+          </IconButton> */}
                         </Grid>
                         <Grid item xs={12} sm={4} md={5}>
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => history.push("/employee")}>
