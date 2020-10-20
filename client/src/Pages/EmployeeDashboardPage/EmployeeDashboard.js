@@ -11,17 +11,18 @@ import { SAVE_EMPLOYEE_DETAILS, UPDATE_EMPLOYEE_ISONLINE } from "../../Utils/Act
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
 
 //import from EmployeeComponents
-import Cards from "../../EmployeeComponents/EmployeeSummaryCard/EmployeeSummaryCard"
+import EmployeeSummaryCard from "../../EmployeeComponents/EmployeeSummaryCard/EmployeeSummaryCard"
 import Adminheader from "../../EmployeeComponents/EmployeeDashboardHeader/EmployeeDashboardHeader"
 
-//import from chatComponents
-import EmployeePopUpButton from "../../ChatComponents/PopUpEmployee/EmployeePopUpButton"
+
+//import from chatComponent
+import Chat from "../../ChatComponents/Chat/Chat"
 
 //import from PureComponents
 import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocalStorage"
 
 const useStyles = makeStyles((theme) => ({
-    root: {marginTop: "50px"},
+    root: { marginLeft: "20px" },
 }));
 
 const EmployeeDashboard = () => {
@@ -29,7 +30,8 @@ const EmployeeDashboard = () => {
     const classes = useStyles();
     const [state, dispatch] = useEmployeeContext();
     const [checked, setChecked] = useState(state.currentEmployee.isOnline);
-
+    const [name, setName] = useState("");
+    const [room, setRoom] = useState("");
     const history = useHistory();
 
     //Hanlde and set online and offline for employee
@@ -48,14 +50,15 @@ const EmployeeDashboard = () => {
     };
     //Loads and sets employee details
     function loadEmployee() {
-
         checkLocalStorage().then(employeeRes => {
-            console.log("employeeDetails.data.isOnline")
-            console.log(employeeRes)
             if (employeeRes === undefined) {
                 return history.push("/login")
             }
             API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
+               console.log(employeeDetails.data.name)
+                console.log(employeeDetails.data._id)
+                setName(employeeDetails.data.name)
+                setRoom(employeeDetails.data._id)
 
                 setChecked(employeeDetails.data.isOnline)
                 dispatch({
@@ -65,6 +68,7 @@ const EmployeeDashboard = () => {
             })
 
         })
+
     }
 
     useEffect(
@@ -75,19 +79,23 @@ const EmployeeDashboard = () => {
     return (
         <div className={classes.root}>
             <Adminheader />
-            <Grid container alignItems="center" direction="column" >
-                <Grid sm={6} alignItems="center" direction="row">
-
+            <Grid item xs container direction="row" >
+                <Grid item sm={12}>
                     <h3>Go online</h3>
                     <Switch checked={checked} onChange={handleToggle} />
-                </Grid>
-                <Grid sm={6}>
-                    <EmployeePopUpButton />
+                    <br />
+                    <br />
                 </Grid>
 
+                <Grid item xs={12} md={6} >
+                    <EmployeeSummaryCard />
+                </Grid>
 
-                <Cards />
+                <Grid item xs={12} md={6}>
+                    <Chat name={name} room="5f8626db3fc13c0743d43e9a" />
+                </Grid>
             </Grid>
+
         </div>
     )
 }

@@ -12,12 +12,10 @@
     grid-column-gap: 50px;
   }
   .single-employee-images img {
-    width: 100%;
+    width: 50%;
     display: block;
   }
-  .chatRoomButton{
-    margin-top: 50px;
-  }
+  
   .single-employee-info {
     width: 80vw;
     display: grid;
@@ -25,35 +23,37 @@
     margin: 2rem auto;
     font-size: 24px;
   }
+
+ 
   .desc,
   .info {
     margin: 1rem 0;
     font-size: 24px;
-    font-weight: bold;
   }
   .desc h3 {
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
+    margin: 1rem;
   }
   .desc p {
     line-height: 1.5;
+    margin: 1rem;
+    text-align: justify;
   }
   .info h3,
   .info h6 {
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
+    text-align: justify;
   }
   
   .info h6 {
     font-weight: 300;
     font-size: 20px;
-    font-weight: bold;
   }
   .employee-extras {
-    width: 80vw;
-    margin: 0 auto 3rem auto;
+   text-align: justify;
     font-size: 18px;
-    font-weight: bold;
   }
   .employee-extras h6 {
     text-transform: capitalize;

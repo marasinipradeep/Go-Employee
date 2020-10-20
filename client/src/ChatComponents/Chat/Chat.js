@@ -4,16 +4,21 @@ import io from 'socket.io-client';
 //Chats dependent components
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages'
+import InfoBar from '../../ChatComponents/InfoBar/InfoBar';
 
 //import chat css
 import "./Chat.css";
+
+import queryString from 'query-string';
+
 
 //global variable;
 let socket;
 
 
 export default function Chat(props) {
-    const { name, room, setName, setRoom } = props
+    const {name,room} = props
+
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const ENDPOINT = 'localhost:8080';
@@ -24,17 +29,20 @@ export default function Chat(props) {
     //Have to use cleanup because we need to know when actually a users disconnect
 
     useEffect(() => {
-        console.log(name, room)
         socket = io(ENDPOINT);
         //emit event from client side(can be anything (join) should be same exact string on backend as well,receive data on backend)
-        socket.emit('join', { name, room }, () => {
+        socket.emit('join', { name, room }, (error) => {
+            if(error) {
+                alert(error);
+              }
+           
         });
         //have to finish with return this is used for unmounting
 
-        return () => {
-            socket.emit('disconnect');
-            socket.off();
-        }
+        // return () => {
+        //     socket.emit('disconnect');
+        //     socket.off();
+        // }
 
     }, [ENDPOINT])
 
@@ -56,9 +64,11 @@ export default function Chat(props) {
     }
 
     return (
-        <div>
+            <div className="container">
+            <InfoBar room={name} />
             <Messages messages={messages}></Messages>
             <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+
         </div>
     )
 }

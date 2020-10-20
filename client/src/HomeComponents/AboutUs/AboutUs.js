@@ -12,7 +12,7 @@ function AboutUs() {
     const [state, setState] = useState({
         aboutus: [
             {
-                info: 'Go Employee is a medium to establish to connection between ob provider and job seeker mainly  for small business like restaurant, cleaning and agricultures.As small industries have lack of budget for human resource system they always find difficulties connecting with right employees.So this application helps to find right employee for right businesses.Whenever the peson who is looking employee they can always look in this page and find the right fit person for their business.'
+                info: 'Go Employee helps to establish a connection between industry owner and job seeker.This application allows to find employees on fast track.As this is just initial launch of application.This application is targeted only for South Australia with in 30 km from the CBD for the test purpose.Also,if there is any issues and feedback please contact me at marasinipradeep@gmail.com or dail phone number 0420719901.'
             },
         ]
     })

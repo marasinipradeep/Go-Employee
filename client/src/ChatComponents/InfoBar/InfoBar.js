@@ -12,7 +12,7 @@ export default function InfoBar({ room,setOpen }) {
                 <h3>{room}</h3>
             </div>
             <div className="rightInnerContainer">
-                <Button onClick={() => setOpen(false)}><CloseRoundedIcon/></Button>
+                {/* <Button onClick={() => setOpen(false)}><CloseRoundedIcon/></Button> */}
             </div>
         </div>
     )

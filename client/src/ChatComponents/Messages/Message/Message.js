@@ -7,7 +7,7 @@ export default function Message({ message:{user,text}, name }) {
 
     //look in here why trim is throwing an error
     const trimmedName = name//.trim().toLowerCase();
-
+    
     if (user === trimmedName) {
         isSentByCurrentUser = true
     }

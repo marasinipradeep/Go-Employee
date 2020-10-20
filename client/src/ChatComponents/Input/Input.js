@@ -6,7 +6,9 @@ import './Input.css';
 export default function Input({message, setMessage, sendMessage}) {
     return (
        <form className="form">
-           <input className="input" 
+           <input 
+           className="input" 
+           type="text"
            placeholder="Type a messages.."
            value={message} 
            onChange={(event) => setMessage(event.target.value)} 

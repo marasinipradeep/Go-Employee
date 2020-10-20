@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 //import from material
@@ -19,17 +19,25 @@ import { CONNECTED_EMPLOYEE } from "../../Utils/Actions";
 //import from chatComponents
 import UserPopUpButton from "../../FindEmployeeComponents/PopUpUser/UserPopUpButton"
 
+//import from chatComponent
+import Chat from "../../ChatComponents/Chat/Chat"
+
+
 //import from SingleEmployee css
 import "./SingleEmployee.css";
 
 
 
 function SingleEmployee(props) {
-
     const [employeeState, dispatch] = useEmployeeContext();
+    const [name, setName] = useState('Guest');
+    const [room, setRoom] = useState("");
     useEffect(() => {
 
         API.getEmployeeDetails(props.match.params.id).then(connEmployee => {
+            console.log(connEmployee)
+
+            setRoom(connEmployee.data._id)
             dispatch({
                 type: CONNECTED_EMPLOYEE,
                 connectedEmployee: connEmployee.data
@@ -40,29 +48,29 @@ function SingleEmployee(props) {
         <>
             {employeeState.connectedEmployee.length ? (
                 <div>
+                   
                     {employeeState.connectedEmployee.map(employee => (
 
                         <div key={employee._id}>
+ 
                             <StyledHero img={`/${employee.images}` ||
                                 defaultBcg}>
                                 <Banner title={`${employee.name} room`}>
                                     <Link to='/employee' className="btn-primary">
-                                       GO BACK
-                         </Link>
+                                        GO BACK
+                                   </Link>
                                 </Banner>
                             </StyledHero>
-                            <Grid container alignItems="center" direction="column" className="chatRoomButton" >
-                           <UserPopUpButton/>
-                           </Grid>
-                            <section className="single-employee">
-                                {/* <div className="single-employee-images">
-                                    <img src="" alt="" />
-                                </div> */}
-                                <div className="single-employee-info">
+
+                            <Grid container alignItems="center" spacing={2} >
+                                <Grid item>
                                     <article className="desc">
                                         <h3>details</h3>
                                         <p>{employee.description}</p>
                                     </article>
+                                </Grid>
+
+                                <Grid item xs={12} md={5}>
                                     <article className="info">
                                         <h3>info</h3>
                                         <h6>Name: {employee.name}</h6>
@@ -71,17 +79,22 @@ function SingleEmployee(props) {
                                         <h6>Email : {employee.email}</h6>
                                         <h6>contact Number:{employee.contactNumber}</h6>
                                     </article>
-                                </div>
-                            </section>
-                            <section className="employee-extras">
-                                <h6>Skills</h6>
-                                <ul className="extras">
-                                    {/* {skills.map((item,index)=>{
-                            return <li  key = {index}>{item}</li>
-                        })} */}
-                                    <li>{employee.skills}</li>
-                                </ul>
-                            </section>
+                                </Grid>
+
+                                <Grid item xs={12} md={2}>
+                                    <section className="employee-extras">
+                                        <h6>Skills</h6>
+                                        <ul className="extras">
+                                            <li>{employee.skills}</li>
+                                        </ul>
+                                    </section>
+                                </Grid>
+
+                                <Grid item xs={12} md={5} >
+                                    <Chat name={name} room={room} />
+                                </Grid>
+
+                            </Grid>
                         </div>
                     ))}
                 </div>

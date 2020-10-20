@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 //import from material ui
@@ -15,10 +15,10 @@ import checkLocalStorage from "../../PureComponents/CheckLocalStorage/checkLocal
 //import login styles from login
 import useStyles from "./EmployeeSummaryCardStyle"
 
+
 export default function Cards() {
     const classes = useStyles();
     const history = useHistory();
-
     const [state, dispatch] = useEmployeeContext();
     function loadEmployee() {
 
@@ -27,6 +27,7 @@ export default function Cards() {
               return  history.push("/login")
             }
             API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
+               
                 dispatch({
                     type: SAVE_EMPLOYEE_DETAILS,
                     employee: employeeDetails.data

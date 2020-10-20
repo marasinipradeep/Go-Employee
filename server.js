@@ -23,7 +23,7 @@ const router = require('./routes/chatBox');
 const app = express();
 
 const server = http.createServer(app);
- const io = socketio(server);
+const io = socketio(server);
 
 //Check Employee Passport
 app.use(passport.initialize());
@@ -32,22 +32,18 @@ app.use(passport.session());
 io.on('connection', (socket) => {
   //first string should be same exact as front end 'join' then call back function.Something that happens with join
 
-
-  console.log("inside io.on connection")
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
     if (error) return callback(error);
 
+     //Join joins user in room
+     socket.join(user.room);
+
     //Focusing on system generated messages
-    socket.emit('message', { user: 'admin', text: `Hello ${user.name},good luck for new connection`})
+    socket.emit('message', { user: 'admin', text: `Hello ${user.name},good luck for new connection` })
 
     //Broadcast Sends message to everyone besides that user
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name},has joined! ` })
-
-    console.log("inside socket connection")
-    console.log(user)
-    //Join joins user in room
-    socket.join(user.room);
 
     //
     io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) })
@@ -58,13 +54,11 @@ io.on('connection', (socket) => {
   //Events for user generated messages 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
-    console.log("inside socket send messages")
-    console.log(user)
 
     io.to(user.room).emit('message', { user: user.name, text: message })
 
     //When the user leaves we can send the new messge
-    io.to(user.room).emit('roomData', { roomm: user.room, users: getUserInRoom(user.room) })
+    //io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) })
 
     //Call callback right here so that they can do somethig after the message is send on the front end
     callback();
@@ -72,6 +66,11 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log("user has left");
+    const user =removeUser(socket.id)
+    if(user){
+      io.to(user.room).emit('message',{user:'admin',text:`${user.name} has left`})
+      io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) })
+    }
   });
 })
 
@@ -102,12 +101,8 @@ app.use(
 //Add static to server images
 app.use(express.static('uploads'));
 
-
-
 //import routes and give the server access to them
 require("./routes/employee-register-api")(app);
-
-
 
 server.listen(PORT, () => {
   console.log(`Server has started on port ${PORT}`)

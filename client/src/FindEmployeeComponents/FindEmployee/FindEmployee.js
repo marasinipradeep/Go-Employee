@@ -10,7 +10,6 @@ import './FindEmployee.css'
 
 function FindEmployee({ employee }) { //This is coming from attribute inside EmployeeList
     const { name, _id, images, jobTitle } = employee;
-    // <img src={images || defaultImage}
     return (
         <article className="employee" >
             <div className="img-container">
