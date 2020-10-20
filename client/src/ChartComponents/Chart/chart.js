@@ -14,8 +14,6 @@ function chart(props) {
     let farmWorker = 0;
     let restaurantWorker = 0;
     let cleaners = 0
-
-
 console.log(newData)
  //   let obj =
      newData.find((o, i) => {
@@ -29,7 +27,7 @@ console.log(newData)
             cleaners++;
         }
         else {
-            return "ALL"
+            return
         }
     })
 
