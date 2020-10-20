@@ -85,7 +85,8 @@ var connStr = "mongodb://localhost:27017/employeeConnectingSystem";
 mongoose.connect(process.env.MONGODB_CONNECION_STRING || connStr, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 }, function (err) {
   if (err) throw err;
   console.log("Successfully connected to MongoDB");

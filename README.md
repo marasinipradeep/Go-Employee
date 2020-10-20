@@ -117,5 +117,5 @@ Following are the libraries and frameworks used in back end:-
 
 
 ## Live APP Link
-<a href= "https://goEmployee.herokuapp.com/">Click here for Live  link</a>
+<a href= "https://goemployee.herokuapp.com/">Click here for Live  link</a>
 

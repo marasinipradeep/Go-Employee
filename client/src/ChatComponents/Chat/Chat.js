@@ -18,10 +18,9 @@ let socket;
 
 export default function Chat(props) {
     const {name,room} = props
-
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'localhost:8080';
+    const ENDPOINT ='https://goemployee.herokuapp.com/' //'localhost:8080';
 
 
     //The use effect is hook that lets you perform side effects function components
