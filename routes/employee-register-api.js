@@ -151,6 +151,7 @@ module.exports = function (app) {
         })
     })
 
+    //api for listing all online employees on find employee page
     app.get("/allemployees", async function (req, res) {
         const employees = await Employee.find({ isOnline: true })
         console.log("inside all employeesss")
@@ -192,12 +193,15 @@ module.exports = function (app) {
 
     //Find employee details and to populate on employee dashboard
     app.get("/employee/currentdetails/:id", async function (req, res) {
+        console.log("inside server APIS get employeee details")
+        console.log(req.params.id)
 
         try {
-
             const employeeDetails = await Employee.findById(
                 { _id: req.params.id }
             )
+
+            console.log(employeeDetails)
             res.json(employeeDetails)
         } catch (err) {
             res.status(500).json({ error: err.message })

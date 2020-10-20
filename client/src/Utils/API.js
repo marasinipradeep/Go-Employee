@@ -36,12 +36,14 @@ export default {
 
   // Get all employee 
   getEmployeeDetails: function (id) {
-    return axios.get("/employee/currentdetails" + id);
+    console.log("inside APIS get employeee details")
+        console.log(id)
+    return axios.get("/employee/currentdetails/" + id);
   },
 
   // Save and update employee details
   setEmployeeOnline: function (id) {
-    return axios.put("/employee/isOnline", id);
+    return axios.put("/employee/isOnline",id);
   },
 
 };
