@@ -41,7 +41,8 @@ module.exports = function (app) {
 
             const newEmployee = new Employee({
                 email,
-                password: passworddHash
+                password: passworddHash,
+                isOnline:false
             });
 
             const saveEmployee = await newEmployee.save();
