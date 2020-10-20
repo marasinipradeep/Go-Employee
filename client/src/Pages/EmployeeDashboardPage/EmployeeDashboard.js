@@ -92,7 +92,7 @@ const EmployeeDashboard = () => {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Chat name={name} room="5f8626db3fc13c0743d43e9a" />
+                    <Chat name={name} room={room} />
                 </Grid>
             </Grid>
 

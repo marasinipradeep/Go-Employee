@@ -29,6 +29,7 @@ export default function Chat(props) {
     //Have to use cleanup because we need to know when actually a users disconnect
 
     useEffect(() => {
+        console.log(`inside use effect name and room are ${name} and room ${room} `)
         socket = io(ENDPOINT);
         //emit event from client side(can be anything (join) should be same exact string on backend as well,receive data on backend)
         socket.emit('join', { name, room }, (error) => {

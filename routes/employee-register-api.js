@@ -156,7 +156,6 @@ module.exports = function (app) {
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
         try {
-            console.log("inside try block")
             if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }

@@ -17,7 +17,7 @@ const employeeeSeed = [
         jobTitle: "Coffe Maker",
         experience: "3 year",
         contactNumber: "0420719902",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "Hello my name is Pradeep Marasini. I am professional Bar tender.I have 3 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills..",
         skills: "Capacino",
         images: "5f8626db3fc13c0743d43e99.jpg" //must match the id of employee and file extension .png
     },
@@ -31,7 +31,7 @@ const employeeeSeed = [
         jobTitle: "Fruit Picker",
         experience: "3 year",
         contactNumber: "0420719901",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills.",
         skills: "fruit picker",
         images: "employee.jpg"
     },
@@ -45,13 +45,13 @@ const employeeeSeed = [
         jobTitle: "commercial cleaner",
         experience: "1 year",
         contactNumber: "0420719902",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "Hello my name is Sara Mang. I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair",
         skills: "fruit picker",
         images: "employee.jpg"
     },
 
     {
-        email: "Bryan-HockingOne@gmail.com",
+        email: "Bryan-HockingTwo@gmail.com",
         password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
         isOnline: true,
         name: "Bryan Hocking",
@@ -59,13 +59,13 @@ const employeeeSeed = [
         jobTitle: "waiter",
         experience: "2 year",
         contactNumber: "0420719908",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "Highly reliable and dedicated Restaurant Worker with a strong customer service record and a stellar work ethic. Flexible schedulling availability to include evenings, weekends and special events as required. Able to function well as an independent worker with little to no supervision or as a member of a restaurant worker team..",
         skills: "Capacino",
         images: "employee.jpg"
     },
 
     {
-        email: "pradeepOne@gmail.com",
+        email: "pradeepTwo@gmail.com",
         password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
         isOnline: true,
         name: "Pradeep patel",
@@ -73,13 +73,13 @@ const employeeeSeed = [
         jobTitle: "Spervisor",
         experience: "1 year",
         contactNumber: "0420719906",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair.",
         skills: "supervising",
         images: "employee.jpg"
     },
 
     {
-        email: "saraMangOne@gmail.com",
+        email: "saraMangTwo@gmail.com",
         password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
         isOnline: true,
         name: "Sara Manging",
@@ -87,7 +87,91 @@ const employeeeSeed = [
         jobTitle: "window cleaner",
         experience: "1 year",
         contactNumber: "0420719902",
-        description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        description: "I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair.",
+        skills: "fruit picker",
+        images: "employee.jpg"
+    },
+
+    {
+        email: "Bryan-HockingTwo@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Bryan Hocking",
+        workType: "Restaurant-Worker",
+        jobTitle: "Coffe Maker",
+        experience: "3 year",
+        contactNumber: "0420719902",
+        description: "Hello my name is Pradeep Marasini. I am professional Bar tender.I have 3 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills..",
+        skills: "Capacino",
+        images: "5f8626db3fc13c0743d43e99.jpg" //must match the id of employee and file extension .png
+    },
+
+    {
+        email: "marasinipradeepTwo@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Pradeep Marasini",
+        workType: "Farm-Worker",
+        jobTitle: "Fruit Picker",
+        experience: "3 year",
+        contactNumber: "0420719901",
+        description: "Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills.",
+        skills: "fruit picker",
+        images: "employee.jpg"
+    },
+
+    {
+        email: "saraMangTwo@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Sara Mang",
+        workType: "Cleaners",
+        jobTitle: "commercial cleaner",
+        experience: "1 year",
+        contactNumber: "0420719902",
+        description: "Hello my name is Sara Mang. I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair",
+        skills: "fruit picker",
+        images: "employee.jpg"
+    },
+
+    {
+        email: "Bryan-HockingThree@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Bryan Hocking",
+        workType: "Restaurant-Worker",
+        jobTitle: "waiter",
+        experience: "2 year",
+        contactNumber: "0420719908",
+        description: "Highly reliable and dedicated Restaurant Worker with a strong customer service record and a stellar work ethic. Flexible schedulling availability to include evenings, weekends and special events as required. Able to function well as an independent worker with little to no supervision or as a member of a restaurant worker team..",
+        skills: "Capacino",
+        images: "employee.jpg"
+    },
+
+    {
+        email: "pradeepThree@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Pradeep patel",
+        workType: "Farm-Worker",
+        jobTitle: "Spervisor",
+        experience: "1 year",
+        contactNumber: "0420719906",
+        description: "I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair.",
+        skills: "supervising",
+        images: "employee.jpg"
+    },
+
+    {
+        email: "saraMangThree@gmail.com",
+        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+        isOnline: true,
+        name: "Sara Manging",
+        workType: "Cleaners",
+        jobTitle: "window cleaner",
+        experience: "1 year",
+        contactNumber: "0420719902",
+        description: "I am professional Farmer.I have 5 years of experience working in different farms. I can continuoulsy improve farm yields through implementation of process laborer and crop improvements.Source outside vender for crop protection application and equipment repair.",
         skills: "fruit picker",
         images: "employee.jpg"
     },
