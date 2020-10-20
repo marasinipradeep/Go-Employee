@@ -6,8 +6,9 @@ import "./chart.css"
 
 
 function chart(props) {
-
+    console.log("inside chart")
     const { data } = props;
+    console.log(data)
     const newData = data.employees || [];
     const total = data.employees.length || 0;
     let farmWorker = 0;
@@ -15,7 +16,7 @@ function chart(props) {
     let cleaners = 0
 
 
-  
+console.log(newData)
  //   let obj =
      newData.find((o, i) => {
         if (o.workType === 'Farm-Worker') {
