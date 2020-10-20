@@ -22,12 +22,6 @@ import FindEmployee from './Pages/FindEmployeePage/Employee'
 import SingleEmployee from './Pages/ConnectedEmployeePage/SingleEmployee';
 import EmployeeDashboard from "./Pages/EmployeeDashboardPage/EmployeeDashboard"
 
-// //Import chat component
-// import Join from './ChatComponents/Join/Join';
-// import Chat from './ChatComponents/Chat/Chat';
-
-// import Model from './PureComponents/PopUpDialogue/PopUpDialogue';
-
 
 //import from Utils
 import { EmployeeProvider } from "./Utils/EmployeeContext";
@@ -67,11 +61,6 @@ function App() {
           <PublicRoute exact path="/register" component={Register} />
           <EmployeeRoute exact path="/login/employee/dashboard" component={EmployeeDashboard} />
           <EmployeeRoute exact path="/employee/details" component={AddEmployeeDetails} />
-
-
-          {/* <Route exact path="/join" component={Join} />
-          <Route path="/chat" component={Model} /> */}
-
         </Switch>
       </EmployeeProvider>
 

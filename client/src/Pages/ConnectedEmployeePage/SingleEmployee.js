@@ -91,6 +91,7 @@ function SingleEmployee(props) {
                                 </Grid>
 
                                 <Grid item xs={12} md={5} >
+                                {console.log(name,room)}
                                     <Chat name={name} room={room} />
                                 </Grid>
 

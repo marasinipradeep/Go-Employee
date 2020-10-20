@@ -66,9 +66,7 @@ const EmployeeDashboard = () => {
                     employee: employeeDetails.data
                 })
             })
-
         })
-
     }
 
     useEffect(
@@ -91,9 +89,16 @@ const EmployeeDashboard = () => {
                     <EmployeeSummaryCard />
                 </Grid>
 
+                {checked?(
                 <Grid item xs={12} md={6}>
+                    {console.log(name,room)}
                     <Chat name={name} room={room} />
                 </Grid>
+                ):(
+                    <div>
+                        <h3>Go Online so that you can get connected.</h3>
+                    </div>
+                )}
             </Grid>
 
         </div>
