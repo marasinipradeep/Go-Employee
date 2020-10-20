@@ -7,12 +7,13 @@ import "./chart.css"
 
 function chart(props) {
 
-    const { data } = props
-    const newData = data.employees
-    const Total = data.employees.length;
+    const { data } = props;
+    const newData = data.employees || [];
+    const total = data.employees.length || 0;
     let farmWorker = 0;
     let restaurantWorker = 0;
     let cleaners = 0
+
 
   
  //   let obj =
@@ -26,12 +27,13 @@ function chart(props) {
         else if (o.workType === 'Cleaners') {
             cleaners++;
         }
-        else
-        return "ALL"
+        else {
+            return "ALL"
+        }
     })
 
     const chartData = {
-        labels: [`Total Available Workers = ${Total}`],
+        labels: [`Total Available Workers = ${total}`],
         datasets: [
             {
                 label: `Total Farm Worker : ${farmWorker}`,
