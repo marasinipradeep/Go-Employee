@@ -4,8 +4,8 @@ const http = require("http");
 const cors = require("cors");
 const session = require("express-session");
 const path = require("path");
-var mongoose = require("mongoose")
-const passport = require("./config/passport")
+var mongoose = require("mongoose");
+const passport = require("./config/passport");
 require("dotenv").config();
 
 global.__basedir = __dirname;

@@ -4,7 +4,7 @@ const db = require("../models");
 // This file empties the Employee collection and inserts the employees below
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/employeeConnectingSystem"
+    process.env.MONGODB_CONNECION_STRING || "mongodb://localhost:27017/employeeConnectingSystem"
 );
 
 const employeeeSeed = [

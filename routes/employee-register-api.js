@@ -89,7 +89,7 @@ module.exports = function (app) {
                 }
             })
 
-        } catch {
+        } catch(err) {
             res.status(500).json({ error: err.message })
         }
 
@@ -130,7 +130,7 @@ module.exports = function (app) {
             }
             return res.json(true);
 
-        } catch {
+        } catch(err) {
             res.status(500).json({ error: err.message })
 
         }
