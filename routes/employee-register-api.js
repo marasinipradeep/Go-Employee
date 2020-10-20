@@ -164,7 +164,7 @@ module.exports = function (app) {
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
 
         console.log("inside /employee/details")
-        console.log(employees)
+        console.log(req.body)
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
         try {
             if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {

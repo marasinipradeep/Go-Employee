@@ -101,6 +101,7 @@ export default function AddEmployeeDetails() {
                     type: SAVE_EMPLOYEE_DETAILS,
                     employee: employeeDetails.data
                 })
+                clearInputs();
 
             }
             catch (err) {
