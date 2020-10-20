@@ -55,49 +55,43 @@ export default function Cards() {
                     title="Paella dish"
                 />
                 <CardContent>
-                    <Typography variant="h6" color="primary">
-                        <Typography color="secondary" variant="h5">Name:</Typography>
-                        {state.currentEmployee.name}
-                    </Typography>
+                      <Typography color="primary" variant="h5">Name:</Typography>
+                      <Typography color="secondary" variant="h6">{state.currentEmployee.name}</Typography>
+                      
+                 </CardContent>
+
+                <CardContent>
+                        <Typography color="primary" variant="h5">Work Type:</Typography>
+                        <Typography color="secondary" variant="h6"> {state.currentEmployee.workType}</Typography>
                 </CardContent>
                 <CardContent>
-                    <Typography variant="h6" color="primary" >
-                        <Typography color="secondary" variant="h5">Work Type:</Typography>
-                        {state.currentEmployee.workType}
-                    </Typography>
+                    
+                        <Typography color="primary" variant="h5">Job Title:</Typography>
+                        <Typography color="secondary" variant="h6">  {state.currentEmployee.jobTitle}</Typography>
                 </CardContent>
                 <CardContent>
-                    <Typography variant="h6" color="primary" >
-                        <Typography color="secondary" variant="h5">Job Title:</Typography>
-                        {state.currentEmployee.jobTitle}
-                    </Typography>
-                </CardContent>
-                <CardContent>
-                    <Typography variant="h6" color="primary">
-                        <Typography color="secondary" variant="h5">Experience:</Typography>
-                        {state.currentEmployee.experience}
-                    </Typography>
+                    
+                        <Typography color="primary" variant="h5">Experience:</Typography>
+                        <Typography color="secondary" variant="h6">{state.currentEmployee.experience}</Typography>
+                        
                 </CardContent>
 
                 <CardContent>
-                    <Typography variant="h6" color="primary" >
-                        <Typography color="secondary" variant="h5"> Contact Number:</Typography>
-                        {state.currentEmployee.contactNumber}
-                    </Typography>
+                        <Typography color="primary" variant="h5"> Contact Number:</Typography>
+                        <Typography color="secondary" variant="h6">{state.currentEmployee.contactNumber}</Typography>
+                        
                 </CardContent>
 
                 <CardContent>
-                    <Typography variant="h6" color="primary" component="details">
-                        <Typography color="secondary" variant="h5"> Description:</Typography>
-                        {state.currentEmployee.description}
-                    </Typography>
+                        <Typography color="primary" variant="h5"> Description:</Typography>
+                        <Typography color="secondary" variant="h6">{state.currentEmployee.description}</Typography>
+                        
                 </CardContent>
 
                 <CardContent>
-                    <Typography variant="h6" color="primary" >
-                        <Typography color="secondary" variant="h5"> Skills:</Typography>
-                        {state.currentEmployee.skills}
-                    </Typography>
+                        <Typography color="primary" variant="h5"> Skills:</Typography>
+                        <Typography color="secondary" variant="h6">{state.currentEmployee.skills}</Typography>
+                       
                 </CardContent>
             </Card>
         </div>

@@ -55,8 +55,7 @@ const EmployeeDashboard = () => {
                 return history.push("/login")
             }
             API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
-               console.log(employeeDetails.data.name)
-                console.log(employeeDetails.data._id)
+               
                 setName(employeeDetails.data.name)
                 setRoom(employeeDetails.data._id)
 
@@ -91,7 +90,6 @@ const EmployeeDashboard = () => {
 
                 {checked?(
                 <Grid item xs={12} md={6}>
-                    {console.log(name,room)}
                     <Chat name={name} room={room} />
                 </Grid>
                 ):(

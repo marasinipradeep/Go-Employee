@@ -26,10 +26,10 @@ function EmployeeContainer() {
     return (
         <div>
             <Grid container>
-            <Grid sm={12} md={7}>
+            <Grid item sm={12} md={7}>
                     <EmployeeFilter />
                 </Grid>
-                <Grid sm={12} md={5}>
+                <Grid item sm={12} md={5}>
                     <Charts data={state} />
                 </Grid>
                

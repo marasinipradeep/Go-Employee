@@ -14,7 +14,9 @@ function chart(props) {
     let restaurantWorker = 0;
     let cleaners = 0
 
-    let obj = newData.find((o, i) => {
+  
+ //   let obj =
+     newData.find((o, i) => {
         if (o.workType === 'Farm-Worker') {
             farmWorker++;
         }
@@ -24,6 +26,8 @@ function chart(props) {
         else if (o.workType === 'Cleaners') {
             cleaners++;
         }
+        else
+        return "ALL"
     })
 
     const chartData = {

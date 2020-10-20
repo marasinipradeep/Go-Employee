@@ -33,10 +33,11 @@ function EmployeeFilter() {
                         id="workType"
                         className="form-control"
                         onChange={filterBycategories}
+                        defaultValue="ALL"
                     >
-                        <option value="ALL" selected={true}>ALL</option>
+                        <option  value="ALL" >ALL</option>
                         <option value="Farm-Worker">FARM-WORKER</option>
-                        <option value="Restaurant-Worker">RESTAURANT-WORKER</option>
+                        <option  value="Restaurant-Worker">RESTAURANT-WORKER</option>
                         <option value="Cleaners">CLEANEARS</option>
                     </select>
                 </div>
