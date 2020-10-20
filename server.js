@@ -15,7 +15,7 @@ const { addUser, removeUser, getUser, getUserInRoom } = require('./controllers/u
 
 const PORT = process.env.PORT || 8080
 
-const router = require('./routes/chatBox');
+//const router = require('./routes/chatBox');
 //const users = require('./users');
 
 //Set up socket.io (Refer https://socekt.io/docs/#Using-with-Node-http-server)
@@ -75,10 +75,8 @@ console.log(user)
   });
 })
 
-app.use(router);
+//app.use(router);
 app.use(cors());
-
-
 
 //creating admin model
 var connStr = "mongodb://localhost:27017/employeeConnectingSystem";
