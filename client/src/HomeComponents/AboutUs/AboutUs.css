@@ -1,4 +1,11 @@
 /* about us */
-.aboutus {padding: 3rem 1rem; background-color: lightblue;}
-.aboutus p{ font-size: 28px;display: flex;margin: auto 50px;justify-content: center;text-align: justify;}
+.aboutus {padding:1rem 2rem; background-color: lightblue;}
+.aboutus p{ font-size: 28px;display: flex;justify-content: center;text-align: justify;margin: 50px;}
+
+@media screen and (max-width: 576px) {
+    .aboutus {
+      padding: 0rem 0rem;
+    }
+    .aboutus p{ margin: 0px;}
+  }
 /* end about us */
