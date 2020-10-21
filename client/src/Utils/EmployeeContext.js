@@ -68,8 +68,6 @@ const reducer = (state, action) => {
       }
 
     case FILTER_BY_CATEGORIES:
-      console.log(action.workType)
-
       if (action.workType === "ALL") {
         return {
           ...state,

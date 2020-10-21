@@ -35,8 +35,6 @@ function SingleEmployee(props) {
     useEffect(() => {
 
         API.getEmployeeDetails(props.match.params.id).then(connEmployee => {
-            console.log(connEmployee)
-
             setRoom(connEmployee.data._id)
             dispatch({
                 type: CONNECTED_EMPLOYEE,
@@ -82,7 +80,6 @@ function SingleEmployee(props) {
                                 </Grid>
 
                                 <Grid item xs={12} md={5} >
-                                {console.log(name,room)}
                                     <Chat name={name} room={room} />
                                 </Grid>
 
