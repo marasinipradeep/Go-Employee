@@ -15,9 +15,6 @@ const { addUser, removeUser, getUser, getUserInRoom } = require('./controllers/u
 
 const PORT = process.env.PORT || 8080
 
-//const router = require('./routes/chatBox');
-//const users = require('./users');
-
 //Set up socket.io (Refer https://socekt.io/docs/#Using-with-Node-http-server)
 //Socket used for real time application because http are slow and used to serve websites
 const app = express();
