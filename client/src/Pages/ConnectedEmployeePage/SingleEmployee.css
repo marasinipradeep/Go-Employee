@@ -27,17 +27,17 @@
  
   .desc,
   .info {
-    margin: 1rem 0;
+    margin: 2rem 0;
     font-size: 24px;
   }
   .desc h3 {
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
-    margin: 1rem;
+    margin: 2rem;
   }
   .desc p {
     line-height: 1.5;
-    margin: 1rem;
+    margin: 2rem;
     text-align: justify;
   }
   .info h3,
@@ -52,7 +52,8 @@
     font-size: 20px;
   }
   .employee-extras {
-   text-align: justify;
+    margin: 2rem;
+    text-align: justify;
     font-size: 18px;
   }
   .employee-extras h6 {

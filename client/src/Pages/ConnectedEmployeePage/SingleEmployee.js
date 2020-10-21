@@ -55,7 +55,7 @@ function SingleEmployee(props) {
  
                             <StyledHero img={`/${employee.images}` ||
                                 defaultBcg}>
-                                <Banner title={`${employee.name} room`}>
+                                <Banner title={`${employee.name} ${employee.workType}`}>
                                     <Link to='/employee' className="btn-primary">
                                         GO BACK
                                    </Link>
@@ -63,14 +63,14 @@ function SingleEmployee(props) {
                             </StyledHero>
 
                             <Grid container alignItems="center" spacing={2} >
-                                <Grid item>
+                                <Grid item xs={12} md={12}>
                                     <article className="desc">
                                         <h3>details</h3>
                                         <p>{employee.description}</p>
                                     </article>
                                 </Grid>
 
-                                <Grid item xs={12} md={5}>
+                                <Grid item xs={12} md={6}>
                                     <article className="info">
                                         <h3>info</h3>
                                         <h6>Name: {employee.name}</h6>
@@ -81,7 +81,12 @@ function SingleEmployee(props) {
                                     </article>
                                 </Grid>
 
-                                <Grid item xs={12} md={2}>
+                                <Grid item xs={12} md={5} >
+                                {console.log(name,room)}
+                                    <Chat name={name} room={room} />
+                                </Grid>
+
+                                <Grid item xs={12} md={12}>
                                     <section className="employee-extras">
                                         <h6>Skills</h6>
                                         <ul className="extras">
@@ -90,10 +95,7 @@ function SingleEmployee(props) {
                                     </section>
                                 </Grid>
 
-                                <Grid item xs={12} md={5} >
-                                {console.log(name,room)}
-                                    <Chat name={name} room={room} />
-                                </Grid>
+                              
 
                             </Grid>
                         </div>

@@ -3,7 +3,7 @@ import deafaultImage from '../../Images/employee.jpg';
 
 
 const StyledHero = styled.header`
-min-height: 50vh;
+min-height: 100vh;
 background:url(${props => props.img ? props.img :
         deafaultImage}) center/
 cover no-repeat;
