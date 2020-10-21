@@ -4,8 +4,9 @@ const db = require("../models");
 // This file empties the Employee collection and inserts the employees below
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/employeeConnectingSystem"
-);
+   // process.env.MONGODB_CONNECION_STRING || "mongodb://localhost:27017/employeeConnectingSystem"
+  "mongodb+srv://marasinipradeep:Kamalmansingh1@cluster0.lbzdf.mongodb.net/employeeConnectingSystem?retryWrites=true&w=majority"
+   );
 
 const employeeeSeed = [
     {
@@ -22,19 +23,19 @@ const employeeeSeed = [
         images: "5f8626db3fc13c0743d43e99.jpg" //must match the id of employee and file extension .png
     },
 
-    {
-        email: "marasinipradeep@gmail.com",
-        password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
-        isOnline: true,
-        name: "Pradeep Marasini",
-        workType: "Farm-Worker",
-        jobTitle: "Fruit Picker",
-        experience: "3 year",
-        contactNumber: "0420719901",
-        description: "Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills.",
-        skills: "fruit picker",
-        images: "employee.jpg"
-    },
+    // {
+    //     email: "marasinipradeep@gmail.com",
+    //     password: "$2a$10$4bnQZBeCS1QNFTM.v5CV2.V7cy8.lR6zshqsvYzhIXmH.kfi9TTAu",
+    //     isOnline: true,
+    //     name: "Pradeep Marasini",
+    //     workType: "Farm-Worker",
+    //     jobTitle: "Fruit Picker",
+    //     experience: "3 year",
+    //     contactNumber: "0420719901",
+    //     description: "Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills. Hello my name is Pradeep Marasini. I am professional chef.I have 5 years of experience working in different restaurant. I can cook Italian Pasta, pizza and prepare sauce. I have grate customer skills.",
+    //     skills: "fruit picker",
+    //     images: "employee.jpg"
+    // },
 
     {
         email: "saraMang@gmail.com",

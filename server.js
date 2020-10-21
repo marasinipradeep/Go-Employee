@@ -4,8 +4,8 @@ const http = require("http");
 const cors = require("cors");
 const session = require("express-session");
 const path = require("path");
-var mongoose = require("mongoose")
-const passport = require("./config/passport")
+var mongoose = require("mongoose");
+const passport = require("./config/passport");
 require("dotenv").config();
 
 global.__basedir = __dirname;
@@ -29,16 +29,7 @@ const io = socketio(server);
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static('client/build'));
 
-  // Express serve up index.html file if it doesn't recognize route
- // const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 io.on('connection', (socket) => {
   //first string should be same exact as front end 'join' then call back function.Something that happens with join
@@ -114,6 +105,17 @@ app.use(express.static('uploads'));
 
 //import routes and give the server access to them
 require("./routes/employee-register-api")(app);
+
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(express.static('client/build'));
+
+  // Express serve up index.html file if it doesn't recognize route
+ // const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 server.listen(PORT, () => {
   console.log(`Server has started on port ${PORT}`)

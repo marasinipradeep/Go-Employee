@@ -6,15 +6,15 @@ import "./chart.css"
 
 
 function chart(props) {
-
-    const { data } = props
-    const newData = data.employees
-    const Total = data.employees.length;
+    console.log("inside chart")
+    const { data } = props;
+    console.log(data)
+    const newData = data.employees || [];
+    const total = data.employees.length || 0;
     let farmWorker = 0;
     let restaurantWorker = 0;
     let cleaners = 0
-
-  
+console.log(newData)
  //   let obj =
      newData.find((o, i) => {
         if (o.workType === 'Farm-Worker') {
@@ -26,12 +26,13 @@ function chart(props) {
         else if (o.workType === 'Cleaners') {
             cleaners++;
         }
-        else
-        return "ALL"
+        else {
+            return
+        }
     })
 
     const chartData = {
-        labels: [`Total Available Workers = ${Total}`],
+        labels: [`Total Available Workers = ${total}`],
         datasets: [
             {
                 label: `Total Farm Worker : ${farmWorker}`,

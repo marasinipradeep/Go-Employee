@@ -21,27 +21,32 @@ export default {
   },
   // Save and update employee details
   saveEmployeeDetails: function (employeeDetails, config) {
+    console.log("inside /employee/details")
+    console.log(employeeDetails)
     return axios.put("/employee/details", employeeDetails, config);
   },
 
   // Save and update employee details with image
   saveEmployeeImage: function (fd, config) {
+   
     return axios.post("/employee/details/image", fd, config);
   },
 
   // Get  employee details
   getAllEmployee: function () {
-    return axios.get("/allemployees/");
+    return axios.get("/allemployees");
   },
 
   // Get all employee 
   getEmployeeDetails: function (id) {
+    console.log("inside APIS get employeee details")
+        console.log(id)
     return axios.get("/employee/currentdetails/" + id);
   },
 
   // Save and update employee details
   setEmployeeOnline: function (id) {
-    return axios.put("/employee/isOnline", id);
+    return axios.put("/employee/isOnline",id);
   },
 
 };

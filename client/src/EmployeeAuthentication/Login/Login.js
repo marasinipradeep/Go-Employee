@@ -21,19 +21,6 @@ import Input from "../../MaterialUiComponents/Inputs";
 
 //import login styles from login
 import useStyles from "./LoginStyle"
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         display: 'flex',
-//         flexWrap: 'wrap',
-//         marginTop: "100px",
-//         marginLeft: "40px"
-//     },
-//     buttonMargin: {
-//         marginTop: "50px"
-//     }
-// }));
-
-
 
 export default function Login() {
 

@@ -41,7 +41,8 @@ module.exports = function (app) {
 
             const newEmployee = new Employee({
                 email,
-                password: passworddHash
+                password: passworddHash,
+                isOnline:false
             });
 
             const saveEmployee = await newEmployee.save();
@@ -80,7 +81,9 @@ module.exports = function (app) {
             }
 
             const token = jwt.sign({ id: employee._id }, process.env.JWT_SECRET)
-           
+            console.log("inside /employee/login")
+            console.log(token)
+            console.log(employee)
             res.json({
                 token,
                 employee: {
@@ -89,7 +92,7 @@ module.exports = function (app) {
                 }
             })
 
-        } catch {
+        } catch(err) {
             res.status(500).json({ error: err.message })
         }
 
@@ -130,7 +133,7 @@ module.exports = function (app) {
             }
             return res.json(true);
 
-        } catch {
+        } catch(err) {
             res.status(500).json({ error: err.message })
 
         }
@@ -140,20 +143,28 @@ module.exports = function (app) {
     app.get("/employee", auth, async function (req, res) {
        
         const employee = await Employee.findById(req.employee)
+        console.log("inside /employee")
+        console.log(employee)
         res.json({
             email: employee.email,
             id: employee._id
         })
     })
 
+    //api for listing all online employees on find employee page
     app.get("/allemployees", async function (req, res) {
         const employees = await Employee.find({ isOnline: true })
+        console.log("inside all employeesss")
+        console.log(employees)
         res.json(employees)
     })
 
 
     //Update employee details
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
+
+        console.log("inside /employee/details")
+        console.log(req.body)
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
         try {
             if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {
@@ -161,6 +172,7 @@ module.exports = function (app) {
             }
 
             const employee = await Employee.findOneAndUpdate(
+                
                 { _id: req.body.id },
                 {
                     name: name,
@@ -181,12 +193,15 @@ module.exports = function (app) {
 
     //Find employee details and to populate on employee dashboard
     app.get("/employee/currentdetails/:id", async function (req, res) {
+        console.log("inside server APIS get employeee details")
+        console.log(req.params.id)
 
         try {
-
             const employeeDetails = await Employee.findById(
                 { _id: req.params.id }
             )
+
+            console.log(employeeDetails)
             res.json(employeeDetails)
         } catch (err) {
             res.status(500).json({ error: err.message })
@@ -203,6 +218,9 @@ module.exports = function (app) {
                 {
                     isOnline: req.body.isOnline,
                 })
+
+                console.log("inside is online")
+                console.log(employee)
             res.json(employee)
         } catch (err) {
             res.status(500).json({ error: err.message })
