@@ -11,6 +11,10 @@
 
 * [Back End Technologies](#BackEndTechnologies)
 
+* [Demo URL](#DemoURL)
+
+* [Contact](#Contact)
+
 ## Description
 GoEmployee is a platform to establish a connection between job provider and job seeker mainly for small business like restaurant, cleaning and agricultures.As small industries have lack of budget for human resource system they always find difficulties connecting with right employees.So this application helps to find right employee for right businesses.Whenever the person who is looking employee they can always look in this web and find the right fit person for their business.
 
@@ -117,5 +121,21 @@ Following are the libraries and frameworks used in back end:-
 
 
 ## Live APP Link
-<a href= "https://goemployee.herokuapp.com/">Click here for Live  link</a>
+<a href= "https://goemployees.herokuapp.com/">Click here for Live  link</a>
+
+
+# DemoURL
+
+<a href= "https://www.youtube.com/watch?v=BXcqKEGlIlA&feature=youtu.be">Click here for Demo  link</a>
+
+# Contact
+Email: marasinipradeep@gmail.com
+
+Phone Number: (+61) 0420719901
+
+Portfolio: <a href= "https://pradeep-marasini.herokuapp.com/">Click here for my portfolio</a>
+
+Linkdin: <a href= "https://www.linkedin.com/in/pmarasini/">Click here for my linkdin</a>
+
+Github:<a href= "https://github.com/marasinipradeep">Click here for my github repo</a>
 
