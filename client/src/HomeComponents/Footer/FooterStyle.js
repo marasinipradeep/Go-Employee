@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       position: "static",
       bottom: 0,
-      width:"100%",
+     // maxWidth:"100%",
       backgroundColor: "#0000FE"
     },
    socialLink: {

@@ -9,18 +9,18 @@ const useStyles = makeStyles((theme) => ({
         right: theme.spacing(2),
     },
     menuButton: {
-        marginRight: theme.spacing(1),
+      //  marginRight: theme.spacing(1),
 
     },
     appBar: {
         backgroundColor: "rgb(219, 70, 70)"
     },
     logo:{
-        margin:"30px",
-        marginLeft:"60px",
-        width:"100px",
-        maxHeight:"50px",
-        transform:"scale(2)"
+        margin:"10px",
+        marginLeft:"50px",
+       width:"100px",
+       maxHeight:"auto",
+       transform:"scale(2)"
     }
 
 }));

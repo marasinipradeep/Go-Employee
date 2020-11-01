@@ -18,7 +18,7 @@ import { Grid } from "@material-ui/core"
 export default function Home() {
     return (
         <Grid container >
-            <Grid item sm={12}>
+            <Grid item sm={12} >
                 <Hero>
                     <Banner title="Connect to employees" subtitle="Find Trusted And Skilled Employees">
                         <Link to="/employee" className="btn-primary">

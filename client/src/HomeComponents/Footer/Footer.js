@@ -25,10 +25,10 @@ function Footer() {
             <BottomNavigationAction icon={<Copyright />} edge="start" className={classes.socialLink} color="inherit" aria-label="copyright" />
             
           {/* email address */}
-          <BottomNavigationAction icon={<Email />} label="marasinipradeep@gmail.com" edge="start" className={classes.socialLink} color="inherit" aria-label="email" />
+          {/* <BottomNavigationAction icon={<Email />} label="marasinipradeep@gmail.com" edge="start" className={classes.socialLink} color="inherit" aria-label="email" /> */}
 
           {/* phone number */}
-          <BottomNavigationAction edge="start" label="(+61) 0420719901" className={classes.socialLink} color="inherit" aria-label="phone-number" icon={<Phone />} />
+          {/* <BottomNavigationAction edge="start" label="0420719901" className={classes.socialLink} color="inherit" aria-label="phone-number" icon={<Phone />} /> */}
 
           {/* portfolio */}
           <BottomNavigationAction edge="start" label="Portofolio" className={classes.socialLink} color="inherit" aria-label="portfolio" icon={<Face />} onClick={() => window.open("https://pradeep-marasini.herokuapp.com/", '_blank')} />
