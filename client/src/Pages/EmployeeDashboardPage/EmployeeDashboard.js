@@ -84,12 +84,12 @@ const EmployeeDashboard = () => {
                     <br />
                 </Grid>
 
-                <Grid item xs={12} md={6} >
+                <Grid item xs={12} md={12} >
                     <EmployeeSummaryCard />
                 </Grid>
 
                 {checked?(
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12}>
                     <Chat name={name} room={room} />
                 </Grid>
                 ):(

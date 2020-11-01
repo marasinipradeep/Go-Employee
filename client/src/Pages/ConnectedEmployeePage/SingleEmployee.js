@@ -68,7 +68,7 @@ function SingleEmployee(props) {
                                     </article>
                                 </Grid>
 
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={12}>
                                     <article className="info">
                                         <h3>info</h3>
                                         <h6>Name: {employee.name}</h6>
@@ -79,8 +79,8 @@ function SingleEmployee(props) {
                                     </article>
                                 </Grid>
 
-                                <Grid item xs={12} md={5} >
-                                    <Chat name={name} room={room} />
+                                <Grid item xs={12} md={12} >
+                                <Chat name={name} room={room} />
                                 </Grid>
 
                                 <Grid item xs={12} md={12}>
@@ -91,6 +91,8 @@ function SingleEmployee(props) {
                                         </ul>
                                     </section>
                                 </Grid>
+
+                               
 
                               
 
