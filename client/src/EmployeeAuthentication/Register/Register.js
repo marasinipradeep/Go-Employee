@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import ParticlesBg from "particles-bg";
 
 //import from material ui
 import {InputAdornment} from "@material-ui/core"
@@ -106,6 +107,8 @@ export default function Register() {
                         </Buttons>
                 </form>
             </Grid>
+
+            <ParticlesBg type="polygon" bg={true}/>
         </div>
     )
 }

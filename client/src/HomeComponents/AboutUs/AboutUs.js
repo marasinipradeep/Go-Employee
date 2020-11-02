@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 //import from pureComponents
 import Title from '../../PureComponents/Title/Title'

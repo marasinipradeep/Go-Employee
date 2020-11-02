@@ -5,7 +5,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         marginTop: "100px",
-        marginLeft: "40px"
+        marginLeft: "40px",
+        
     },
     buttonMargin: {
         marginTop: "50px"

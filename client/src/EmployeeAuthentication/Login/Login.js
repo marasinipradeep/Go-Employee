@@ -1,5 +1,6 @@
 import React, { useState, useRef} from 'react'
 import { useHistory } from "react-router-dom";
+import ParticlesBg from "particles-bg";
 
 //import from material ui
 import {InputAdornment} from "@material-ui/core"
@@ -94,6 +95,8 @@ export default function Login() {
                     <Buttons className={classes.buttonMargin} color="secondary" onClick={submit}>Submit</Buttons>
                 </form>
             </Grid>
+
+            <ParticlesBg type="circle" bg={true}/>
         </div>
     )
 }

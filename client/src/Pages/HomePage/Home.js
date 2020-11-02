@@ -25,8 +25,11 @@ export default function Home() {
                             <span className="blinking">Find Employee</span>
                         </Link>
                     </Banner>
+                 
                 </Hero>
             </Grid>
+          
+            
             <Grid item sm={12}>
                 <AboutUs />
             </Grid>
@@ -36,7 +39,7 @@ export default function Home() {
             <Grid item sm={12}>
                 <Footer />
             </Grid>
-
+           
         </Grid>
     )
 }
