@@ -92,20 +92,17 @@ export default function AddEmployeeDetails() {
                     'Content-Type': 'multipart/form-data'
                 }
             }
-
             try {
                 const employeeDetails = await API.saveEmployeeDetails(fd, config);
-                console.log("Employee Details")
-                console.log(employeeDetails)
+               
+                clearInputs();
+               setError(employeeDetails.data.msg)
                 dispatch({
                     type: SAVE_EMPLOYEE_DETAILS,
                     employee: employeeDetails.data
                 })
-                clearInputs();
-
             }
             catch (err) {
-                console.log(err)
                 //&& operator to set the error message.Executes when both sides true before and after and operator
                 err.response.data.msg && setError(err.response.data.msg)
             }

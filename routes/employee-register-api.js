@@ -155,14 +155,13 @@ module.exports = function (app) {
 
     //Update employee details
     app.put("/employee/details", uploads.any('image'), async function (req, res) {
+        console.log("inside server employee add details")
         const { name, workType, jobTitle, experience, contactNumber, description, skills, image } = req.body
         try {
             if (!name || !workType || !jobTitle || !experience || !contactNumber || !description || !skills) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }
-
             const employee = await Employee.findOneAndUpdate(
-                
                 { _id: req.body.id },
                 {
                     name: name,
@@ -174,9 +173,10 @@ module.exports = function (app) {
                     skills: skills,
                     images: req.body.id + ".png"
                 })
+                console.log(employee)
+                res.json({msg:"Successfuly addded all details.View your summary page and go online so that user can see you."})
         } catch (err) {
             res.status(500).json({ error: err.message })
-
         }
 
     })
