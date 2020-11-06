@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 
 //Import from material UI core
 import Grid from '@material-ui/core/Grid';
-import { MenuItem } from '@material-ui/core';
+import { MenuItem, Typography } from '@material-ui/core';
 
 //Import from MaterialUiComponents
 import Buttons from "../../MaterialUiComponents/Buttons";
@@ -94,9 +94,9 @@ export default function AddEmployeeDetails() {
             }
             try {
                 const employeeDetails = await API.saveEmployeeDetails(fd, config);
-               
+
                 clearInputs();
-               setError(employeeDetails.data.msg)
+                setError(employeeDetails.data.msg)
                 dispatch({
                     type: SAVE_EMPLOYEE_DETAILS,
                     employee: employeeDetails.data
@@ -111,11 +111,11 @@ export default function AddEmployeeDetails() {
 
     useEffect(() => {
         checkLocalStorage().then(async employeeRes => {
-          
+
             if (employeeRes === undefined) {
                 history.push("/login")
             }
-            else{
+            else {
                 API.getEmployeeDetails(employeeRes.data.id).then((employeeDetails) => {
                     dispatch({
                         type: SAVE_EMPLOYEE_DETAILS,
@@ -125,7 +125,7 @@ export default function AddEmployeeDetails() {
 
             }
         })
-    },[])
+    }, [])
 
     return (
         <>
@@ -133,92 +133,100 @@ export default function AddEmployeeDetails() {
 
             <div className={classes.root}>
 
-                <Grid container alignItems="center" direction="column">
+                <Grid container spacing={6}>
 
-                    <form>
-                        <h2>Enter Your Details:</h2>
-                        {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
+                    <Grid item sm={12} md={6} className={classes.detailForm}>
 
-                        <Input
-                           
-                            label="Enter your full name"
-                            inputRef={nameRef} />
+                        <form >
+                            <h2>Enter Your Details:</h2>
+                            {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
 
-                        {/* profession type */}
+                            <Input 
 
-                        <Input
+                            color="secondary"
 
-                            fullWidth
-                            id="workType"
-                            select
-                            label="Select Your Profession"
-                            helperText="Please select your profession"
-                            inputRef={typeRef}
-                            required
+                                label="Enter your full name"
+                                inputRef={nameRef} />
 
-                        >
-                            {workerType.map((option) => (
-                                <MenuItem key={option.value} value={option.label}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </Input>
+                            {/* profession type */}
 
-                        {/* job titile*/}
+                            <Input
 
-                        <Input
-                            label="Enter your job title"
-                            inputRef={jobTitleRef} />
+                                fullWidth
+                                id="workType"
+                                select
+                                label="Select Your Profession"
+                                helperText="Please select your profession"
+                                inputRef={typeRef}
+                                required
 
+                            >
+                                {workerType.map((option) => (
+                                    <MenuItem key={option.value} value={option.label}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </Input>
 
+                            {/* job titile*/}
 
-                        {/* Experience  */}
-
-                        <Input
-                            fullWidth
-                            id="experience"
-                            select
-                            label="Select Your Experience"
-                            helperText="Please Select Your Years of Experience"
-                            inputRef={experienceRef}
-                            required
-                        >
-                            {experiences.map((option) => (
-                                <MenuItem key={option} value={option}>
-                                    {option}
-                                </MenuItem>
-                            ))}
-                        </Input>
-
-                        <Input
-                            label="Enter your Contact Number"
-                            type="number"
-                            inputRef={contactNumberRef} />
+                            <Input
+                                label="Enter your job title"
+                                inputRef={jobTitleRef} />
 
 
-                        <Input
-                            label="Write Brief Description"
-                            inputRef={descriptionRef}
-                            multiline={true} />
+
+                            {/* Experience  */}
+
+                            <Input
+                                fullWidth
+                                id="experience"
+                                select
+                                label="Select Your Experience"
+                                helperText="Please Select Your Years of Experience"
+                                inputRef={experienceRef}
+                                required
+                            >
+                                {experiences.map((option) => (
+                                    <MenuItem key={option} value={option}>
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </Input>
+
+                            <Input
+                                label="Enter your Contact Number"
+                                type="number"
+                                inputRef={contactNumberRef} />
 
 
-                        <Input
-                            label="Add Skills"
-                            inputRef={skillsRef} />
-
-                        <Input
-                            type="file"
-                            label="Add Image"
-                            inputRef={imageRef}
-                            onChange={(e) => setImage(e.target.files[0])} />
+                            <Input
+                                label="Write Brief Description"
+                                inputRef={descriptionRef}
+                                multiline={true} />
 
 
-                        <Buttons
-                            className={classes.buttonMargin}
-                            onClick={submit} variant="contained" color="secondary" value="Submit">
-                            Submit
+                            <Input
+                                label="Add Skills"
+                                inputRef={skillsRef} />
+
+                            <Input
+                                type="file"
+                                label="Add Image"
+                                inputRef={imageRef}
+                                onChange={(e) => setImage(e.target.files[0])} />
+
+
+                            <Buttons
+                                className={classes.buttonMargin}
+                                onClick={submit} variant="contained" color="secondary" value="Submit">
+                                Submit
                             </Buttons>
-                    </form>
+                        </form>
+                    </Grid>
+                    <Grid item sm={12} md={6} className={classes.messageBox}>
+                        <Typography variant="h6" className={classes.messageBoxText}>* Guidlines to use:-<br/> -Please try to fill all the information correctly.<br/>-Write down short desctiption about yourself minimum 3-5 lines.<br/>-You can change your profession and details anytime.<br/>-Make sure you have uploaded right image so that job provider can see your face.<br/>-Review your summary page and click on goOnline.<br/>-When you are done please logout properly by selecting Logout button.<br/>-You can change image anytime without filling other data as well and vice versa.<br/>If any issues and question feel free to message me at marasinipradeep@gmail.com</Typography>
+                    </Grid>
                 </Grid>
             </div>
         </>
