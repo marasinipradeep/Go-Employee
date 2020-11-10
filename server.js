@@ -26,8 +26,6 @@ const io = socketio(server);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 io.on('connection', (socket) => {
   //first string should be same exact as front end 'join' then call back function.Something that happens with join
 

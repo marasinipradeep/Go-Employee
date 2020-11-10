@@ -15,7 +15,6 @@ export default function Message({ message:{user,text}, name }) {
         isSentByCurrentUser
             ?
             (
-
                 <div className="messageContainer justifyEnd">
                     <p className="sentText pr-10">{trimmedName}</p>
                     <div className="messageBox backgroundBlue">

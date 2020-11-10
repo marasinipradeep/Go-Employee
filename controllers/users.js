@@ -13,7 +13,9 @@ const addUser = ({ id, name, room }) => {
    }
 
     const existingUser = users.find((user) => user.room === room && user.name === name);
+   
     if (existingUser) {
+       
         return { error: 'Employee is busy with someone.Refresh page in a minute or Try finding another employee ' };
     }
     const user = {id, name, room};

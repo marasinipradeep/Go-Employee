@@ -9,6 +9,7 @@
 }
 .employeeHero {
   /* background-image: url("../Images/employee.jpg"); */
-  min-height: 60vh;
+  background: url("../../Images/employee.jpg") center/cover no-repeat;
+  min-height: 50vh;
 }
 /* End of Hero */
