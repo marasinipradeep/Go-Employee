@@ -33,9 +33,9 @@ export default function Home() {
             <Grid item sm={12}>
                 <AboutUs />
             </Grid>
-            <Grid item sm={12}>
+            {/* <Grid item sm={12}>
                 <Services />
-            </Grid>
+            </Grid> */}
             <Grid item sm={12}>
                 <Footer />
             </Grid>
