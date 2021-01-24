@@ -17,6 +17,8 @@ function EmployeeList() {
     const [state, dispatch] = useEmployeeContext();
     
     useEffect(() => {
+        console.log(`inside useEffect list employee`)
+        console.log(state)
         API.getAllEmployee().then(items => {
             dispatch({
                 type: GET_ALL_EMPLOYEE_DETAILS,

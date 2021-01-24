@@ -141,17 +141,14 @@ export default function AddEmployeeDetails() {
                             <h2>Enter Your Details:</h2>
                             {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
 
-                            <Input 
-
+                            <Input
                             color="secondary"
-
                                 label="Enter your full name"
                                 inputRef={nameRef} />
 
                             {/* profession type */}
 
                             <Input
-
                                 fullWidth
                                 id="workType"
                                 select

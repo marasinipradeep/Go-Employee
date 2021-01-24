@@ -19,9 +19,13 @@ module.exports = function (app) {
     //API for registering employee initially
     app.post("/employee/register", async function (req, res) {
 
+        console.log(`inside employee register .........`)
+
         try {
-            let { email, password, passwordCheck } = req.body;
-            if (!email || !password || !passwordCheck) {
+            let { email, password, passwordCheck, professionType } = req.body;
+            console.log(`inside employee register ${professionType}`)
+            console.log(req.body)
+            if (!email || !password || !passwordCheck || !professionType) {
                 return res.status(400).json({ msg: "Not all field entered" })
             }
             if (password.length < 5) {
@@ -42,7 +46,8 @@ module.exports = function (app) {
             const newEmployee = new Employee({
                 email,
                 password: passworddHash,
-                isOnline:false
+                isOnline:false,
+                workType:professionType
             });
 
             const saveEmployee = await newEmployee.save();
@@ -148,7 +153,9 @@ module.exports = function (app) {
 
     //api for listing all online employees on find employee page
     app.get("/allemployees", async function (req, res) {
-        const employees = await Employee.find({ isOnline: true })
+       // const employees = await Employee.find({ isOnline: true })
+       const employees = await Employee.find()
+       console.log(`inside find all employees ${employees}`)
         res.json(employees)
     })
 

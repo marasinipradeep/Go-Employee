@@ -31,11 +31,7 @@ function AboutUs() {
                 })}
             </div>
         </section>
-
-
-
     );
-
 }
 
 export default AboutUs

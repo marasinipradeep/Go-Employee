@@ -3,7 +3,6 @@ import React, { createContext, useContext, useReducer } from "react";
 import {
   LOGOUT,
   EMPLOYEE_LOGIN,
-  EMPLOYEE_REGISTER,
   SAVE_EMPLOYEE_DETAILS,
   LOADING, GET_ALL_EMPLOYEE_DETAILS,
   SET_TOKEN,
