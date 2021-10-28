@@ -1,16 +1,16 @@
-import React, { useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import { useHistory } from "react-router-dom";
 import ParticlesBg from "particles-bg";
 
 //import from material ui
-import {InputAdornment} from "@material-ui/core"
-import {AccountCircle,LockRounded} from "@material-ui/icons"
+import { InputAdornment } from "@material-ui/core"
+import { AccountCircle, LockRounded } from "@material-ui/icons"
 //import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 //imports from utils
 import { useEmployeeContext } from "../../Utils/EmployeeContext"
-import { EMPLOYEE_LOGIN} from "../../Utils/Actions"
+import { EMPLOYEE_LOGIN } from "../../Utils/Actions"
 import API from "../../Utils/API"
 
 //import from PureComponents
@@ -32,9 +32,9 @@ export default function Login() {
     const passwordRef = useRef();
     const [state, dispatch] = useEmployeeContext();
 
-    const clearInputs=()=> {
-        emailRef.current.value ="";
-        passwordRef.current.value="";
+    const clearInputs = () => {
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
     }
 
     //on submit clicked
@@ -52,7 +52,7 @@ export default function Login() {
                 return
             }
 
-           // we get response back with token
+            // we get response back with token
             const loginRes = await API.employeeLogin(loginEmployee);
             dispatch({
                 type: EMPLOYEE_LOGIN,
@@ -77,26 +77,26 @@ export default function Login() {
                     <h2>Login</h2>
                     {error && (<ErrorNotice message={error} clearError={() => setError(undefined)} />)}
                     <Input label="Email" inputRef={emailRef} autoFocus={true}
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <AccountCircle />
-                          </InputAdornment>
-                        ),
-                      }}/>
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircle />
+                                </InputAdornment>
+                            ),
+                        }} />
                     <Input label="Password" inputRef={passwordRef} type="password"
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <LockRounded />
-                          </InputAdornment>
-                        ),
-                      }}/>
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <LockRounded />
+                                </InputAdornment>
+                            ),
+                        }} />
                     <Buttons className={classes.buttonMargin} color="secondary" onClick={submit}>Submit</Buttons>
                 </form>
             </Grid>
 
-            <ParticlesBg type="circle" bg={true}/>
+            {/* <ParticlesBg type="circle" bg={true}/> */}
         </div>
     )
 }

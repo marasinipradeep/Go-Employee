@@ -45,22 +45,13 @@ const reducer = (state, action) => {
       }
 
     case UPDATE_EMPLOYEE_ISONLINE:
-      return {
-        ...state,
-        currentEmployee: action.isOnline
-
-      }
+      return {...state,currentEmployee: action.isOnline}
 
     case GET_ALL_EMPLOYEE_DETAILS:
-      return {
-        ...state,
-        employees: action.allEmployee
-      }
+      return {...state,employees: action.allEmployee }
 
     case CONNECTED_EMPLOYEE:
-      return {
-        ...state,
-        connectedEmployee: [action.connectedEmployee]
+      return {...state,connectedEmployee: [action.connectedEmployee]
         //connectedEmployee: [action.connectedEmployee,...state.connectedEmployee]
         //array destructure and pushing new array like array.push
 
@@ -68,10 +59,7 @@ const reducer = (state, action) => {
 
     case FILTER_BY_CATEGORIES:
       if (action.workType === "ALL") {
-        return {
-          ...state,
-          workerByCategories: state.employees
-        }
+        return {...state,workerByCategories: state.employees}
       }
       else {
         const workerByCategory = state.employees.filter((emp) => {
@@ -82,14 +70,9 @@ const reducer = (state, action) => {
           workerByCategories: workerByCategory
         }
       }
-
-
+      
     case LOADING:
-      return {
-        ...state,
-        loading: true
-      }
-
+      return {...state,loading: true }
 
     default:
       return state;

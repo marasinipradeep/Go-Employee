@@ -31,6 +31,7 @@ export default {
 
   // Get  employee details
   getAllEmployee: function () {
+    console.log(`inside get all employees api call`)
     return axios.get("/allemployees");
   },
 

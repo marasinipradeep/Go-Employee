@@ -28,7 +28,9 @@ function EmployeeList() {
     }, [])
 
     useEffect(() => {
+        console.log(`after secon useEffect`)
          API.getAllEmployee().then(items => {
+             console.log(`after secon useEffect`)
             dispatch({
                type: FILTER_BY_CATEGORIES,
                workType:"ALL"

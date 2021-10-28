@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import ParticlesBg from "particles-bg";
 
 //import from material ui
-import { InputAdornment,MenuItem,Typography } from "@material-ui/core"
+import { InputAdornment, MenuItem, Typography } from "@material-ui/core"
 import { AccountCircle, LockRounded } from "@material-ui/icons"
 //import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -25,16 +25,16 @@ import useStyles from "./RegisterStyle"
 
 const workerType = [
   {
-      value: 'Farm',
-      label: 'Farm-Worker',
+    value: 'Farm',
+    label: 'Farm-Worker',
   },
   {
-      value: 'Restaurant',
-      label: 'Restaurant-Worker',
+    value: 'Restaurant',
+    label: 'Restaurant-Worker',
   },
   {
-      value: 'Cleaning',
-      label: 'Cleaners',
+    value: 'Cleaning',
+    label: 'Cleaners',
   }
 ];
 
@@ -45,7 +45,7 @@ export default function Register() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const professionTypeRef =useRef();
+  const professionTypeRef = useRef();
 
   const clearInputs = () => {
     emailRef.current.value = "";
@@ -60,7 +60,7 @@ export default function Register() {
         email: emailRef.current.value,
         password: passwordRef.current.value,
         passwordCheck: confirmPasswordRef.current.value,
-        professionType:professionTypeRef.current.value
+        professionType: professionTypeRef.current.value
       }
       const newRegisteredEmployee = await API.registerEmployee(newEmployee);
       clearInputs()
@@ -138,11 +138,11 @@ export default function Register() {
             onClick={submit}
           >
             Submit
-                        </Buttons>
+          </Buttons>
         </form>
       </Grid>
 
-      <ParticlesBg type="polygon" bg={true} />
+      {/* <ParticlesBg type="polygon" bg={true} /> */}
     </div>
   )
 }
