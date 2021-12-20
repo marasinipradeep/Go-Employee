@@ -12,14 +12,15 @@ function AboutUs() {
     const [state, setState] = useState({
         aboutus: [
             {
-                info: 'Go Employee helps to establish a connection between industry owner and job seeker. This app will help to find industry workers from Farm, Restaurant and Cleaning.'
+                info: 'Use this app to find worker from various industries like resturant, farm and cleaning. Users can signup to become employee and find job'
             },
         ]
     })
 
     return (
+
         <section className="aboutus ">
-            <Title title="About" />
+            {/* <Title title="About" /> */}
             <div className="aboutus-center">
                 {state.aboutus.map((item, index) => {
                     return (
